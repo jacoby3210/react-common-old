@@ -1,0 +1,16 @@
+{
+	"name": "react-common",
+	"version": "0.0.1",
+	"description": "React's auxiliary component library. Used as a syntactic sugar.",
+	"main": "module.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"prop-types": "^15.8.1",
+		"react": "^18.3.1",
+		"react-aria": "^3.33.1"
+	}
+}
