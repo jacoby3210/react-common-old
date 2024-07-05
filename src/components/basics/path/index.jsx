@@ -3,8 +3,7 @@ import { mergeProps } from 'react-aria';
 import {defaultProps, propTypes} from "./config.js"
 
 // ========================================================================= //
-// A React component for displaying the path
-// to an element of a tree data structure.
+// React Component for displaying a path in a tree data structure.
 // ========================================================================= //
 
 export const Path = (
@@ -28,10 +27,10 @@ export const Path = (
 
 	// render 
 
-	const renderPathElement = (item, index) => <>
-		<span key={index} className='common-ui-path-element'>{item}</span>
-		<span key={index} className='common-ui-path-delimiter'>{delimiter}</span>
-	</>;
+	const renderPathElement = (item, index) => <label key={index}>
+		<span className='common-ui-path-element'>{item}</span>
+		<span className='common-ui-path-delimiter'>{delimiter}</span>
+	</label>;
 
 	return (
 		<div
