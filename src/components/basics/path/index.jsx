@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { mergeProps } from 'react-aria';
 import {defaultProps, propTypes} from "./config.js"
 
@@ -24,7 +24,7 @@ export const Path = (
 	useEffect(() => { }, [delimiter, value]);
 
 	// input from user
-
+	
 	// render 
 
 	const renderPathElement = (item, index) => <label key={index}>
@@ -43,3 +43,7 @@ export const Path = (
 		</div>
 	);
 };
+
+Path.propTypes = propTypes;
+
+// ========================================================================= //
