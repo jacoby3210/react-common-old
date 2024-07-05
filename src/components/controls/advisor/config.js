@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'react-component-example';
+const DEFAULT_CLASS = 'common-ui-overlay';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	shown: false,
-	timer: 0,
 };
 
 // ========================================================================= //
@@ -28,9 +26,7 @@ export const propTypes = {
 		PropTypes.array,
 		PropTypes.object,
 	]),
-	id: PropTypes.string, 	
-	shown: PropTypes.bool,
-	timer: PropTypes.number,
+	id: PropTypes.string,
 };
 
 // ========================================================================= //

@@ -4,8 +4,14 @@
 // React Component for displaying a path in a tree data structure
 import { Path } from "./components/basics/path" 
 
-// 
-import {Overlay} from "./components/basics/overlay"
+//
+import {Popup} from "./components/basics/popup"
 
 // 
-export default { Overlay, Path };
+import {Dropdown} from "./components/controls/dropdown"
+
+// 
+export default { 
+	Path, Popup,
+	Dropdown,
+};

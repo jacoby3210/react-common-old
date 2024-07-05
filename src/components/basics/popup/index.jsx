@@ -1,4 +1,3 @@
-import cx from 'clsx';
 import React, { useEffect, useRef, useState} from 'react';
 import { mergeProps } from 'react-aria';
 import {defaultProps, propTypes} from "./config.js"
@@ -7,7 +6,7 @@ import {defaultProps, propTypes} from "./config.js"
 // React component for output on top of the main ui. 
 // ========================================================================= //
 
-export const Overlay = (
+export const Popup = (
 	receivedProps
 ) => {
 
@@ -17,21 +16,25 @@ export const Overlay = (
 		className,
 		id,
 		shown,
-		timer,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
 	const self = useRef();
-	const [shownState, setShownState] = useState(shown);
+	const [shownState, setShownState] = useState(false);
+
 	useEffect(() => {
-		if (shownState && timer !== 0) {
-			const timer = setTimeout(() => {
-				setShownState(false);
-			}, timer);
-			return () => clearTimeout(timer);
-		}
+		document.addEventListener('click', handleClickOutside, true);
+		return () => {document.removeEventListener('click', handleClickOutside, true);};
 	}, [shown]);
+
+	// input from user
+	const handleClick = (evt) => { setShownState((prev) => !prev) }
+	const handleClickOutside = (event) => {
+		if (self.current && !self.current.contains(event.target)) {
+			setShownState(false);
+		}
+	};
 
 	// input from user
 
@@ -52,4 +55,4 @@ export const Overlay = (
 	);
 };
 
-Overlay.propTypes = propTypes;
+Popup.propTypes = propTypes;
