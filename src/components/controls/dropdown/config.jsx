@@ -9,9 +9,10 @@ const DEFAULT_CLASS = 'common-ui-select';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	options: [],
+	dataSource: [],
 	shown: false,
-	value: 0,
+	RenderElement: (caption, value) => <option value={value}>{caption}</option>,
+	value: 0
 };
 
 // ========================================================================= //
