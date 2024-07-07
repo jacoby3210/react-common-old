@@ -4,16 +4,11 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-select';
+const DEFAULT_CLASS = 'common-ui-overlay';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	caption: "dropdown",
-	data: [],
-	shown: false,
-	RenderElement: ({ caption, value }) => <option value={value}>{caption}</option>,
-	value: 0
 };
 
 // ========================================================================= //
@@ -32,11 +27,6 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	caption: PropTypes.string,
-	data: PropTypes.array,
-	RenderElement: PropTypes.func,
-	shown: PropTypes.bool,
-	value: PropTypes.any,
 };
 
 // ========================================================================= //

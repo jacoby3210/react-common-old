@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-select';
+const DEFAULT_CLASS = 'common-ui-data-view';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	caption: "dropdown",
-	data: [],
-	shown: false,
-	RenderElement: ({ caption, value }) => <option value={value}>{caption}</option>,
-	value: 0
+	data: [],												// Data provider for mapping.
+	from: 0,												// Display elements from the element with the specified index.
+	range: 0,												// Range of items to display (count).
+	RenderComponent: ({meta}) => <li className='common-ui-data-view-element'>{meta.text}</li>, 
 };
 
 // ========================================================================= //
@@ -32,11 +31,10 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	caption: PropTypes.string,
 	data: PropTypes.array,
-	RenderElement: PropTypes.func,
-	shown: PropTypes.bool,
-	value: PropTypes.any,
+	from: PropTypes.number,
+	range: PropTypes.number,
+	RenderComponent: PropTypes.func,
 };
 
 // ========================================================================= //
