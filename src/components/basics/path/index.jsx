@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { mergeProps } from 'react-aria';
-import {defaultProps, propTypes} from "./config.js"
+import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
 // React Component for displaying a path in a tree data structure.
@@ -14,19 +14,16 @@ export const Path = (
 	const {
 		className,
 		id,
+		data,
 		delimiter,
-		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
 	const self = useRef();
-	useEffect(() => { }, [delimiter, value]);
+	useEffect(() => { }, [delimiter, data]);
 
-	// input from user
-	
 	// render 
-
 	const renderPathElement = (item, index) => <label key={index}>
 		<span className='common-ui-path-element'>{item}</span>
 		<span className='common-ui-path-delimiter'>{delimiter}</span>
@@ -39,7 +36,7 @@ export const Path = (
 			ref={self}
 			{...attributes}
 		>
-			{value.split(delimiter).map(renderPathElement)}
+			{data.split(delimiter).map(renderPathElement)}
 		</div>
 	);
 };

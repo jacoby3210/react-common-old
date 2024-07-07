@@ -9,9 +9,10 @@ const DEFAULT_CLASS = 'common-ui-select';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	dataSource: [],
+	caption: "dropdown",
+	data: [],
 	shown: false,
-	RenderElement: (caption, value) => <option value={value}>{caption}</option>,
+	RenderElement: ({ caption, value }) => <option value={value}>{caption}</option>,
 	value: 0
 };
 
@@ -31,8 +32,10 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	options: PropTypes.array,
+	caption: PropTypes.string,
+	data: PropTypes.array,
 	shown: PropTypes.bool,
+	value: PropTypes.any,
 };
 
 // ========================================================================= //

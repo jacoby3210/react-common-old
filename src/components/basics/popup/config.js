@@ -9,7 +9,8 @@ const DEFAULT_CLASS = 'common-ui-popup';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	shown: false
+	shown: false,
+	updateShownState: () => { }
 };
 
 // ========================================================================= //
@@ -29,6 +30,7 @@ export const propTypes = {
 	]),
 	id: PropTypes.string,
 	shown: PropTypes.bool,
+	updateShownState: PropTypes.func,
 };
 
 // ========================================================================= //

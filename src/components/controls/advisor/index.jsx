@@ -1,13 +1,13 @@
-import cx from 'clsx';
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Popup } from "../../basics/popup"
 import { mergeProps } from 'react-aria';
-import {defaultProps, propTypes} from "./config.js"
+import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
 // Component 
 // ========================================================================= //
 
-export const Example = (
+export const Advisor = (
 	receivedProps
 ) => {
 
@@ -16,30 +16,52 @@ export const Example = (
 		children,
 		className,
 		id,
+		RenderElement,
+		data,
+		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const self = useRef();
-	const [smthValue, setSmthValue] = useState(false);
-	useEffect(() => {
-		// return () => {};
-	}, []);
+	const [shownState, setShownState] = useState(false);
+	const [valueState, setValueState] = useState(value);
+	useEffect(() => { setValueState(value); }, [data, value]);
 
-	// input from user
+	const handleChange = (evt) => { setValueState(evt.target.value); }
+	const handleFocus = (evt) => { setShownState(true); }
 
 	// render 
+	const inputOptions = {
+		className: 'common-ui-advisor-input',
+		onChange: handleChange,
+		value: valueState
+	};
+	const popupOptions = {
+		shown: shownState,
+		updateShownState: setShownState,
+	};
+
+	const OptionList = () =>
+		<ul className={'common-ui-advisor-option-list'}>
+			{
+				data
+					.filter((element) => element.caption.includes(valueState))
+					.map((option, i) => <RenderElement key={i} {...option} />)
+			}
+		</ul>;
 
 	return (
 		<div
-			{...attributes}
-			className={cx(className, { ["classname"]: false, })}
-			ref={self}
 			id={id}
-		>
-			{children}
-		</div>
+			className={className}
+			{...attributes}>
+			{
+				shownState ?
+					<Popup {...popupOptions}><input  {...inputOptions} /><OptionList /></Popup> :
+					<input onFocus={handleFocus} {...inputOptions} />
+			}
+		</div >
 	);
 };
 
-Example.propTypes = propTypes;
+Advisor.propTypes = propTypes;

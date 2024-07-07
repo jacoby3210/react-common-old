@@ -8,8 +8,8 @@ const DEFAULT_CLASS = 'common-ui-path';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	data: "/",
 	delimiter: "/",
-	value: "/"
 };
 
 // ========================================================================= //
@@ -23,8 +23,8 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	data: PropTypes.string,
 	delimiter: PropTypes.string,
-	value: PropTypes.string,
 };
 
 // ========================================================================= //

@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-overlay';
+const DEFAULT_CLASS = 'common-ui-advisor';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	data: [],
+	RenderElement: ({ caption, value }) =>
+		<option className='common-ui-advisor-option' value={value}>{caption}</option>,
+	value: 0
 };
 
 // ========================================================================= //
@@ -27,6 +31,9 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	data: PropTypes.array,
+	shown: PropTypes.bool,
+	value: PropTypes.any,
 };
 
 // ========================================================================= //

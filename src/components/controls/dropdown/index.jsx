@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { Popup } from "../../basics/popup"
-import { defaultProps, propTypes } from "./config.jsx"
+import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
 // Component 
@@ -18,20 +18,23 @@ export const Dropdown = (
 		id,
 		RenderElement,
 		caption,
-		dataSource,
+		data,
 		shown,
 		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const self = useRef();
-	const [shownState, setShownState] = useState(false);
-	useEffect(() => { }, [dataSource, value]);
+	const self = useRef(null);
+	const [shownState, setShownState] = useState(shown);
+	const handleClick = (evt) => { setShownState((prev) => !prev) }
+	useEffect(() => { }, [data, value]);
 
 	// render 
+	const popupOptions = { shown: true, updateShownState: setShownState, };
+
 	const Button = () =>
-		<button className={'common-ui-dropdown-button'} >
+		<button className={'common-ui-dropdown-button'} onClick={handleClick}>
 			<span className={'common-ui-dropdown-button-arrow'}>
 				<i className={'fa-solid fa-chevron-down'}></i>
 			</span>
@@ -40,21 +43,22 @@ export const Dropdown = (
 
 	const OptionList = () =>
 		<ul className={'common-ui-dropdown-options'}>
-			{dataSource.map((option, i) => <RenderElement key={i} {...option} />)}
+			{data.map((option, i) => <RenderElement key={i} {...option} />)}
 		</ul>;
 
 	return (
 		<div
 			id={id}
+			className={className}
 			ref={self}
 			{...attributes}>
 			{
 				shownState ?
-					<Popup shown={true}><Button /><OptionList /></Popup> :
+					<Popup {...popupOptions}><Button /><OptionList /></Popup> :
 					<Button />
 			}
 		</div>
 	);
 };
 
-// Dropdown.propTypes = propTypes;
+Dropdown.propTypes = propTypes;

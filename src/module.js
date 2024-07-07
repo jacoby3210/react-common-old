@@ -2,16 +2,19 @@
 
 
 // React Component for displaying a path in a tree data structure
-import { Path } from "./components/basics/path" 
+import { Path } from "./components/basics/path";
 
 //
-import {Popup} from "./components/basics/popup"
+import { Popup } from "./components/basics/popup";
 
 // 
-import {Dropdown} from "./components/controls/dropdown"
+import { Advisor } from "./components/controls/advisor";
 
 // 
-export default { 
+import { Dropdown } from "./components/controls/dropdown";
+
+// 
+export default {
 	Path, Popup,
-	Dropdown,
+	Advisor, Dropdown,
 };
