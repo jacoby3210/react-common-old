@@ -4,7 +4,7 @@ import { Popup } from "../../basics/popup"
 import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
-// Component 
+// Component controlling the dropdown menu
 // ========================================================================= //
 
 export const Dropdown = (
@@ -19,14 +19,13 @@ export const Dropdown = (
 		RenderElement,
 		caption,
 		data,
-		shown,
 		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
 	const self = useRef(null);
-	const [shownState, setShownState] = useState(shown);
+	const [shownState, setShownState] = useState(false);
 	const handleClick = (evt) => { setShownState((prev) => !prev) }
 	useEffect(() => { }, [data, value]);
 

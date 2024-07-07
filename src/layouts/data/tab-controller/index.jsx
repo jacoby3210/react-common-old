@@ -4,7 +4,7 @@ import { mergeProps } from 'react-aria';
 import {defaultProps, propTypes} from "./config"
 
 // ========================================================================= //
-// Component 
+// Controls the switching of displayed tab in the viewing area. 
 // ========================================================================= //
 
 export const TabController = (
@@ -17,9 +17,9 @@ export const TabController = (
 		className,
 		id,
 		data,
+		value,
 		onChangeCallback,
 		RenderComponent,
-		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -37,7 +37,7 @@ export const TabController = (
 			index: i,
 			meta: el,
 			value: el.id,
-			current: value == el.id ? true : undefined,
+			current: valueState == el.id ? "true" : undefined,
 			onClick:() => { handleToTab(el.id); },
 		}
 	}

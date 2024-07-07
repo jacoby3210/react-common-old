@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState} from 'react';
 import { mergeProps } from 'react-aria';
-import {defaultProps, propTypes} from "./config.js"
-import { SlideController } from '../slide-controller/index.jsx';
+import {defaultProps, propTypes} from "./config"
+import { CarouselController } from '../carousel-controller';
 
 // ========================================================================= //
-// Component 
+// Controls the switching of displayed page in the viewing area.
 // ========================================================================= //
 
 export const PageController = (
@@ -15,9 +15,10 @@ export const PageController = (
 	const {
 		className,
 		id,
-		buttons,
-		pages,
 		onChangeCallback,
+		buttons,
+		count,
+		offset,
 		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
@@ -25,43 +26,44 @@ export const PageController = (
 	// hooks
 	const [valueState, setValueState] = useState(value);
 	const handleValueChanged = (page) => {
-		onChangeCallback((page));
-		setValueState((prevPage) => page);
+		onChangeCallback((page - offset));
+		setValueState((prevPage) => page - offset);
 	}
 
 	// input from user
 	const firstPageButton = Math.min(
-		Math.max(valueState - Math.floor(buttons / 2), 1),
-		pages - buttons + 1
+		Math.max(valueState - Math.floor(buttons / 2), offset),
+		count - buttons + offset
 	);
-	const lastPageButton = firstPageButton + buttons;
-
-	// get page button for button render.
-	const children = [];
-	for (let index = firstPageButton; index < lastPageButton; index++) {
-		children.push(
-			<button key={index}
-				className={`common-ui-page-controller-button${(valueState == index ? ' ui-page-controller-button-current' : '')}`}
-				onClick={() => { handleValueChanged(index); }}
-			>
-				{index}
-			</button>
-		)
-	}
 
 	// render 
+
+	const buttonProps = (index) => {
+		return {
+			className: `common-ui-page-controller-button`,
+			onClick:() => { handleValueChanged(index); },
+		}
+	}
+	const buttonList = Array.from(new Array(buttons), (v, index) => {
+		const trueIndex = firstPageButton + index;
+		return <button key={trueIndex} {...buttonProps(trueIndex)}>{trueIndex}</button>; 
+	})
+
+	const carouselControllerProps = {
+		onChangeCallback:handleValueChanged,
+		count:count,
+		offset:offset,
+		value:valueState + offset,
+	}
+
 	return (
 		<div 
 		id={id}
 		className={className}
 		{...attributes}
 		>
-			<SlideController
-				onChangeCallback={handleValueChanged}
-				total={pages}
-				value={valueState}
-			/>
-			<div className={'common-ui-page-controller-buttons'}>{children}</div>
+			<CarouselController {...carouselControllerProps}/>
+			<div className={'common-ui-page-controller-buttons'}>{buttonList}</div>
 		</div>
 	);
 };

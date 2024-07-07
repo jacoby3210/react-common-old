@@ -9,10 +9,11 @@ export const DEFAULT_CLASS = 'common-ui-slider-controller';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	infinity: false,									//
-	onChangeCallback: (index) => { }, // Sync external layout with internal data.
-	total: 0,													//
-	value: 0, 												// The current element index.
+	count: 0,													// number of available child elements.
+	infinity: false,									// infinite scroll mode.
+	offset: 0,												// offset from the start page.
+	value: 0, 												// the current element index.
+	onChangeCallback: (index) => { }, // handling a child component's state change in the parent component.
 };
 
 // ========================================================================= //
@@ -32,9 +33,11 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 
-	id: PropTypes.string,
-	infinity: PropTypes.bool,
 	onChangeCallback: PropTypes.func,
+	id: PropTypes.string,
+	count: PropTypes.number,
+	infinity: PropTypes.bool,
+	offset: PropTypes.number,
 	value: PropTypes.number,
 };
 

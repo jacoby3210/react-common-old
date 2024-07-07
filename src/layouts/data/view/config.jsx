@@ -9,9 +9,9 @@ const DEFAULT_CLASS = 'common-ui-data-view';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	data: [],												// Data provider for mapping.
-	from: 0,												// Display elements from the element with the specified index.
-	range: 0,												// Range of items to display (count).
+	data: [],												// data provider for mapping.
+	from: 0,												// display elements from the element with the specified index.
+	range: 0,												// range of items to display (count).
 	RenderComponent: ({meta}) => <li className='common-ui-data-view-element'>{meta.text}</li>, 
 };
 

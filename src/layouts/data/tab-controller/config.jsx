@@ -9,9 +9,10 @@ const DEFAULT_CLASS = 'common-ui-tab-controller';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	data: [],
+	data: [],														// array of initial data for forming the tab controller interface.
+	value: -1, 													// the current tab id.
+	onChangeCallback: (tabId) => { }, 	// handling a child component's state change in the parent component.
 	RenderComponent: ({ meta, ...attrs }) => <option {...attrs}>{meta.caption}</option>,
-	onChangeCallback: (value)=>{}
 };
 
 // ========================================================================= //
@@ -30,8 +31,8 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	data: PropTypes.array,
 	onChangeCallback: PropTypes.func,
+	data: PropTypes.array,
 	RenderElement: PropTypes.func,
 	value: PropTypes.any,
 };

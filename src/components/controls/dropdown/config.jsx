@@ -11,9 +11,8 @@ export const defaultProps = {
 	className: DEFAULT_CLASS,
 	caption: "dropdown",
 	data: [],
-	shown: false,
+	value: 0,											//
 	RenderElement: ({ caption, value }) => <option value={value}>{caption}</option>,
-	value: 0
 };
 
 // ========================================================================= //
@@ -35,7 +34,6 @@ export const propTypes = {
 	caption: PropTypes.string,
 	data: PropTypes.array,
 	RenderElement: PropTypes.func,
-	shown: PropTypes.bool,
 	value: PropTypes.any,
 };
 
