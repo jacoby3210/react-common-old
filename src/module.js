@@ -14,6 +14,7 @@ import { Advisor } from "./components/controls/advisor";
 import { Dropdown } from "./components/controls/dropdown";
 
 // data
+import { PageController } from "./layouts/data/page-controller";
 import { SlideController } from "./layouts/data/slide-controller";
 import { TabController } from "./layouts/data/tab-controller";
 import { View } from "./layouts/data/view";
@@ -21,5 +22,5 @@ import { View } from "./layouts/data/view";
 export default {
 	Path, Popup,
 	Advisor, Dropdown,
-	SlideController, TabController, View
+	PageController, SlideController, TabController, View
 };

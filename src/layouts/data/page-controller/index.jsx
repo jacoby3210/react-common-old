@@ -1,45 +1,69 @@
-import cx from 'clsx';
 import React, { useEffect, useRef, useState} from 'react';
 import { mergeProps } from 'react-aria';
 import {defaultProps, propTypes} from "./config.js"
+import { SlideController } from '../slide-controller/index.jsx';
 
 // ========================================================================= //
 // Component 
 // ========================================================================= //
 
-export const Example = (
+export const PageController = (
 	receivedProps
 ) => {
 
 	// unpack properties
 	const {
-		children,
 		className,
 		id,
+		buttons,
+		pages,
+		onChangeCallback,
+		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const self = useRef();
-	const [smthValue, setSmthValue] = useState(false);
-	useEffect(() => {
-		// return () => {};
-	}, []);
+	const [valueState, setValueState] = useState(value);
+	const handleValueChanged = (page) => {
+		onChangeCallback((page));
+		setValueState((prevPage) => page);
+	}
 
 	// input from user
+	const firstPageButton = Math.min(
+		Math.max(valueState - Math.floor(buttons / 2), 1),
+		pages - buttons + 1
+	);
+	const lastPageButton = firstPageButton + buttons;
+
+	// get page button for button render.
+	const children = [];
+	for (let index = firstPageButton; index < lastPageButton; index++) {
+		children.push(
+			<button key={index}
+				className={`common-ui-page-controller-button${(valueState == index ? ' ui-page-controller-button-current' : '')}`}
+				onClick={() => { handleValueChanged(index); }}
+			>
+				{index}
+			</button>
+		)
+	}
 
 	// render 
-
 	return (
-		<div
-			{...attributes}
-			className={cx(className, { ["classname"]: false, })}
-			ref={self}
-			id={id}
+		<div 
+		id={id}
+		className={className}
+		{...attributes}
 		>
-			{children}
+			<SlideController
+				onChangeCallback={handleValueChanged}
+				total={pages}
+				value={valueState}
+			/>
+			<div className={'common-ui-page-controller-buttons'}>{children}</div>
 		</div>
 	);
 };
 
-Example.propTypes = propTypes;
+// PageController.propTypes = propTypes;
