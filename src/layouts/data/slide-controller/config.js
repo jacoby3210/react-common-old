@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-overlay';
+export const DEFAULT_CLASS = 'common-ui-slider-controller';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	infinity: false,									//
+	onChangeCallback: (index) => { }, // Sync external layout with internal data.
+	total: 0,													//
+	value: 0, 												// The current element index.
 };
 
 // ========================================================================= //
@@ -16,6 +20,7 @@ export const defaultProps = {
 // ========================================================================= //
 
 export const propTypes = {
+	
 	children: PropTypes.oneOfType([
 		PropTypes.array,
 		PropTypes.object,
@@ -26,7 +31,11 @@ export const propTypes = {
 		PropTypes.array,
 		PropTypes.object,
 	]),
+
 	id: PropTypes.string,
+	infinity: PropTypes.bool,
+	onChangeCallback: PropTypes.func,
+	value: PropTypes.number,
 };
 
 // ========================================================================= //
