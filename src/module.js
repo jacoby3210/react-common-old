@@ -13,6 +13,7 @@ import { Advisor } from "./components/controls/advisor";
 // 
 import { Dropdown } from "./components/controls/dropdown";
 
+import { Scroll } from "./components/controls/scroll";
 // data
 import { CarouselController } from "./layouts/data/carousel-controller";
 import { PageController } from "./layouts/data/page-controller";
@@ -21,6 +22,6 @@ import { View } from "./layouts/data/view";
 
 export default {
 	Path, Popup,
-	Advisor, Dropdown,
+	Advisor, Dropdown, Scroll,
 	CarouselController, PageController, TabController, View
 };

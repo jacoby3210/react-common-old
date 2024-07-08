@@ -9,6 +9,7 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
+		"npm": "^10.8.1",
 		"prop-types": "^15.8.1",
 		"react": "^18.3.1",
 		"react-aria": "^3.33.1"
