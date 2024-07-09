@@ -3,7 +3,7 @@ import { mergeProps } from 'react-aria';
 import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
-// React component for output on top of the main ui. 
+// React component for render content on top of the main ui. 
 // ========================================================================= //
 
 export const Popup = (

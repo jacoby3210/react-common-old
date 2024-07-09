@@ -9,6 +9,9 @@ const DEFAULT_CLASS = 'common-ui-scroll';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	mode: "smooth",
+	speed: 10,
+	target: null,
 };
 
 // ========================================================================= //
@@ -27,6 +30,9 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	mode: PropTypes.string,
+	speed: PropTypes.number,
+	target: PropTypes.object,
 };
 
 // ========================================================================= //

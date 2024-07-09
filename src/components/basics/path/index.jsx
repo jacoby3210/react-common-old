@@ -3,7 +3,7 @@ import { mergeProps } from 'react-aria';
 import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
-// React Component for displaying a path in a tree data structure.
+// React component for displaying a path in a tree data structure.
 // ========================================================================= //
 
 export const Path = (

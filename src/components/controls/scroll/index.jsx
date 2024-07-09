@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState} from 'react';
 import { mergeProps } from 'react-aria';
 import {defaultProps, propTypes} from "./config"
 // ========================================================================= //
-// Component 
+// React component represents universal customizable content scroller.
 // ========================================================================= //
 
 export const Scroll = (
@@ -14,6 +14,8 @@ export const Scroll = (
 		children,
 		className,
 		id,
+		mode,
+		speed,
 		target,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
@@ -28,41 +30,55 @@ export const Scroll = (
   };
 
   const handleMouseDown = (scrollFn) => {
-    console.log(target.current)
     scrollFn();
-    scrollTimeoutRef.current = setInterval(scrollFn, 100);
+    scrollTimeoutRef.current = setInterval(scrollFn, 10);
   };
-  const scrollToPosition = () => {target.current.scrollTo({ top: position, behavior: 'smooth' });};
+  const scrollToPosition = () => {};
+
+	const cursorProps = {
+		className: `${className}-cursor`,
+		onMouseDown: null,
+		onMouseUp: null,
+		onMouseMove: null,
+	}
 
   const toStartProps = {
+		className: `${className}-button-to-start`,
     onDoubleClick: ()=>{target.current.scrollTo({ top: 0, behavior: 'smooth' });},
-    onMouseDown: () => handleMouseDown(() => target.current.scrollBy(0, -100)),
+    onMouseDown: () => handleMouseDown(() => {target.current.scrollBy(0, -speed);}),
     onMouseUp: () => {clearInterval(scrollTimeoutRef.current);},
   }
 
   const toEndProps = {
+		className: `${className}-button-to-end`,
     onDoubleClick: ()=>{target.current.scrollTo({ top: target.current.scrollHeight, behavior: 'smooth' });},
-    onMouseDown: () => handleMouseDown(() => window.scrollBy(0, 100)),
+    onMouseDown: () => handleMouseDown(() => {target.current.scrollBy(0, speed)}),
     onMouseUp: () => {clearInterval(scrollTimeoutRef.current);},
   }
 
+	const inputRangeProps = {
+		min: 0.0, 
+		max: 1.0, 
+		step: speed / 1000,
+		type:"range", 
+		onChange: (evt) => {
+			console.log(evt.target.value, target.current.scrollHeight, target.current.offsetHeight);
+			const newPosition = (target.current.scrollHeight - target.current.offsetHeight) * evt.target.value;
+			setPosition( newPosition);
+			target.current.scrollTo({top:newPosition});
+		},
+	}
 
 	// render 
-	console.log(target.current)
 	return (
 		<div
 			id={id}
 			className={className}
 			ref={self}
 			{...attributes}>
-			<div>{children}</div>
-			<div>
-				<button className={`${className}-button-to-start`} {...toStartProps}></button>
-				<div className={`${className}-panel`}>
-					<div className={`${className}-cursor`}></div>
-				</div>
-				<button className={`${className}-button-to-end`} {...toEndProps}></button>
-			</div>
+				<button {...toStartProps}></button>
+				<input {...inputRangeProps}/>
+				<button {...toEndProps}></button>
 		</div>
 	);
 };

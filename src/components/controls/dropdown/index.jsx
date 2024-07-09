@@ -4,7 +4,7 @@ import { Popup } from "../../basics/popup"
 import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
-// Component controlling the dropdown menu
+// Сomponent for rendering a drop-down menu (select).
 // ========================================================================= //
 
 export const Dropdown = (

@@ -4,7 +4,7 @@ import { mergeProps } from 'react-aria';
 import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
-// Component 
+// React component rendering  basic text filed with input suggestions.
 // ========================================================================= //
 
 export const Advisor = (
