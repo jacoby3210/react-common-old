@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-overlay';
+const DEFAULT_CLASS = 'common-ui-indicator';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	colors: [],					// available fill colors of the value indicator
+	levels: [],					// available fill levels of the value indicator
+	max: 100,						// max display value
+	value: 100,					// current display value
 };
 
 // ========================================================================= //
@@ -27,6 +31,9 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	colors: PropTypes.array,
+	levels: PropTypes.array,
+	value: PropTypes.number,
 };
 
 // ========================================================================= //

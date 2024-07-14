@@ -1,10 +1,9 @@
-import cx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
-// Component 
+// React Component for output of values in the range from 0 to 100 %. 
 // ========================================================================= //
 
 export const Indicator = (
@@ -13,32 +12,44 @@ export const Indicator = (
 
 	// unpack properties
 	const {
-		children,
 		className,
 		id,
+		colors,
+		levels,
+		max,
+		value,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
 	const self = useRef();
-	// const [smthValue, setSmthValue] = useState(false);
-	// useEffect(() => {
-	// return () => {};
-	// }, []);
+	useEffect(() => { }, []);
 
 	// input from user
 
 	// render 
+	const getColor = () => {
+
+		for (let { level, index } in levels) {
+			if (value >= level) return colors[index]
+		}
+	}
+
+	const displayColor = colors[levels.findLastIndex(item => item > value)];
+	const displayValue = value / max * 100;
+	const internalStyle = { width: `${displayValue}%`, backgroundColor: displayColor };
 
 	return (
 		<div
 			id={id}
-			className={cx(className, { ["classname"]: false, })}
+			className={className}
 			ref={self}
 			{...attributes}
 		>
-			{children}
-		</div>
+			<div style={internalStyle}>
+				<span style={null}>{displayValue}%</span>
+			</div>
+		</div >
 	);
 };
 
