@@ -15,9 +15,8 @@ export const AccordionView = (
 
 	// unpack properties
 	const {
-		children,
-		className,
 		id,
+		className,
 		data,
 		policy,
 		template,
@@ -52,11 +51,7 @@ export const AccordionView = (
 	}
 
 	return (
-		<div
-			id={id}
-			className={cx(className, { ["classname"]: false, })}
-			{...attributes}
-		>
+		<div id={id} className={className} {...attributes}>
 			{data.map((item, i) => template(sectionProps(item, i)))}
 		</div>
 	);

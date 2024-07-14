@@ -1,18 +1,14 @@
 import PropTypes from 'prop-types';
-import { AccordionSection } from '../section';
+
 // ========================================================================= //
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-accordion';
+const DEFAULT_CLASS = 'common-ui-overlay';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	data: [],
-	policy: 'single', 						// Policy for opening mode: single - only one section, multiple - several sections.
-	template: AccordionSection,		// JSX method to fill the accordion view.
-	values: [],
 };
 
 // ========================================================================= //
