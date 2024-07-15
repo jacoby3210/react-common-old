@@ -7,7 +7,7 @@ import { Popup } from "./components/basics/popup";							// - for render content
 
 // controls
 import { Dropdown } from "./components/controls/dropdown";			// - for render a drop-down menu (select).
-import { Range } from "./components/controls/range";						//
+import { Range } from "./components/controls/range";						// - to select a value from the suggested numeric range.
 import { Scroll } from "./components/controls/scroll";					// - represents universal customizable content scroller.
 
 // fields
@@ -25,7 +25,7 @@ import { View } from "./layouts/data/view";
 
 export default {
 	Indicator, Path, Popup,
-	Dropdown, Scroll,
+	Dropdown, Range, Scroll,
 	Advisor,
 	AccordionSection, AccordionView,
 	CarouselController, PageController, TabController, View

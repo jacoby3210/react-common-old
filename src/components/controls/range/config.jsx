@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-overlay';
+const DEFAULT_CLASS = 'common-ui-range';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	axis: false,
+	min: 0,
+	max: 0,
+	step: 0.01,
+	value: 0,
 };
 
 // ========================================================================= //
@@ -27,6 +32,7 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	axis: PropTypes.bool,
 };
 
 // ========================================================================= //
