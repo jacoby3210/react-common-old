@@ -9,9 +9,9 @@ const DEFAULT_CLASS = 'common-ui-scroll';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	mode: "smooth",
-	speed: 10,
-	target: null,
+	mode: "smooth",		// scrolling mode (using by DOM API methods)
+	speed: 10,				// 
+	target: null,			// scrolling target element.
 };
 
 // ========================================================================= //

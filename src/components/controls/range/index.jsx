@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { defaultProps, propTypes } from "./config"
+import { animateValue } from './helper';
 
 // ========================================================================= //
 // React Component to select a value from the suggested numeric range.
@@ -10,7 +11,6 @@ export const Range = receivedProps => {
 
 	// initial data
 	const {
-		children,
 		className,
 		id,
 		axis,
@@ -42,35 +42,43 @@ export const Range = receivedProps => {
 	}, [captureState]);
 
 	// input from user
-	const calculateValue = (client) => {
+	const calculateValue = (clientOffset) => {
 		const rect = rangeRef.current.getBoundingClientRect();
 		const offset = (axisState ? rect.left : rect.top),
 			size = (axisState ? rect.width : rect.height);
-		const relative = client - offset - offsetState;
+		const relative = clientOffset - offset - offsetState;
 		const percentage = Math.max(0, Math.min(1, relative / size));
 		const newValue = min + Math.round((percentage * (max - min)) / step) * step;
-		console.log(percentage, newValue)
 		return newValue;
 	};
 
+	const handleSetValueState = (newValue) => {
+		setValueState(newValue);
+		if (onChange) onChange(newValue);
+	}
+
+	const handleTrackMouseDown = (evt) => {
+		const newValue = calculateValue(axisState ? evt.clientX : evt.clientY);
+		animateValue(valueState, newValue, 200, handleSetValueState); // Animate over 200 milliseconds
+	}
+
 	const handleThumbMouseDown = (evt) => {
+		if (evt.buttons !== 1) return;
 		const rect = evt.currentTarget.getBoundingClientRect();
 		setOffsetState(axisState ? evt.clientX - rect.x : evt.clientY - rect.y);
 		setCaptureState(true);
 	};
 
 	const handleMouseMove = (evt) => {
-		if (evt.buttons !== 1) return;
 		const newValue = calculateValue(axisState ? evt.clientX : evt.clientY);
-		setValueState(newValue);
-		if (onChange) onChange(newValue);
+		handleSetValueState(newValue);
 		evt.preventDefault();
 	};
 
 	// render 
 	const trackProps = {
 		className: `${className}-track`,
-		// onMouseDown: handleMouseDown,
+		onMouseDown: handleTrackMouseDown,
 		ref: rangeRef,
 	};
 
@@ -85,14 +93,12 @@ export const Range = receivedProps => {
 	}
 
 	return (
-		<div id={id} className={className}
-			axis={axisState ? "horizontal" : "vertical"}
+		<div
+			id={id} className={className} axis={axisState ? "horizontal" : "vertical"}
 			{...attributes}
 		>
-			<div {...trackProps}>
-				<div {...thumbProps} />
-			</div>
-			<span style={null}>{valueState}</span>
+			<div {...trackProps}><div {...thumbProps} /></div>
+			<span>{valueState}</span>
 		</div >
 	);
 };
