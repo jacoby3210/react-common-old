@@ -7,11 +7,9 @@ import { defaultProps, propTypes } from "./config"
 // Component 
 // ========================================================================= //
 
-export const Indicator = (
-	receivedProps
-) => {
+export const Cloud = receivedProps => {
 
-	// unpack properties
+	// initial data
 	const {
 		children,
 		className,
@@ -42,4 +40,4 @@ export const Indicator = (
 	);
 };
 
-Indicator.propTypes = propTypes;
+Cloud.propTypes = propTypes;

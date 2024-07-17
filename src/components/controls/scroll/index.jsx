@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
+import { Range } from '../range';
 import { defaultProps, propTypes } from "./config"
 // ========================================================================= //
 // React component represents universal customizable content scroller.
@@ -61,8 +62,8 @@ export const Scroll = (
 		max: 1.0,
 		step: speed / 1000,
 		type: "range",
-		onChange: (evt) => {
-			const newPosition = (target.current.scrollHeight - target.current.offsetHeight) * evt.target.value;
+		onChange: (value) => {
+			const newPosition = (target.current.scrollHeight - target.current.offsetHeight) * value;
 			setPosition(newPosition);
 			target.current.scrollTo({ top: newPosition });
 		},
@@ -77,7 +78,8 @@ export const Scroll = (
 			{...attributes}
 		>
 			<button {...toStartProps}></button>
-			<input {...inputRangeProps} />
+			<Range {...inputRangeProps} />
+			{/* <input {...inputRangeProps} /> */}
 			<button {...toEndProps}></button>
 		</div>
 	);

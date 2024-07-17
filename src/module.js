@@ -1,4 +1,4 @@
-// Header file for export.
+// Header file for export module.
 
 // basics
 import { Indicator } from "./components/basics/indicator";			// - for output of values in the range from 0 to 100 % 
