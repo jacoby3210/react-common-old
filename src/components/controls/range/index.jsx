@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { defaultProps, propTypes } from "./config"
 import { animateValue } from './helper';
-
 // ========================================================================= //
 // React Component to select a value from the suggested numeric range.
 // ========================================================================= //
@@ -35,13 +34,12 @@ export const Range = receivedProps => {
 			document.removeEventListener('mouseup', handleMouseUp);
 			setCaptureState(false);
 		};
-		setValueState(value)
-		console.log(value)
 		if (captureState) {
 			document.addEventListener('mousemove', handleMouseMove);
 			document.addEventListener('mouseup', handleMouseUp);
 		}
-	}, [captureState, value]);
+	}, [captureState]);
+	useEffect(() => {setValueState(value)}, [value]);
 
 	// input from user
 	const calculateValue = (clientOffset) => {
@@ -60,8 +58,9 @@ export const Range = receivedProps => {
 	}
 
 	const handleTrackMouseDown = (evt) => {
+		if (evt.buttons !== 1) return;
 		const newValue = calculateValue(axisState ? evt.clientX : evt.clientY);
-		animateValue(valueState, newValue, 200, handleSetValueState); // Animate over 200 milliseconds
+		animateValue(valueState, newValue, 200, handleSetValueState); 
 	}
 
 	const handleThumbMouseDown = (evt) => {
@@ -69,6 +68,7 @@ export const Range = receivedProps => {
 		const rect = evt.currentTarget.getBoundingClientRect();
 		setOffsetState(axisState ? evt.clientX - rect.x : evt.clientY - rect.y);
 		setCaptureState(true);
+		evt.preventDefault();
 	};
 
 	const handleMouseMove = (evt) => {
