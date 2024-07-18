@@ -26,34 +26,22 @@ export const Scroll = (
 	const [position, setPosition] = useState(0);
 	const scrollTimeoutRef = useRef(null);
 
-	const handleInputChange = (e) => {
-		setPosition(Number(e.target.value));
-	};
-
 	const handleMouseDown = (scrollFn) => {
 		scrollFn();
 		scrollTimeoutRef.current = setInterval(scrollFn, 10);
 	};
-	const scrollToPosition = () => { };
-
-	const cursorProps = {
-		className: `${className}-cursor`,
-		onMouseDown: null,
-		onMouseUp: null,
-		onMouseMove: null,
-	}
 
 	const toStartProps = {
 		className: `${className}-button-to-start`,
 		onDoubleClick: () => { target.current.scrollTo({ top: 0, behavior: 'smooth' }); },
-		onMouseDown: () => handleMouseDown(() => { target.current.scrollBy(0, -speed); }),
+		onMouseDown: () => handleMouseDown(() => { target.current.scrollBy(0, -1); }),
 		onMouseUp: () => { clearInterval(scrollTimeoutRef.current); },
 	}
 
 	const toEndProps = {
 		className: `${className}-button-to-end`,
 		onDoubleClick: () => { target.current.scrollTo({ top: target.current.scrollHeight, behavior: 'smooth' }); },
-		onMouseDown: () => handleMouseDown(() => { target.current.scrollBy(0, speed) }),
+		onMouseDown: () => handleMouseDown(() => { target.current.scrollBy(0, 1) }),
 		onMouseUp: () => { clearInterval(scrollTimeoutRef.current); },
 	}
 
@@ -62,6 +50,7 @@ export const Scroll = (
 		max: 1.0,
 		step: speed / 1000,
 		type: "range",
+		value: position,
 		onChange: (value) => {
 			const newPosition = (target.current.scrollHeight - target.current.offsetHeight) * value;
 			setPosition(newPosition);
@@ -75,11 +64,11 @@ export const Scroll = (
 			id={id}
 			className={className}
 			ref={self}
+			speed={speed}
 			{...attributes}
 		>
 			<button {...toStartProps}></button>
 			<Range {...inputRangeProps} />
-			{/* <input {...inputRangeProps} /> */}
 			<button {...toEndProps}></button>
 		</div>
 	);

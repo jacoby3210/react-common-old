@@ -35,11 +35,13 @@ export const Range = receivedProps => {
 			document.removeEventListener('mouseup', handleMouseUp);
 			setCaptureState(false);
 		};
+		setValueState(value)
+		console.log(value)
 		if (captureState) {
 			document.addEventListener('mousemove', handleMouseMove);
 			document.addEventListener('mouseup', handleMouseUp);
 		}
-	}, [captureState]);
+	}, [captureState, value]);
 
 	// input from user
 	const calculateValue = (clientOffset) => {
@@ -95,6 +97,7 @@ export const Range = receivedProps => {
 	return (
 		<div
 			id={id} className={className} axis={axisState ? "horizontal" : "vertical"}
+			value={valueState}
 			{...attributes}
 		>
 			<div {...trackProps}><div {...thumbProps} /></div>
