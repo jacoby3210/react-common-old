@@ -13,3 +13,15 @@ export const animateValue = (start, end, duration, handleSetValueState) => {
 
 	requestAnimationFrame(step);
 };
+
+export const horizontalProps = {
+	cursor: "clientX",
+	offset: "x",
+	size: "width",
+}
+
+export const verticalProps = {
+	cursor: "clientY",
+	offset: "y",
+	size: "height",
+}

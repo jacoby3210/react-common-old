@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { defaultProps, propTypes } from "./config"
-import { animateValue } from './helper';
+import { animateValue, horizontalProps, verticalProps } from './helper';
 // ========================================================================= //
 // React Component to select a value from the suggested numeric range.
 // ========================================================================= //
@@ -13,8 +13,8 @@ export const Range = receivedProps => {
 		className,
 		id,
 		axis,
-		min,
 		max,
+		min,
 		step,
 		value,
 		onChange,
@@ -27,6 +27,7 @@ export const Range = receivedProps => {
 	const [captureState, setCaptureState] = useState(false);
 	const [offsetState, setOffsetState] = useState(0);
 	const [valueState, setValueState] = useState(value || min);
+	const props = axisState ? horizontalProps : verticalProps;
 
 	useEffect(() => {
 		const handleMouseUp = () => {
@@ -44,10 +45,8 @@ export const Range = receivedProps => {
 	// input from user
 	const calculateValue = (clientOffset) => {
 		const rect = rangeRef.current.getBoundingClientRect();
-		const offset = (axisState ? rect.left : rect.top),
-			size = (axisState ? rect.width : rect.height);
-		const relative = clientOffset - offset - offsetState;
-		const percentage = Math.max(0, Math.min(1, relative / size));
+		const relative = clientOffset - rect[props.offset] - offsetState;
+		const percentage = Math.max(0, Math.min(1, relative / rect[props.size]));
 		const newValue = min + Math.round((percentage * (max - min)) / step) * step;
 		return newValue;
 	};
@@ -59,20 +58,20 @@ export const Range = receivedProps => {
 
 	const handleTrackMouseDown = (evt) => {
 		if (evt.buttons !== 1) return;
-		const newValue = calculateValue(axisState ? evt.clientX : evt.clientY);
+		const newValue = calculateValue(evt[props.cursor]);
 		animateValue(valueState, newValue, 200, handleSetValueState); 
 	}
 
 	const handleThumbMouseDown = (evt) => {
 		if (evt.buttons !== 1) return;
 		const rect = evt.currentTarget.getBoundingClientRect();
-		setOffsetState(axisState ? evt.clientX - rect.x : evt.clientY - rect.y);
+		setOffsetState(evt[props.cursor] - rect[props.offset]);
 		setCaptureState(true);
 		evt.preventDefault();
 	};
 
 	const handleMouseMove = (evt) => {
-		const newValue = calculateValue(axisState ? evt.clientX : evt.clientY);
+		const newValue = calculateValue(evt[props.cursor]);
 		handleSetValueState(newValue);
 		evt.preventDefault();
 	};
@@ -80,18 +79,15 @@ export const Range = receivedProps => {
 	// render 
 	const trackProps = {
 		className: `${className}-track`,
-		onMouseDown: handleTrackMouseDown,
 		ref: rangeRef,
+		onMouseDown: handleTrackMouseDown,
 	};
 
+	const calculateStyle = (value) => {return axisState ? {left:value} : {top:value};};
 	const thumbProps = {
 		className: `${className}-thumb`,
+		style: calculateStyle( `${((valueState - min) / (max - min)) * 100.0}%`),
 		onMouseDown: handleThumbMouseDown,
-		style: {
-			position: "relative",
-			left: `${axisState && ((valueState - min) / (max - min)) * 100.0}%`,
-			top: `${!axisState && ((valueState - min) / (max - min)) * 100.0}%`,
-		},
 	}
 
 	return (
@@ -102,7 +98,7 @@ export const Range = receivedProps => {
 		>
 			<div {...trackProps}><div {...thumbProps} /></div>
 			<span>{valueState}</span>
-		</div >
+		</div>
 	);
 };
 
