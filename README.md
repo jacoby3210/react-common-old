@@ -1,5 +1,6 @@
 
 ## 📝 Brief
+React's auxiliary components library.
 
 ## 🛠️ Developer Tech Stack
 
