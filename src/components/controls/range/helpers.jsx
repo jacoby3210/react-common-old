@@ -1,3 +1,5 @@
+import React from 'react';
+import { DEFAULT_CLASS } from './config';
 export const animateValue = (start, end, duration, handleSetValueState) => {
 	let startTime = null;
 
@@ -15,13 +17,37 @@ export const animateValue = (start, end, duration, handleSetValueState) => {
 };
 
 export const horizontalProps = {
+	axis: "horizontal",
 	cursor: "clientX",
 	offset: "x",
 	size: "width",
 }
 
 export const verticalProps = {
+	axis: "vertical",
 	cursor: "clientY",
 	offset: "y",
 	size: "height",
+}
+
+
+export const RangeTrack = receivedProps => {
+	const { children, trackRef, ...attributes } = receivedProps;
+	return (
+		<div
+			className={`${DEFAULT_CLASS}-track`}
+			ref={trackRef}
+			{...attributes}
+		> {children}
+		</div >
+	);
+};
+
+export const RangeThumb = receivedProps => {
+	const { children, thumbRef, ...attributes } = receivedProps;
+	return (<div
+		className={`${DEFAULT_CLASS}-thumb`}
+		ref={thumbRef}
+		{...attributes}
+	/>);
 }

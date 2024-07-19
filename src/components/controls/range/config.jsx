@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-range';
+export const DEFAULT_CLASS = 'common-ui-range';
 
 export const defaultProps = {
 	id: null,
