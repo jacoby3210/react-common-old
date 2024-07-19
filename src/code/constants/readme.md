@@ -1,0 +1,1 @@
+This is where the constant variables used by the application is placed

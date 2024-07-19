@@ -1,0 +1,1 @@
+This is store where the changed data used by the application is placed
