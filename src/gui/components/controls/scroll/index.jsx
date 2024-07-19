@@ -2,25 +2,25 @@ import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { Range } from '../range';
 import { defaultProps, propTypes } from "./config"
-import { positionToValue, valueToPosition } from './helpers';
+import { horizontalProps, verticalProps, calcPosition } from './helpers';
 // ========================================================================= //
 // React component represents universal customizable content scroller.
 // ========================================================================= //
 
-export const Scroll = (
-	receivedProps
-) => {
+export const Scroll = receivedProps => {
 
 	// unpack properties
 	const {
 		children,
 		className,
 		id,
+		axis,
 		mode,
 		speed,
 		target,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
+	const props = axis ? horizontalProps : verticalProps;
 
 	// hooks
 	const self = useRef(null), scrollTimeoutRef = useRef(null);
@@ -32,37 +32,39 @@ export const Scroll = (
 		scrollTimeoutRef.current = setInterval(scrollFn, 10);
 	};
 
+	const handleButtonMouseDown = (offset) => {
+		target.current.scrollBy(0, offset);
+		setPositionState(prev => calcPosition(target.current, props));
+	}
+
+	const handleMouseDoubleClick = (value) => {
+		target.current.scrollTo({ top: value, behavior: 'smooth' });
+		setPositionState(prev => value / target.current[props.scrollSize]);
+	}
+
 	// render 
 	const toStartProps = {
 		className: `${className}-button-to-start`,
-		onDoubleClick: () => { target.current.scrollTo({ top: 0, behavior: 'smooth' }); },
-		onMouseDown: () => handleMouseDown(() => {
-			target.current.scrollBy(0, -1);
-			const newPosition = target.current.scrollTop / (target.current.scrollHeight - target.current.offsetHeight);
-			setPositionState(newPosition);
-		}),
+		onDoubleClick: () => { handleMouseDoubleClick(0); },
+		onMouseDown: () => handleMouseDown(() => handleButtonMouseDown(-1)),
 		onMouseUp: () => { clearInterval(scrollTimeoutRef.current); },
 	}
 
 	const toEndProps = {
 		className: `${className}-button-to-end`,
-		onDoubleClick: () => { target.current.scrollTo({ top: target.current.scrollHeight, behavior: 'smooth' }); setPositionState(1.0); },
-		onMouseDown: () => handleMouseDown(() => {
-			target.current.scrollBy(0, 1);
-			const newPosition = target.current.scrollTop / (target.current.scrollHeight - target.current.offsetHeight);
-			setPositionState(newPosition);
-		}),
+		onDoubleClick: () => { handleMouseDoubleClick(target.current[props.scrollSize]); },
+		onMouseDown: () => handleMouseDown(() => handleButtonMouseDown(1)),
 		onMouseUp: () => { clearInterval(scrollTimeoutRef.current); },
 	}
 
 	const inputRangeProps = {
+		axis,
 		min: 0.0,
 		max: 1.0,
 		step: speed / 1000,
-		type: "range",
 		value: positionState,
 		onChange: (value) => {
-			const newPosition = (target.current.scrollHeight - target.current.offsetHeight) * value;
+			const newPosition = (target.current[props.scrollSize] - target.current.offsetHeight) * value;
 			setPositionState(value);
 			target.current.scrollTo({ top: newPosition });
 		},

@@ -1,4 +1,4 @@
-.common-ui-range[axis=horizontal] {
+.rc-range[axis=horizontal] {
 	background-color: aliceblue;
 	height: 24px;
 	padding-right: 24px;
@@ -6,19 +6,19 @@
 	width: 50%;
 }
 
-.common-ui-range-track {
+.rc-range-track {
 	height: 100%;
 	width: 100%;
 }
 
-.common-ui-range-thumb {
+.rc-range-thumb {
 	background-color: olivedrab;
 	height: 24px;
 	width: 24px;
 	position: relative;
 }
 
-.common-ui-range[axis=vertical] {
+.rc-range[axis=vertical] {
 	background-color: orangered;
 	padding-bottom: 24px;
 	height: 100px;

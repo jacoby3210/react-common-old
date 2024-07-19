@@ -30,7 +30,7 @@ export const verticalProps = {
 	size: "height",
 }
 
-
+// 
 export const RangeTrack = receivedProps => {
 	const { children, trackRef, ...attributes } = receivedProps;
 	return (
@@ -43,6 +43,7 @@ export const RangeTrack = receivedProps => {
 	);
 };
 
+// 
 export const RangeThumb = receivedProps => {
 	const { children, thumbRef, ...attributes } = receivedProps;
 	return (<div

@@ -39,7 +39,7 @@ export const Dropdown = receivedProps => {
 
 	const OptionList = () =>
 		<ul className={'rc-dropdown-options'}>
-			{data.map((option, i) => <RenderElement key={i} {...option} />)}
+			{data.map((optionProps, i) => <RenderElement key={i} {...optionProps} />)}
 		</ul>;
 
 	return (

@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'common-ui-scroll';
+export const DEFAULT_CLASS = 'rc-scroll';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	axis: false,			// axis in the depth of which the GUI component is located.
 	mode: "smooth",		// scrolling mode (using by DOM API methods)
 	speed: 10,				// 
 	target: null,			// scrolling target element.
