@@ -3,7 +3,7 @@ import { mergeProps } from 'react-aria';
 import {defaultProps, propTypes} from "./config"
 
 // ========================================================================= //
-// View area for multiple repetitive data.
+// View area for  render multiple repetitive data.
 // ========================================================================= //
 
 export const View = receivedProps => {
