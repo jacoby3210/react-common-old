@@ -103,11 +103,11 @@ const Test = (props) => {
 			<Common.Scroll {...scrollProps} />
 			<TestAreaForScroll />
 
+			<Common.View  {...viewPropsForCarouselController} />
 			{/*<Common.Advisor {...advisorProps} />
 
 			<Common.AccordionView {...accordionProps} />
 			<Common.CarouselController {...carouselControllerProps} />
-			<Common.View  {...viewPropsForCarouselController} />
 
 			<Common.PageController {...pageControllerProps} />
 			<Common.View  {...viewPropsForPageController} />
