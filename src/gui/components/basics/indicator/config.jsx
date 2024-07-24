@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'rc-indicator';
+export const DEFAULT_CLASS = 'rc-indicator';
 
 export const defaultProps = {
 	id: null,

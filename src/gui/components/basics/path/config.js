@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'rc-path';
+export const DEFAULT_CLASS = 'rc-path';
 
 export const defaultProps = {
 	id: null,

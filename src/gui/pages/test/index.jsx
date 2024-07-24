@@ -21,7 +21,7 @@ const Test = (props) => {
 
 	// dropdown
 	const dropdownProps = {
-		data: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, value: i } }),
+		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, value: i } }),
 		value: 0
 	}
 
@@ -40,12 +40,12 @@ const Test = (props) => {
 
 	// advisor
 	const advisorProps = {
-		data: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, value: i } }),
+		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, value: i } }),
 	}
 
 	// accordion
 	const accordionProps = {
-		data: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, content: i } }),
+		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, content: i } }),
 	}
 
 	// page controller
@@ -59,8 +59,8 @@ const Test = (props) => {
 	const viewPropsForPageController = {
 		count: 250,
 		from: currentPage,
-		data: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
-		range: 10,
+		length: 10,
+		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
 
 	// slider controller
@@ -73,21 +73,21 @@ const Test = (props) => {
 	const viewPropsForCarouselController = {
 		count: 250,
 		from: currentCarouselSlide,
-		data: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
-		range: 1,
+		length: 1,
+		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
 
 	// tab controller
 	const [currentTab, setCurrentTab] = useState(0);
 	const tabControllerProps = {
-		data: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, id: i } }),
+		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, id: i } }),
 		onChangeCallback: (tabIndex) => { setCurrentTab(tabIndex) },
 	}
 	const viewPropsForTabController = {
 		count: 250,
 		from: currentTab,
-		data: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
-		range: 1,
+		length: 1,
+		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
 
 	// render page

@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'rc-dropdown';
+export const DEFAULT_CLASS = 'rc-dropdown';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	caption: "dropdown",
-	data: [],
-	value: 0,											//
+	caption: "dropdown",		//
+	src: [],								//
+	value: 0,								//
 	RenderElement: ({ caption, value }) => <option value={value}>{caption}</option>,
 };
 

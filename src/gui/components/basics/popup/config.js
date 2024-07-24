@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'rc-popup';
+export const DEFAULT_CLASS = 'rc-popup';
 
 export const defaultProps = {
 	id: null,

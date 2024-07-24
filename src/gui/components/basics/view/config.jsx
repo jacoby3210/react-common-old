@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-const DEFAULT_CLASS = 'rc-view';
+export const DEFAULT_CLASS = 'rc-view';
 
 export const defaultProps = {
 	id: null,
