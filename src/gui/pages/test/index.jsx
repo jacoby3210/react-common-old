@@ -3,12 +3,10 @@ import React, { useState } from 'react';
 import Common from "/index.js"
 import "./index.css"
 
-const Test = (props) => {
+const Test = receivedProps => {
 
 	//  helpers
-	const produceEntries = (count, func) => {
-		return Array.from(new Array(count), func);
-	}
+	const produceEntries = (count, func) => Array.from(new Array(count), func);
 
 	// basics
 	const indicatorProps = {
@@ -18,6 +16,11 @@ const Test = (props) => {
 	};
 	const pathProps = { data: "/test/3", };
 	const popupProps = { shown: true, };
+	const viewProps = {
+		from: 0,
+		length: 10,
+		src: Array.from({ length: 10 }, (_, i) => { return { text: `string_${i}` } }),
+	};
 
 	// dropdown
 	const dropdownProps = {
@@ -96,18 +99,20 @@ const Test = (props) => {
 			<Common.Indicator {...indicatorProps} />
 			<Common.Path {...pathProps} />
 			<Common.Popup {...popupProps} />
-
+			<Common.View  {...viewProps} />
+		
 			<Common.Dropdown {...dropdownProps} />
 			<Common.Range {...rangeHorizontalProps} />
 			<Common.Range {...rangeVerticalProps} />
 			<Common.Scroll {...scrollProps} />
 			<TestAreaForScroll />
 
-			<Common.View  {...viewPropsForCarouselController} />
 			{/*<Common.Advisor {...advisorProps} />
 
 			<Common.AccordionView {...accordionProps} />
+
 			<Common.CarouselController {...carouselControllerProps} />
+			<Common.View  {...viewPropsForCarouselController} />
 
 			<Common.PageController {...pageControllerProps} />
 			<Common.View  {...viewPropsForPageController} />
