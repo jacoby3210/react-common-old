@@ -12,7 +12,11 @@ export const defaultProps = {
 	from: 0,												// start index to display elements.
 	length: 0,											// length of items to display (count).
 	src: [],												// source data array provider for mapping.
-	RenderComponent: ({meta}) => <li className='common-ui-data-view-element'>{meta.text}</li>, 
+	RenderElement: receivedProps => // template for forming a gui by metadata.
+		{
+			const {meta, ...attributes} = receivedProps;
+			return (<li {...attributes}>{meta.text}</li>);
+		}, 
 };
 
 // ========================================================================= //

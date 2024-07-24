@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { Popup } from "../../basics/popup"
+import {View} from "../../basics/view"
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
 // Сomponent for rendering a drop-down menu (select).
@@ -21,30 +22,33 @@ export const Dropdown = receivedProps => {
 	// hooks
 	const self = useRef(null);
 	const [shownState, setShownState] = useState(false);
-	const handleClick = (evt) => { setShownState((prev) => !prev) }
+	const handleClick = (evt) => {setShownState((prev) => !prev);}
 	// useEffect(() => { }, [data, value]);
 
 	// render 
-	const popupOptions = { shown: true, updateShownState: setShownState };
+	const popupProps = {shown: true, updateShownState: setShownState,};
+	const viewProps = {
+		className:'rc-dropdown-options', 
+		from: 0, length: src.length, src:src,
+		RenderElement,
+	}
 
 	const Button = () =>
-		<button className={'rc-dropdown-button'} onClick={handleClick}>
+		<button className={'rc-dropdown-button'}>
 			<span className={'rc-dropdown-button-arrow'}>
 				<i className={'fa-solid fa-chevron-down'}></i>
 			</span>
-			<span className='rc-dropdown-button-caption'>{ }</span>
+			<span className='rc-dropdown-button-caption'/>
 		</button>;
 
-	const OptionList = () =>
-		<ul className={'rc-dropdown-options'}>
-			{src.map((optionProps, i) => <RenderElement key={i} {...optionProps} />)}
-		</ul>;
-
 	return (
-		<div id={id} ref={self} {...attributes}>
+		<div id={id} ref={self} onClick={handleClick} {...attributes}>
 			{
 				shownState ?
-					<Popup {...popupOptions}><Button /><OptionList /></Popup> :
+					<Popup {...popupProps}>
+						<Button />
+						<View {...viewProps} />
+					</Popup> :
 					<Button />
 			}
 		</div>

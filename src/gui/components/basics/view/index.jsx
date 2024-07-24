@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState} from 'react';
 import { mergeProps } from 'react-aria';
-import {defaultProps, propTypes} from "./config"
+import {DEFAULT_CLASS, defaultProps, propTypes} from "./config"
 
 // ========================================================================= //
 // View area for  render multiple repetitive data.
@@ -16,12 +16,17 @@ export const View = receivedProps => {
 		from,
 		length,
 		src,
-		RenderComponent,
+		RenderElement,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// render 
-	const renderItem = (item, i) => <RenderComponent key={item.id || i} meta={item} />;
+	const renderItem = (item, i) => 
+		<RenderElement 
+			key={item.id || i}
+			className={`${DEFAULT_CLASS}-item`} 
+			meta={item} 
+		/>;
 	return (
 		<div id={id} from={from} length={length} {...attributes}>
 			{src.slice(from, from + length).map(renderItem)}
