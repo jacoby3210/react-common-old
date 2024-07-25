@@ -9,7 +9,7 @@ import { View } from "/src/gui/components/basics/view";								// - for render m
 // controls (mouse interaction)
 import { Dropdown } from "/src/gui/components/controls/dropdown";			// - for render a drop-down menu (select).
 import { Range } from "/src/gui/components/controls/range";						// - to select a value from the suggested numeric range.
-import { Scroll } from "/src/gui/components/controls/scroll";					// - represents universal customizable content scroller.
+import { Slider } from "/src/gui/components/controls/slider";					// - represents universal customizable content scroller.
 
 // fields (kb interaction)
 // import { Advisor } from "/src/gui/components/fields/advisor";					// - rendering  basic text filed with input suggestions.
@@ -21,11 +21,13 @@ import { Scroll } from "/src/gui/components/controls/scroll";					// - represent
 // data view and special controllers for mage output data.
 // import { CarouselController } from "/src/gui/layouts/data/carousel-controller";
 // import { PageController } from "/src/gui/layouts/data/page-controller";
+import { Scrollbar } from "./src/gui/layouts/view/scrollbar";
 // import { TabController } from "/src/gui/layouts/data/tab-controller";
 
 export default {
 	Indicator, Path, Popup, View,
-	Dropdown, Range, Scroll,
+	Dropdown, Range, Slider, 
+	Scrollbar,
 	// Advisor,
 	// AccordionSection, AccordionView,
 	// CarouselController, PageController, TabController, View

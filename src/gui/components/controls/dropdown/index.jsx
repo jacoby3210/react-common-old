@@ -4,7 +4,7 @@ import { Popup } from "../../basics/popup"
 import {View} from "../../basics/view"
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
-// Сomponent for rendering a drop-down menu (select).
+// React Component for rendering a drop-down view.
 // ========================================================================= //
 
 export const Dropdown = receivedProps => {

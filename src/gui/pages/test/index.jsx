@@ -19,7 +19,7 @@ const Test = receivedProps => {
 	const viewProps = {
 		from: 0,
 		length: 10,
-		src: Array.from({ length: 10 }, (_, i) => { return { text: `string_${i}` } }),
+		src: produceEntries(10, (_, i) => { return { text: `string_${i}`}}),
 	};
 
 	// dropdown
@@ -30,16 +30,10 @@ const Test = receivedProps => {
 
 	// range
 	const rangeHorizontalProps = { axis: true, min: 0, max: 10, step: 0.0001, value: 5 };
-	const rangeVerticalProps = { min: 0, max: 50, step: 0.0001, value: 5 };
+	const rangeVerticalProps = { min: 0, max: 50, step: 0.1, value: 5 };
 
-	// scroll
-	const area = React.useRef(null)
-	const TestAreaForScroll = () =>
-		<div style={{ height: "100px", "overflowY": "scroll" }} ref={area}>
-			<div style={{ height: "200px" }} />
-		</div>
-
-	const scrollProps = { target: area, }
+	// slider
+	const sliderProps = { ...rangeVerticalProps, }
 
 	// advisor
 	const advisorProps = {
@@ -80,6 +74,14 @@ const Test = receivedProps => {
 		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
 
+	// scrollbar
+	const area = React.useRef(null)
+	const TestAreaForScroll = () =>
+		<div style={{ height: "100px", "overflowY": "scroll" }} ref={area}>
+			<div style={{ height: "200px" }} />
+		</div>
+	const scrollbarProps = { target: area,}
+
 	// tab controller
 	const [currentTab, setCurrentTab] = useState(0);
 	const tabControllerProps = {
@@ -96,18 +98,24 @@ const Test = receivedProps => {
 	// render page
 	return (
 		<>
+			{/* Part I */}
 			<Common.Indicator {...indicatorProps} />
 			<Common.Path {...pathProps} />
 			<Common.Popup {...popupProps} />
 			<Common.View  {...viewProps} />
 		
+			{/* Part II */}
 			<Common.Dropdown {...dropdownProps} />
 			<Common.Range {...rangeHorizontalProps} />
 			<Common.Range {...rangeVerticalProps} />
-			<Common.Scroll {...scrollProps} />
+			<Common.Slider {...sliderProps} />
+			
+			{/* Part III */}
+			<Common.Scrollbar {...scrollbarProps} />
 			<TestAreaForScroll />
-
-			{/*<Common.Advisor {...advisorProps} />
+			
+			{/*
+			<Common.Advisor {...advisorProps} />
 
 			<Common.AccordionView {...accordionProps} />
 
