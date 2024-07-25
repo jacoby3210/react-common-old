@@ -6,7 +6,7 @@ import {DEFAULT_CLASS, defaultProps, propTypes} from "./config"
 // Controls the switching of displayed slide in the viewing area. 
 // ========================================================================= //
 
-export const NavigatorController = receivedProps => {
+export const Navigator = receivedProps => {
 
 	// unpack properties
 	const {
@@ -68,4 +68,4 @@ export const NavigatorController = receivedProps => {
 	);
 };
 
-NavigatorController.propTypes = propTypes;
+Navigator.propTypes = propTypes;

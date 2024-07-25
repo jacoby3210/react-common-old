@@ -47,12 +47,12 @@ const Test = receivedProps => {
 
 	// navigator controller
 	const [currentNavigatorSlide, setCurrentNavigatorSlide] = useState(0);
-	const navigatorControllerProps = {
+	const navigatorProps = {
 		infinity: true,
 		onChangeCallback: (slideIndex) => { setCurrentNavigatorSlide(slideIndex); },
 		count: 250,
 	}
-	const viewPropsForNavigatorController = {
+	const viewPropsForNavigator = {
 		count: 250,
 		from: currentNavigatorSlide,
 		length: 1,
@@ -61,13 +61,13 @@ const Test = receivedProps => {
 
 	// page controller
 	const [currentPage, setCurrentPage] = useState(0);
-	const pageControllerProps = {
+	const paginatorProps = {
 		onChangeCallback: (pageIndex) => { setCurrentPage(pageIndex * 10); },
 		buttons: 5,
 		count: 250 / 10,
 		value: 0,
 	}
-	const viewPropsForPageController = {
+	const viewPropsForPaginator = {
 		count: 250,
 		from: currentPage,
 		length: 10,
@@ -111,9 +111,12 @@ const Test = receivedProps => {
 			<Common.Slider {...sliderProps} />
 			
 			{/* Part III */}
-			<Common.NavigatorController {...navigatorControllerProps} />
-			<Common.View  {...viewPropsForNavigatorController} />
+			<Common.Navigator {...navigatorProps} />
+			<Common.View  {...viewPropsForNavigator} />
 			
+			<Common.Paginator {...paginatorProps} />
+			<Common.View  {...viewPropsForPaginator} />
+
 			<Common.Scrollbar {...scrollbarProps} />
 			<TestAreaForScroll />
 			
@@ -123,8 +126,6 @@ const Test = receivedProps => {
 			<Common.AccordionView {...accordionProps} />
 
 
-			<Common.PageController {...pageControllerProps} />
-			<Common.View  {...viewPropsForPageController} />
 
 			<Common.TabController {...tabControllerProps} />
 			<Common.View  {...viewPropsForTabController} /> */}
