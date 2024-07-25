@@ -45,6 +45,20 @@ const Test = receivedProps => {
 		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, content: i } }),
 	}
 
+	// navigator controller
+	const [currentNavigatorSlide, setCurrentNavigatorSlide] = useState(0);
+	const navigatorControllerProps = {
+		infinity: true,
+		onChangeCallback: (slideIndex) => { setCurrentNavigatorSlide(slideIndex); },
+		count: 250,
+	}
+	const viewPropsForNavigatorController = {
+		count: 250,
+		from: currentNavigatorSlide,
+		length: 1,
+		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
+	}
+
 	// page controller
 	const [currentPage, setCurrentPage] = useState(0);
 	const pageControllerProps = {
@@ -57,20 +71,6 @@ const Test = receivedProps => {
 		count: 250,
 		from: currentPage,
 		length: 10,
-		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
-	}
-
-	// slider controller
-	const [currentCarouselSlide, setCurrentCarouselSlide] = useState(0);
-	const carouselControllerProps = {
-		infinity: true,
-		onChangeCallback: (slideIndex) => { setCurrentCarouselSlide(slideIndex); },
-		count: 250,
-	}
-	const viewPropsForCarouselController = {
-		count: 250,
-		from: currentCarouselSlide,
-		length: 1,
 		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
 
@@ -111,6 +111,9 @@ const Test = receivedProps => {
 			<Common.Slider {...sliderProps} />
 			
 			{/* Part III */}
+			<Common.NavigatorController {...navigatorControllerProps} />
+			<Common.View  {...viewPropsForNavigatorController} />
+			
 			<Common.Scrollbar {...scrollbarProps} />
 			<TestAreaForScroll />
 			
@@ -119,8 +122,6 @@ const Test = receivedProps => {
 
 			<Common.AccordionView {...accordionProps} />
 
-			<Common.CarouselController {...carouselControllerProps} />
-			<Common.View  {...viewPropsForCarouselController} />
 
 			<Common.PageController {...pageControllerProps} />
 			<Common.View  {...viewPropsForPageController} />
