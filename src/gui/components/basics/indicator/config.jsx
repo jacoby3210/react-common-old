@@ -11,7 +11,7 @@ export const defaultProps = {
 	className: DEFAULT_CLASS,
 	colors: [],					// available fill colors of the value indicator
 	levels: [],					// available fill levels of the value indicator
-	max: 100,						// max display value
+	max: 100,						// display max value (min value always 0).
 	value: 100,					// current display value
 };
 

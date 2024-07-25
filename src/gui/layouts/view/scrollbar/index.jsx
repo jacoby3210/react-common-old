@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {Slider} from '../../../components/controls/slider';
-import { defaultProps, propTypes } from "./config"
+import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 import { horizontalProps, verticalProps, valueFromPosition, valueToPosition } from './helpers';
 // ========================================================================= //
 // React Component represents universal customizable content scrollbar.

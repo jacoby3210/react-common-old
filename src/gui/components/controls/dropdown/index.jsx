@@ -23,7 +23,6 @@ export const Dropdown = receivedProps => {
 	const self = useRef(null);
 	const [shownState, setShownState] = useState(false);
 	const handleClick = (evt) => {setShownState((prev) => !prev);}
-	// useEffect(() => { }, [data, value]);
 
 	// render 
 	const popupProps = {shown: true, updateShownState: setShownState,};

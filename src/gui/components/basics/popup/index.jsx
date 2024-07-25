@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
-import { defaultProps, propTypes } from "./config"
+import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 
 // ========================================================================= //
 // React component for render content on top of the main ui. 

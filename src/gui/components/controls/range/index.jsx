@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
-import { defaultProps, propTypes } from "./config"
+import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 import { animateValue, horizontalProps, verticalProps, RangeTrack, RangeThumb } from './helpers';
 // ========================================================================= //
 // React Component to select a value from the suggested numeric range.
