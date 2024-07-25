@@ -10,22 +10,15 @@ export const horizontalProps = {
 export const verticalProps = {
 	axis: "vertical",
 	componentSize: "offsetHeight",
+	scrollDirect: "top",
 	scrollOffset: "scrollTop",
-	s:
-		"top",
 	scrollSize: "scrollHeight",
 }
 
-export const calcPosition = (el, props) => {
-	return el[props.scrollOffset] / (el[props.scrollSize] - el[props.componentSize]);
+export const valueToPosition = (area, props, value) => {
+	return (area[props.scrollSize] - area[props.componentSize]) * value
 }
 
-export const ScrollButton = receivedProps => {
-	return (
-		<button
-			className={`${DEFAULT_CLASS}-button-to-start`}
-		>
-
-		</button >
-	);
+export const valueFromPosition = (area, props)=>{
+	return area[props.scrollOffset] / (area[props.scrollSize] - area[props.componentSize]);
 }

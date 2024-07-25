@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { Range } from '../range';
-import { defaultProps, propTypes } from "./config"
+import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
 // React Component represents Range with control buttons.
 // ========================================================================= //
@@ -10,17 +10,22 @@ export const Slider = receivedProps => {
 
 	// unpack properties
 	const {
-		id, className,
+		id,
 		axis, max, min, step, value,
 		onChange,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 	
 	// hooks
-	const self = useRef(null), scrollTimeoutRef = useRef(null);
-	const [valueState, setValueState] = useState(0);
+	const scrollTimeoutRef = useRef(null);
+	const [valueState, setValueState] = useState(value);
+	useEffect(() => {setValueState(value);},[value])
 
 	// inputs
+	const handleChange = (newValue) => {
+		setValueState(prev => {onChange(newValue); return newValue;})
+	}
+
 	const handleMouseDown = (moveStep) => {
 		const fn = () => handleMouseDownSlice(moveStep);
 		fn();
@@ -28,25 +33,17 @@ export const Slider = receivedProps => {
 	};
 
 	const handleMouseDownSlice = (offset) => {
-		setValueState(prev => {
-			const newValue = Math.max(Math.min(max, prev + offset), min)
-			if (onChange) onChange(newValue);
-			return newValue;
-		});
+		const newValue = Math.max(Math.min(max, prev + offset), min)
+		handleChange(newValue)
 	}
 
-	const handleMouseDoubleClick = (value) => {
-		setValueState(prev => {
-			if (onChange) onChange(value);
-			return value;
-		});
-	}
+	const handleMouseDoubleClick = (newValue) => {handleChange(newValue);}
 
 	// render 
 	const Button = ({btnPostFix, btnAbsValue, btnStep})=>{
 		return (
 			<button
-				className={`${className}-${btnPostFix}`}
+				className={`${DEFAULT_CLASS}-${btnPostFix}`}
 				onDoubleClick= {(e) => {handleMouseDoubleClick(btnAbsValue);}}
 				onMouseDown= {(e) => {if(e.detail == 1) handleMouseDown(btnStep);}}
 				onMouseUp = {() => clearInterval(scrollTimeoutRef.current)}
@@ -59,17 +56,11 @@ export const Slider = receivedProps => {
 	const inputRangeProps = {
 		...receivedProps,
 		value: valueState,
-		onChange,
+		onChange: handleChange,
 	}
 
 	return (
-		<div
-			id={id}
-			className={className}
-			ref={self}
-			position={valueState}
-			{...attributes}
-		>
+		<div id={id} {...attributes} value={valueState}>
 			<Button {...toStartProps}></Button>
 			<Range {...inputRangeProps} />
 			<Button {...toEndProps}></Button>
