@@ -19,7 +19,7 @@ import { Slider } from "/src/gui/components/controls/slider";					// - represent
 // import { AccordionView } from "/src/gui/layouts/accordion/view";				// - used to organize content on layout.
 
 // data view and special controllers for mage output data.
-import { Browser } from "./src/gui/layouts/view/browser";
+import { Browser } from "./src/gui/layouts/view/browser";									// Controls the switching of displayed data in the viewing area.
 import { Navigator } from "./src/gui/layouts/view/navigator";
 import { Paginator } from "./src/gui/layouts/view/paginator";
 import { Scrollbar } from "./src/gui/layouts/view/scrollbar";

@@ -25,6 +25,7 @@ export const View = receivedProps => {
 		<RenderElement 
 			key={item.id || i}
 			className={`${DEFAULT_CLASS}-item`} 
+			index={i}
 			meta={item} 
 		/>;
 	return (

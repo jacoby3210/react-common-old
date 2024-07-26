@@ -48,15 +48,23 @@ const Test = receivedProps => {
 	// browser controller
 	const [currentBrowseTab, setBrowseTab] = useState(0);
 	const browserProps = {
+		length: 5,
 		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, id: i } }),
 		onChangeCallback: (tabIndex) => { setBrowseTab(tabIndex * 10) },
 	}
-
 	const viewPropsForBrowser = {
 		from: currentBrowseTab,
 		length: 10,
 		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
+
+	// scrollbar
+	const area = React.useRef(null)
+	const TestAreaForScroll = () =>
+		<div style={{ height: "100px", "overflowY": "scroll" }} ref={area}>
+			<div style={{ height: "200px" }} />
+		</div>
+	const scrollbarProps = { target: area,}
 
 	// render page
 	return (
@@ -77,6 +85,9 @@ const Test = receivedProps => {
 			<Common.Browser {...browserProps} />
 			<Common.View  {...viewPropsForBrowser} />
 			
+			<Common.Scrollbar {...scrollbarProps} />
+			<TestAreaForScroll />
+
 			{/*
 			<Common.Advisor {...advisorProps} />
 

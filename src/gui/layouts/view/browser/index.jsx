@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState} from 'react';
 import { mergeProps } from 'react-aria';
+import { View } from '../../../components/basics/view';
 import {DEFAULT_CLASS, defaultProps, propTypes} from "./config"
 // ========================================================================= //
-// Controls the switching of displayed block in the viewing area.
+// Controls the switching of displayed data in the viewing area.
 // ========================================================================= //
 
 export const Browser = receivedProps => {
@@ -10,9 +11,7 @@ export const Browser = receivedProps => {
 	// unpack properties
 	const {
 		id,
-		buttons,
-		count,
-		offset,
+		length,
 		src,
 		value,
 		onChangeCallback,
@@ -20,33 +19,35 @@ export const Browser = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const [valueState, setValueState] = useState(value);
-	const handleValueChanged = (page) => {
-		onChangeCallback((page - offset));
-		setValueState((prevPage) => page - offset);
+	const [valueState, setValueState] = useState(value); // id of current tab
+	const handleValueChanged = (evt) => {
+		const {id:newValue} = evt.currentTarget
+		setValueState(
+			prevValue => {
+				onChangeCallback(newValue, prevValue); 
+				return newValue;
+			}
+		);
 	}
-
-	const firstPageButton = Math.min(
-		Math.max(valueState - Math.floor(buttons / 2), offset),
-		count - buttons + offset
-	);
-
+	
 	// render 
-	const buttonProps = (index) => {
-		return {
-			className: `rc-browse-button`,
-			onClick:() => { handleValueChanged(index); },
-		}
-	}
+	const firstDisplayButton = Math.max(
+		Math.min(
+			Math.max(valueState - Math.floor(length / 2), 0),
+			src.length - length
+	), 0);
 
-	const Button = ({index})=>{
-		const trueIndex = firstPageButton + index;
-		return (<button key={trueIndex} {...buttonProps(trueIndex)}>{src[index].caption || trueIndex}</button>);
+	const RenderElement = ({meta, index})=>{
+		return (<button 
+				className= {`rc-browse-button`}
+				onClick= {handleValueChanged}
+				{...meta}
+			>
+			{meta?.caption || trueIndex}
+		</button>);
 	}
-	console.log(src);
-	const buttonList = Array.from(new Array(buttons), (v, index) => <Button key={index} index={index}/>);
-
-	return (<div id={id} {...attributes}>{buttonList}</div>);
+	const viewProps = {from:firstDisplayButton, length, src, RenderElement}
+	return <View id={id} {...attributes}  {...viewProps}/>
 };
 
 Browser.propTypes = propTypes;

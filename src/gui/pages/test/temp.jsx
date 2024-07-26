@@ -55,5 +55,3 @@ const viewPropsForTabController = {
 <Common.Paginator {...paginatorProps} />
 <Common.View  {...viewPropsForPaginator} />
 
-<Common.Scrollbar {...scrollbarProps} />
-<TestAreaForScroll />
