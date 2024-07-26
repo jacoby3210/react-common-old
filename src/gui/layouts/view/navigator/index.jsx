@@ -12,8 +12,7 @@ export const Navigator = receivedProps => {
 	const {
 		children,
 		id,
-		count,
-		offset,
+		length,
 		infinity,
 		value,
 		onChangeCallback,
@@ -24,30 +23,33 @@ export const Navigator = receivedProps => {
 	const [valueState, setValueState] = useState(value);
 
 	// input from user
-	const normalizeValue = (value) => infinity ? (value + count) % (count) : Math.min(value, count - 1);
 	const handle = (v) => {setValueState(v); onChangeCallback(v);}
+	const normalizeValue = (value) => 
+		infinity 
+		? (value + length) % (length) 
+		: Math.min(value, length - 1);
 
 	// render 
 	
 	const btnFirstProps = {
 		className: `${DEFAULT_CLASS}-first`,
-		onClick: () => { handle(offset); },
-		disabled: valueState === offset,
+		onClick: () => { handle(0); },
+		disabled: valueState === 0,
 	}
 	const btnPrevProps = {
 		className: `${DEFAULT_CLASS}-first`,
 		onClick: () => { handle(normalizeValue(valueState - 1)); },
-		disabled: valueState === offset && !infinity,
+		disabled: valueState === 0 && !infinity,
 	}
 	const btnNextProps = {
 		className: `${DEFAULT_CLASS}-next`,
 		onClick: () => { handle(normalizeValue(valueState + 1)); },
-		disabled: valueState === count + offset - 1 && !infinity,
+		disabled: valueState === length - 1 && !infinity,
 	}
 	const btnLastProps = {
 		className: `${DEFAULT_CLASS}-last`,
-		onClick: () => { handle(count - 1 + offset); },
-		disabled: valueState === count + offset - 1,
+		onClick: () => { handle(length - 1); },
+		disabled: valueState === length - 1,
 	}
 
 	return (

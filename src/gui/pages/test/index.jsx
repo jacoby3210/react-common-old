@@ -58,6 +58,20 @@ const Test = receivedProps => {
 		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
 
+	// nav controller
+	const [currentNavigatorSlide, setCurrentNavigatorSlide] = useState(0);
+	const navigatorProps = {
+		infinity: true,
+		length: 250,
+		onChangeCallback: (slideIndex) => { setCurrentNavigatorSlide(slideIndex); },
+	}
+	const viewPropsForNavigator = {
+		count: 250,
+		from: currentNavigatorSlide,
+		length: 1,
+		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
+	}
+
 	// scrollbar
 	const area = React.useRef(null)
 	const TestAreaForScroll = () =>
@@ -66,6 +80,8 @@ const Test = receivedProps => {
 		</div>
 	const scrollbarProps = { target: area,}
 
+
+	
 	// render page
 	return (
 		<>
@@ -85,6 +101,9 @@ const Test = receivedProps => {
 			<Common.Browser {...browserProps} />
 			<Common.View  {...viewPropsForBrowser} />
 			
+			<Common.Navigator {...navigatorProps} />
+			<Common.View  {...viewPropsForNavigator} />
+
 			<Common.Scrollbar {...scrollbarProps} />
 			<TestAreaForScroll />
 
