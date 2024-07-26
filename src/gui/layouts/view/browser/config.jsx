@@ -31,11 +31,10 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	onChangeCallback: PropTypes.func,
-	buttons: PropTypes.number,
-	count: PropTypes.number,
-	offset: PropTypes.number,
+	length: PropTypes.number,
+	src: PropTypes.array,
 	value: PropTypes.number,
+	onChangeCallback: PropTypes.func,
 };
 
 // ========================================================================= //

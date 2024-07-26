@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState} from 'react';
 import { mergeProps } from 'react-aria';
+import { Browser } from '../browser';
 import { Navigator } from '../navigator';
 import {DEFAULT_CLASS, defaultProps, propTypes} from "./config"
 
@@ -12,9 +13,9 @@ export const Paginator = receivedProps => {
 	// unpack properties
 	const {
 		id,
-		buttons,
-		count,
-		offset,
+		lengthBrowser,
+		lengthNavigator,
+		src,
 		value,
 		onChangeCallback,
 		...attributes
@@ -22,44 +23,36 @@ export const Paginator = receivedProps => {
 
 	// hooks
 	const [valueState, setValueState] = useState(value);
-	const handleValueChanged = (page) => {
-		onChangeCallback((page - offset));
-		setValueState((prevPage) => page - offset);
+	const handleValueChanged = (newValue) => {
+		setValueState(
+			prevValue => {
+				onChangeCallback(newValue, prevValue); 
+				return newValue;
+			}
+		);
 	}
-
-	// input from user
-	const firstPageButton = Math.min(
-		Math.max(valueState - Math.floor(buttons / 2), offset),
-		count - buttons + offset
-	);
 
 	// render 
-
-	const buttonProps = (index) => {
-		return {
-			className: `rc-page-controller-button`,
-			onClick:() => { handleValueChanged(index); },
-		}
-	}
-	const buttonList = Array.from(new Array(buttons), (v, index) => {
-		const trueIndex = firstPageButton + index;
-		return <button key={trueIndex} {...buttonProps(trueIndex)}>{trueIndex}</button>; 
-	})
-
-	const navigatorControllerProps = {
+	const browserControllerProps = {
+		length:lengthBrowser, 
+		src,
+		value: valueState,
 		onChangeCallback:handleValueChanged,
-		count: count,
-		offset: offset,
-		value: valueState + offset,
+	}
+	const navigatorControllerProps = {
+		length:lengthNavigator, 
+		value: valueState ,
+		onChangeCallback:handleValueChanged,
 	}
 
 	return (
 		<div 
 		id={id}
+		value={valueState}
 		{...attributes}
 		>
 			<Navigator {...navigatorControllerProps}/>
-			<div className={'rc-page-controller-buttons'}>{buttonList}</div>
+			<Browser {...browserControllerProps}/>
 		</div>
 	);
 };

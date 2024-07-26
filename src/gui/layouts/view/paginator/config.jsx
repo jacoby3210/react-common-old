@@ -9,9 +9,9 @@ export const DEFAULT_CLASS = 'rc-paginator';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	buttons: 5,												// number of simultaneously displayed buttons for page switching.
-	count: 0,													// total number of pages displayed.
-	offset: 1,												// offset from the start page.
+	lengthBrowser: 0,									// length of simultaneously displayed buttons for page switching.
+	lengthNavigator: 0,								// number of available child elements.
+	src:[],														// source data array provider for mapping.
 	value: -1,												// index of the displayed page.
 	onChangeCallback: (index) => { }, // handling a child component's state change in the parent component.
 };
@@ -33,9 +33,7 @@ export const propTypes = {
 	]),
 	id: PropTypes.string,
 	onChangeCallback: PropTypes.func,
-	buttons: PropTypes.number,
-	count: PropTypes.number,
-	offset: PropTypes.number,
+	length: PropTypes.number,
 	value: PropTypes.number,
 };
 

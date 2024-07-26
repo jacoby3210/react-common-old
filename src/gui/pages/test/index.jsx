@@ -66,9 +66,23 @@ const Test = receivedProps => {
 		onChangeCallback: (slideIndex) => { setCurrentNavigatorSlide(slideIndex); },
 	}
 	const viewPropsForNavigator = {
-		count: 250,
 		from: currentNavigatorSlide,
 		length: 1,
+		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
+	}
+
+	// paginator controller
+	const [currentPageState, setCurrentPageState] = useState(0);
+	const paginatorProps = {
+		lengthBrowser: 5,
+		lengthNavigator: 25,
+		src: produceEntries(25, (v, i) => { return { caption: `Option #${i}`, id: i } }),
+		value: 0,
+		onChangeCallback: (pageIndex) => { setCurrentPageState(pageIndex * 10); },
+	}
+	const viewPropsForPaginator = {
+		from: currentPageState,
+		length: 10,
 		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
 	}
 
@@ -103,6 +117,9 @@ const Test = receivedProps => {
 			
 			<Common.Navigator {...navigatorProps} />
 			<Common.View  {...viewPropsForNavigator} />
+
+			<Common.Paginator {...paginatorProps} />
+			<Common.View  {...viewPropsForPaginator} />
 
 			<Common.Scrollbar {...scrollbarProps} />
 			<TestAreaForScroll />

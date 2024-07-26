@@ -24,12 +24,13 @@ export const Browser = receivedProps => {
 		const {id:newValue} = evt.currentTarget
 		setValueState(
 			prevValue => {
-				onChangeCallback(newValue, prevValue); 
+				onChangeCallback(Number(newValue), prevValue); 
 				return newValue;
 			}
 		);
 	}
-	
+	useEffect(() => {setValueState(value);}, [value]);
+
 	// render 
 	const firstDisplayButton = Math.max(
 		Math.min(
