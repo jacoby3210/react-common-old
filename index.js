@@ -14,21 +14,18 @@ import { Slider } from "/src/gui/components/controls/slider";					// - represent
 // fields (kb interaction)
 // import { Advisor } from "/src/gui/components/fields/advisor";					// - rendering  basic text filed with input suggestions.
 
-// accordion layout
-// import { AccordionSection } from "/src/gui/layouts/accordion/section"; // - using by default to fill the accordion view.
-// import { AccordionView } from "/src/gui/layouts/accordion/view";				// - used to organize content on layout.
 
 // data view and special controllers for mage output data.
-import { Browser } from "./src/gui/layouts/view/browser";									// Controls the switching of displayed data in the viewing area.
+import { Accordion } from "/src/gui/layouts/view/accordion";				// - used to organize content on layout.
+import { Browser } from "./src/gui/layouts/view/browser";							// Controls the switching of displayed data in the viewing area.
 import { Navigator } from "./src/gui/layouts/view/navigator";
 import { Paginator } from "./src/gui/layouts/view/paginator";
 import { Scrollbar } from "./src/gui/layouts/view/scrollbar";
-// import { TabController } from "/src/gui/layouts/data/tab-controller";
 
 export default {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider, 
-	Browser, Navigator, Paginator, Scrollbar,
+	Accordion, Browser, Navigator, Paginator, Scrollbar,
 	// Advisor,
 	// AccordionSection, AccordionView,
 	// PageController, TabController, View

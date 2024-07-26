@@ -40,6 +40,8 @@ const Test = receivedProps => {
 		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, value: i } }),
 	}
 
+	// data view and special controllers for mage output data.
+
 	// accordion
 	const accordionProps = {
 		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, content: i } }),
@@ -94,7 +96,6 @@ const Test = receivedProps => {
 		</div>
 	const scrollbarProps = { target: area,}
 
-
 	
 	// render page
 	return (
@@ -112,6 +113,8 @@ const Test = receivedProps => {
 			<Common.Slider {...sliderProps} />
 			
 			{/* Part III */}
+			<Common.Accordion {...accordionProps} />
+
 			<Common.Browser {...browserProps} />
 			<Common.View  {...viewPropsForBrowser} />
 			
@@ -125,14 +128,9 @@ const Test = receivedProps => {
 			<TestAreaForScroll />
 
 			{/*
-			<Common.Advisor {...advisorProps} />
+				<Common.Advisor {...advisorProps} />
+			*/}
 
-			<Common.AccordionView {...accordionProps} />
-
-
-
-			<Common.TabController {...tabControllerProps} />
-			<Common.View  {...viewPropsForTabController} /> */}
 		</>
 	);
 }
