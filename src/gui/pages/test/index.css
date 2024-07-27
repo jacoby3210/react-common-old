@@ -24,3 +24,29 @@
 	height: 100px;
 	width: 24px;
 }
+
+.rc-drag-item {
+	width: 100px;
+	height: 100px;
+	background-color: #61dafb;
+	display: 'flex';
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
+.rc-drop-slot {
+	width: 300px;
+  height: 300px;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+	justify-content: center;
+	background-color: #fff,
+}
+
+.rc-drop-slot-accept {
+	background-color: #f0f0f0;
+	border: 2px dashed #000;
+
+}

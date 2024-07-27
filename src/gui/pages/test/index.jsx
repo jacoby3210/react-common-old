@@ -60,6 +60,15 @@ const Test = receivedProps => {
 		src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, value: i } }),
 	}
 
+	// drag and drop
+	const TestDragAndDrop = () => {
+		return (<>
+			<Common.DragItem/>
+			<Common.DropSlot RenderElement={Common.DragItem}/>
+		</>);
+	}
+	// 
+
 	// data view and special controllers for mage output data.
 
 	// accordion
@@ -171,6 +180,8 @@ const Test = receivedProps => {
 			<TestSlider/>
 			
 			{/* Part III */}
+			<TestDragAndDrop/>
+
 			<TestAccordion/>
 			<TestBrowser/>
 			<TestNavigator/>
