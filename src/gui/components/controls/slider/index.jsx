@@ -26,27 +26,31 @@ export const Slider = receivedProps => {
 		setValueState(prev => {onChange(newValue); return newValue;})
 	}
 
-	const handleMouseDown = (moveStep) => {
+	const handleMouseDown = ( moveStep, e) => {
+		if(e.detail != 1) return;
 		const fn = () => handleMouseDownSlice(moveStep);
 		fn();
 		scrollTimeoutRef.current = setInterval(fn, 10);
 	};
 
 	const handleMouseDownSlice = (offset) => {
-		const newValue = Math.max(Math.min(max, prev + offset), min)
-		handleChange(newValue)
+		setValueState(prev => {
+			const newValue = Math.max(Math.min(max, prev + offset), min)
+			onChange(newValue); 
+			return newValue;
+		})
 	}
 
-	const handleMouseDoubleClick = (newValue) => {handleChange(newValue);}
+	const handleMouseDoubleClick = (newValue) => handleChange(newValue);
 
 	// render 
 	const Button = ({btnPostFix, btnAbsValue, btnStep})=>{
 		return (
 			<button
 				className={`${DEFAULT_CLASS}-${btnPostFix}`}
-				onDoubleClick= {(e) => {handleMouseDoubleClick(btnAbsValue);}}
-				onMouseDown= {(e) => {if(e.detail == 1) handleMouseDown(btnStep);}}
-				onMouseUp = {() => clearInterval(scrollTimeoutRef.current)}
+				onDoubleClick= {handleMouseDoubleClick.bind(this, btnAbsValue)}
+				onMouseDown= {handleMouseDown.bind(this, btnStep)}
+				onMouseUp = {clearInterval.bind(this,scrollTimeoutRef.current)}
 			/>
 		)
 	}
