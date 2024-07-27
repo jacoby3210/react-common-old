@@ -29,7 +29,7 @@ export const View = receivedProps => {
 			meta={item} 
 		/>;
 	return (
-		<div id={id} from={from} length={length} {...attributes}>
+		<div id={id} {...attributes} from={from} length={length} >
 			{src.slice(from, from + length).map(renderItem)}
 		</div>
 	);

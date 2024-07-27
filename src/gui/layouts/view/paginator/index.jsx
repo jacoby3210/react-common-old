@@ -48,8 +48,8 @@ export const Paginator = receivedProps => {
 	return (
 		<div 
 		id={id}
-		value={valueState}
 		{...attributes}
+		value={valueState}
 		>
 			<Navigator {...navigatorControllerProps}/>
 			<Browser {...browserControllerProps}/>

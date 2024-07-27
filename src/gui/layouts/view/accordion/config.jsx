@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'common-ui-accordion';
+export const DEFAULT_CLASS = 'rc-accordion';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	policy: 'single', 									// Policy for opening mode: single - only one section, multiple - several sections.
-	src: [],														//
-	values: [],													//
+	policy: 'single', 									// policy for opening mode: single - only one section, multiple - several sections.
+	src: [],														// source data array provider for mapping.
+	values: [],													// array of values, includes keys of open folds 
 };
 
 // ========================================================================= //
