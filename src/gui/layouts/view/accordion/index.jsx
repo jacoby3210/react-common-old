@@ -7,7 +7,6 @@ import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
 // Accordion is a UI compоnent that is used to organize content on layout.
 // It consists of a list of headers and their associated content.
-// The user can click on a header to expand the content or collapse it back.
 // ========================================================================= //
 
 export const Accordion = receivedProps => {

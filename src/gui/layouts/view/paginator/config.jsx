@@ -13,7 +13,7 @@ export const defaultProps = {
 	lengthNavigator: 0,								// number of available child elements.
 	src:[],														// source data array provider for mapping.
 	value: -1,												// index of the displayed page.
-	onChangeCallback: (index) => { }, // handling a child component's state change in the parent component.
+	onStateUpdate: (index) => { }, // handling a child component's state change in the parent component.
 };
 
 // ========================================================================= //
@@ -32,7 +32,7 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	onChangeCallback: PropTypes.func,
+	onStateUpdate: PropTypes.func,
 	length: PropTypes.number,
 	value: PropTypes.number,
 };

@@ -33,7 +33,7 @@ export const propTypes = {
 	length: PropTypes.number,
 	infinity: PropTypes.bool,
 	value: PropTypes.number,
-	onChangeCallback: PropTypes.func,
+	onStateUpdate: PropTypes.func,
 };
 
 // ========================================================================= //

@@ -5,7 +5,7 @@ import { Navigator } from '../navigator';
 import {DEFAULT_CLASS, defaultProps, propTypes} from "./config"
 
 // ========================================================================= //
-// Controls the switching of displayed page in the viewing area.
+// Switching of displayed page in the viewing area.
 // ========================================================================= //
 
 export const Paginator = receivedProps => {
@@ -17,7 +17,7 @@ export const Paginator = receivedProps => {
 		lengthNavigator,
 		src,
 		value,
-		onChangeCallback,
+		onStateUpdate,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -26,7 +26,7 @@ export const Paginator = receivedProps => {
 	const handleValueChanged = (newValue) => {
 		setValueState(
 			prevValue => {
-				onChangeCallback(newValue, prevValue); 
+				onStateUpdate(newValue, prevValue); 
 				return newValue;
 			}
 		);
@@ -37,12 +37,12 @@ export const Paginator = receivedProps => {
 		length:lengthBrowser, 
 		src,
 		value: valueState,
-		onChangeCallback:handleValueChanged,
+		onStateUpdate:handleValueChanged,
 	}
 	const navigatorControllerProps = {
 		length:lengthNavigator, 
 		value: valueState ,
-		onChangeCallback:handleValueChanged,
+		onStateUpdate:handleValueChanged,
 	}
 
 	return (

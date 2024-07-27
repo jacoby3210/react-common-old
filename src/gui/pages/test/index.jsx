@@ -76,7 +76,7 @@ const Test = receivedProps => {
 		const browserProps = {
 			length: 5,
 			src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, id: i } }),
-			onChangeCallback: (tabIndex) => { setBrowseTab(tabIndex * 10) },
+			onStateUpdate: (tabIndex) => { setBrowseTab(tabIndex * 10) },
 		}
 		const viewPropsForBrowser = {
 			from: currentBrowseTab,
@@ -97,7 +97,7 @@ const Test = receivedProps => {
 		const navigatorProps = {
 			infinity: true,
 			length: 250,
-			onChangeCallback: (slideIndex) => { setCurrentNavigatorSlide(slideIndex); },
+			onStateUpdate: (slideIndex) => { setCurrentNavigatorSlide(slideIndex); },
 		}
 		const viewPropsForNavigator = {
 			from: currentNavigatorSlide,
@@ -121,7 +121,7 @@ const Test = receivedProps => {
 			lengthNavigator: 25,
 			src: produceEntries(25, (v, i) => { return { caption: `Option #${i}`, id: i } }),
 			value: 0,
-			onChangeCallback: (pageIndex) => { setCurrentPageState(pageIndex * 10); },
+			onStateUpdate: (pageIndex) => { setCurrentPageState(pageIndex * 10); },
 		}
 		const viewPropsForPaginator = {
 			from: currentPageState,

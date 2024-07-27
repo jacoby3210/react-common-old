@@ -3,7 +3,7 @@ import { mergeProps } from 'react-aria';
 import { View } from '../../../components/basics/view';
 import {DEFAULT_CLASS, defaultProps, propTypes} from "./config"
 // ========================================================================= //
-// Controls the switching of displayed data in the viewing area.
+// Switching of displayed data in the viewing area.
 // ========================================================================= //
 
 export const Browser = receivedProps => {
@@ -14,7 +14,7 @@ export const Browser = receivedProps => {
 		length,
 		src,
 		value,
-		onChangeCallback,
+		onStateUpdate,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -24,7 +24,7 @@ export const Browser = receivedProps => {
 		const {id:newValue} = evt.currentTarget
 		setValueState(
 			prevValue => {
-				onChangeCallback(Number(newValue), prevValue); 
+				onStateUpdate(Number(newValue), prevValue); 
 				return newValue;
 			}
 		);

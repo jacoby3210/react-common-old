@@ -12,7 +12,7 @@ export const defaultProps = {
 	length: 5,												// length of simultaneously displayed buttons for page switching.
 	src:[],														// source data array provider for mapping.
 	value: -1,												// index of the displayed page.
-	onChangeCallback: (index) => { }, // handling a child component's state change in the parent component.
+	onStateUpdate: (index) => { }, // handling a child component's state change in the parent component.
 };
 
 // ========================================================================= //
@@ -34,7 +34,7 @@ export const propTypes = {
 	length: PropTypes.number,
 	src: PropTypes.array,
 	value: PropTypes.number,
-	onChangeCallback: PropTypes.func,
+	onStateUpdate: PropTypes.func,
 };
 
 // ========================================================================= //

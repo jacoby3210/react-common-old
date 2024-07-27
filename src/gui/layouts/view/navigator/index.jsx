@@ -3,7 +3,7 @@ import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes} from "./config"
 
 // ========================================================================= //
-// Controls the switching of displayed slide in the viewing area. 
+// Switching of displayed slide in the viewing area by linear order. 
 // ========================================================================= //
 
 export const Navigator = receivedProps => {
@@ -15,7 +15,7 @@ export const Navigator = receivedProps => {
 		length,
 		infinity,
 		value,
-		onChangeCallback,
+		onStateUpdate,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -23,7 +23,7 @@ export const Navigator = receivedProps => {
 	const [valueState, setValueState] = useState(value);
 
 	// input from user
-	const handle = (v) => {setValueState(v); onChangeCallback(v);}
+	const handle = (v) => {setValueState(v); onStateUpdate(v);}
 	const normalizeValue = (value) => 
 		infinity 
 		? (value + length) % (length) 
