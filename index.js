@@ -15,8 +15,8 @@ import { Slider } from "/src/gui/components/controls/slider";					// - represent
 // import { Advisor } from "/src/gui/components/fields/advisor";			// - rendering  basic text filed with input suggestions.
 
 // drag and drop components
-import { DragItem } from "./src/gui/layouts/drag-and-drop/drag-item";	//
-import { DropSlot } from "./src/gui/layouts/drag-and-drop/drop-slot";	//
+import { Drag } from "./src/gui/layouts/drag-and-drop/drag";			//
+import { Drop } from "./src/gui/layouts/drag-and-drop/drop";			//
 
 // data view and special controllers for mage output data.
 import { Accordion } from "/src/gui/layouts/view/accordion";					// - used to organize content on layout.
@@ -28,7 +28,7 @@ import { Scrollbar } from "./src/gui/layouts/view/scrollbar";					// - represent
 export default {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider, 
-	DragItem, DropSlot,
+	Drag, Drop,
 	Accordion, Browser, Navigator, Paginator, Scrollbar,
 	// Advisor,
 	// AccordionSection, AccordionView,

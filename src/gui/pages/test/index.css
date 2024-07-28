@@ -1,3 +1,5 @@
+#root {position:relative;}
+
 .rc-range[axis=horizontal] {
 	background-color: aliceblue;
 	height: 24px;
@@ -28,6 +30,7 @@
 .rc-drag-item {
 	width: 100px;
 	height: 100px;
+	position: absolute;
 	background-color: #61dafb;
 	display: 'flex';
 	align-items: center;
@@ -48,5 +51,4 @@
 .rc-drop-slot-accept {
 	background-color: #f0f0f0;
 	border: 2px dashed #000;
-
 }

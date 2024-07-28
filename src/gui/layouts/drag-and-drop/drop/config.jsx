@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'rc-drag-item';
+export const DEFAULT_CLASS = 'rc-drop-slot';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	policy: "single",						// policy for drop mode: single - only one item on slot, multiple - several sections.
+	types: ["all"],							// types of things available drop into a slot.
+	RenderElement:()=>{},				//
 };
 
 // ========================================================================= //

@@ -1,38 +1,43 @@
 import cx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
+import { Drag } from '../drag';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
-
 // ========================================================================= //
 // Component 
 // ========================================================================= //
 
-export const DropSlot = receivedProps => {
+export const Drop = receivedProps => {
 
 	// initial data
 	const {
-		children,
 		id,
 		className,
+		policy,
+		types,
 		RenderElement,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const self = useRef();
 	const [valueState, setValueState] = useState([]);									//
 	const [dragOverState, setDragOverState] = useState(false);				//
-  const [droppedItemState, setDroppedItemState] = useState(null);		//
-	useEffect(() => {}, []);
 
 	// input from user
-	const handleDragOver = (e) => {e.preventDefault(); setDragOverState(true); };
+	const handleDragOver = (e) => {
+		e.preventDefault(); 
+		const isAccept = types.includes(Drag.current.type)
+		setDragOverState(isAccept); 
+		return isAccept
+	};
   const handleDragLeave = () => {setDragOverState(false);};
   const handleDrop = (e) => {
     e.preventDefault();
-    const data = e.dataTransfer.getData('text');
-    setDroppedItemState(data);
-		setValueState([data])
+		// const dataType = e.dataTransfer.getData('type');
+		// console.log(dataType,1)
+    // const data = e.dataTransfer.getData("item");
+		// if(policy == "single") setValueState([data])
+		// else setValueState({...valueState, data})
     setDragOverState(false);
   };
 
@@ -46,9 +51,9 @@ export const DropSlot = receivedProps => {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-			{valueState.map((item,i) => <RenderElement data={item}/>)}
+			{valueState.map((item,i) => <RenderElement data={item} key={item.id|i}/>)}
     </div>
   );
 };
 
-DropSlot.propTypes = propTypes;
+Drop.propTypes = propTypes;
