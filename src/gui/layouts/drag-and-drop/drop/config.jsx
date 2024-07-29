@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Constants.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'rc-drop-slot';
+export const DEFAULT_CLASS = 'rc-drop';
 
 export const defaultProps = {
 	id: null,

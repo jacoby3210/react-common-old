@@ -62,9 +62,10 @@ const Test = receivedProps => {
 
 	// drag and drop
 	const TestDragAndDrop = () => {
+		const dragProps2 = {axis:"x", mode: "clone", type: "special", position: {x:200, y: 100}}
 		return (<>
 			<Common.Drag src={{name:"test", id:0 }}/>
-			<Common.Drag type={"special"} axis='y'/>
+			<Common.Drag {...dragProps2}/>
 			<Common.Drop RenderElement={Common.Drag}/>
 			<Common.Drop RenderElement={Common.Drag} types={["special"]}/>
 		</>);

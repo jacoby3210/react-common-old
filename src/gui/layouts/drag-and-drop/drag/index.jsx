@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
-import {calcPosition} from './helpers'
+import {calcPosition, cloneDrag, deleteDrag} from './helpers'
 // ========================================================================= //
 // Component 
 // ========================================================================= //
@@ -14,6 +14,7 @@ export const Drag = receivedProps => {
 		id,
 		area,
 		axis,
+		mode,
 		src,
 		position,
 		type,
@@ -21,7 +22,7 @@ export const Drag = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const self = useRef(null);
+	const self = useRef(null), cloneRef = useRef(null);
 	const [captureState, setCaptureState] = useState(false);
 	const [boundaryState, setBoundaryState] = useState({minX:0, minY:0, maxX:0, maxY:0})
 	const [positionState, setPositionState] = useState({...position});
@@ -48,28 +49,35 @@ export const Drag = receivedProps => {
 		Drag.current = {src,type};
 		setCaptureState(true);
 
-		const rect = e.currentTarget.getBoundingClientRect();
-		const	rect2 = area.getBoundingClientRect();
-		setBoundaryState({
-			minX: (e.clientX - rect.left) + rect2.x, 
-			minY: (e.clientY - rect.top) + rect2.y,
-			maxX: rect2.width - rect.width,
-			maxY: rect2.height - rect.height,
-		})
+		const dragRect = e.currentTarget.getBoundingClientRect();
+		const	areaRect = area.getBoundingClientRect();
+		const boundary = {
+			minX: (e.clientX - dragRect.left) - areaRect.x, 
+			minY: (e.clientY - dragRect.top) - areaRect.y,
+			maxX: areaRect.width - dragRect.width,
+			maxY: areaRect.height - dragRect.height,
+		}
+		setBoundaryState(boundary)
+		if(mode == "clone") cloneRef.current = cloneDrag(e, positionState);
 	};
 
 	const handleDragEnd = (e) => {
 		Drag.current = null;
+		if (cloneRef.current) cloneRef.current = deleteDrag(cloneRef);
+		setBoundaryState({});
 		setCaptureState(false);
-		setBoundaryState({x:0, y:0});
 	}
 	
 	const handleMouseDown = (e) => {
-		const {x, y} =	calcPosition(e, boundaryState, axis);
-		setPositionState(prev => ({...prev, "left": x + "px", "top": y +"px",}));
+		if(!captureState) return;
+		const {x, y} =	calcPosition(e, boundaryState, axis, positionState);
+		const pos = `translate(${x}px, ${y}px)`;
+		if(cloneRef.current) {cloneRef.current.style.transform = pos; return;}
+		self.current.style.transform = pos;
 	};
 
 	// render 
+	const style = {"transform": `translate(${positionState.x}px, ${positionState.y}px)`}
 	return (
 		<div 
 			id={id} 
@@ -78,9 +86,9 @@ export const Drag = receivedProps => {
 			draggable
       onDragStart={handleDragStart}
       onMouseDown={handleMouseDown}
-			style={positionState}
+			style={style}
     >
-      Drag me
+      "Drag me"
 		</div>
 	);
 };
