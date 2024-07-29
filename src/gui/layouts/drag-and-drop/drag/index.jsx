@@ -15,6 +15,7 @@ export const Drag = receivedProps => {
 		area,
 		axis,
 		src,
+		position,
 		type,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
@@ -23,17 +24,22 @@ export const Drag = receivedProps => {
 	const self = useRef(null);
 	const [captureState, setCaptureState] = useState(false);
 	const [boundaryState, setBoundaryState] = useState({minX:0, minY:0, maxX:0, maxY:0})
-	const [positionState, setPositionState] = useState({"left": 0, "top": 0});
+	const [positionState, setPositionState] = useState({...position});
+
 	useEffect(() => {
 		const handleMouseUp = (e) => {
 			handleDragEnd(e);
-			document.removeEventListener('mousemove', handleDragMove);
+			document.removeEventListener('mousemove', handleMouseDown);
 			document.removeEventListener('mouseup', handleDragEnd);
 		};
 		if (captureState) {
-			document.addEventListener('mousemove', handleDragMove);
+			document.addEventListener('mousemove', handleMouseDown);
 			document.addEventListener('mouseup', handleMouseUp);
 		}
+		return () => {
+      document.removeEventListener('mousemove', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
 	}, [captureState]);
 
 	// input from user
@@ -42,12 +48,12 @@ export const Drag = receivedProps => {
 		Drag.current = {src,type};
 		setCaptureState(true);
 
-		const rect = e.currentTarget.getBoundingClientRect(),
-			rect2 = area.getBoundingClientRect();
+		const rect = e.currentTarget.getBoundingClientRect();
+		const	rect2 = area.getBoundingClientRect();
 		setBoundaryState({
 			minX: (e.clientX - rect.left) + rect2.x, 
 			minY: (e.clientY - rect.top) + rect2.y,
-			maxX:rect2.width - rect.width,
+			maxX: rect2.width - rect.width,
 			maxY: rect2.height - rect.height,
 		})
 	};
@@ -58,8 +64,8 @@ export const Drag = receivedProps => {
 		setBoundaryState({x:0, y:0});
 	}
 	
-	const handleDragMove = (e) => {
-		const {x, y} =	calcPosition(e, boundaryState);
+	const handleMouseDown = (e) => {
+		const {x, y} =	calcPosition(e, boundaryState, axis);
 		setPositionState(prev => ({...prev, "left": x + "px", "top": y +"px",}));
 	};
 
@@ -71,7 +77,7 @@ export const Drag = receivedProps => {
 			{...attributes}
 			draggable
       onDragStart={handleDragStart}
-      onDrag={handleDragMove}
+      onMouseDown={handleMouseDown}
 			style={positionState}
     >
       Drag me

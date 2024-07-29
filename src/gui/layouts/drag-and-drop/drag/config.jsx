@@ -9,10 +9,11 @@ export const DEFAULT_CLASS = 'rc-drag-item';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	area: document.body,				// area of the interface in which the drag and drop takes place.
-	axis: "xy",									//
-	src: {},										// data source associated with the interface element.
-	type: "all",								// type defining available slots.
+	area: document.body,						// area of the interface in which the drag and drop takes place.
+	axis: "xy",											//
+	src: {},												// data source associated with the interface element.
+	position:{"left": 0, "top": 0},	//
+	type: "all",										// type defining available slots.
 };
 
 // ========================================================================= //

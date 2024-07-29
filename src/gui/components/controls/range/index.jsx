@@ -67,7 +67,7 @@ export const Range = receivedProps => {
 	};
 
 	const handleMouseMove = (evt) => {
-		const newValue = calculateValue(evt[props.cursor], offsetState);
+		const newValue = calculateValue(evt[props.cursor], offsetState, axis);
 		handleSetValueState(newValue);
 		evt.preventDefault();
 	};
