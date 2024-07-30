@@ -27,3 +27,16 @@ export const deleteDrag = ref => {
 	ref.current.parentNode.removeChild(ref.current);
 	return null;
 }
+
+export const dropScan = (srcEvent, self, oldTarget) => {
+	self.current.hidden = true;
+	let target = document.elementFromPoint(srcEvent.clientX, srcEvent.clientY);
+	if(oldTarget != target && oldTarget != undefined) {
+		let mouseLeaveEvent = new MouseEvent("mouseout", {bubbles:true, cancelable: true});
+		oldTarget.dispatchEvent(mouseLeaveEvent);
+	}
+	let mouseOverEvent = new MouseEvent("mouseover", {bubbles:true, cancelable: true});
+	target.dispatchEvent(mouseOverEvent);
+	self.current.hidden = false;
+	return target;
+}

@@ -24,32 +24,25 @@ export const Drop = receivedProps => {
 	const [dragOverState, setDragOverState] = useState(false);				//
 
 	// input from user
-	const handleDragOver = (e) => {
-		e.preventDefault(); 
-		const isAccept = types.includes(Drag.current.type)
+	const handleMouseOver = (e) => { 
+		if(!Drag.current) return;
+		const isAccept = types.includes(Drag.current.type);
 		setDragOverState(isAccept); 
-		return isAccept
 	};
-  const handleDragLeave = () => {setDragOverState(false);};
-  const handleDrop = (e) => {
-    e.preventDefault();
-		// const dataType = e.dataTransfer.getData('type');
-		// console.log(dataType,1)
-    // const data = e.dataTransfer.getData("item");
-		// if(policy == "single") setValueState([data])
-		// else setValueState({...valueState, data})
-    setDragOverState(false);
-  };
+  const handleMouseLeave = (e) => {setDragOverState(false);};
+	const handleMouseUp = (e) => {
+		
+	}
 
 	// render 
 	return (
     <div
 			id={id}
 			className={cx(className, {[`${DEFAULT_CLASS}-accept`]: dragOverState,})}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseLeave}
+      onMouseUp={handleMouseUp}
 			{...attributes}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
     >
 			{valueState.map((item,i) => <RenderElement data={item} key={item.id|i}/>)}
     </div>

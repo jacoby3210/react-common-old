@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
-import {calcPosition, cloneDrag, deleteDrag} from './helpers'
+import {calcPosition, cloneDrag, deleteDrag, dropScan} from './helpers'
 // ========================================================================= //
 // Component 
 // ========================================================================= //
@@ -57,19 +57,21 @@ export const Drag = receivedProps => {
 			maxX: areaRect.width - dragRect.width,
 			maxY: areaRect.height - dragRect.height,
 		}
-		setBoundaryState(boundary)
+		setBoundaryState(boundary);
 		if(mode == "clone") cloneRef.current = cloneDrag(e, positionState);
 	};
 
 	const handleDragEnd = (e) => {
 		Drag.current = null;
 		if (cloneRef.current) cloneRef.current = deleteDrag(cloneRef);
+		
 		setBoundaryState({});
 		setCaptureState(false);
 	}
 	
 	const handleMouseDown = (e) => {
 		if(!captureState) return;
+		Drag.target = dropScan(e, self, Drag.target);
 		const {x, y} =	calcPosition(e, boundaryState, axis, positionState);
 		const pos = `translate(${x}px, ${y}px)`;
 		if(cloneRef.current) {cloneRef.current.style.transform = pos; return;}
@@ -86,6 +88,7 @@ export const Drag = receivedProps => {
 			draggable
       onDragStart={handleDragStart}
       onMouseDown={handleMouseDown}
+      onMouseUp={handleDragEnd}
 			style={style}
     >
       "Drag me"
