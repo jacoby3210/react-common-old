@@ -20,8 +20,8 @@ export const Drop = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const [valueState, setValueState] = useState([]);									//
-	const [dragOverState, setDragOverState] = useState(false);				//
+	const [valueState, setValueState] = useState([]);
+	const [dragOverState, setDragOverState] = useState(false);
 
 	// input from user
 	const handleMouseOver = (e) => { 
@@ -30,8 +30,10 @@ export const Drop = receivedProps => {
 		setDragOverState(isAccept); 
 	};
   const handleMouseLeave = (e) => {setDragOverState(false);};
-	const handleMouseUp = (e) => {
-		
+	const handleDrop = (e) => {
+		e.preventDefault();
+		console.log('aa')
+		return false;
 	}
 
 	// render 
@@ -41,7 +43,7 @@ export const Drop = receivedProps => {
 			className={cx(className, {[`${DEFAULT_CLASS}-accept`]: dragOverState,})}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseLeave}
-      onMouseUp={handleMouseUp}
+      onDrop={handleDrop}
 			{...attributes}
     >
 			{valueState.map((item,i) => <RenderElement data={item} key={item.id|i}/>)}

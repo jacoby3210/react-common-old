@@ -27,6 +27,11 @@
 	width: 24px;
 }
 
+.rc-area {
+	position: relative;
+	overflow: hidden;
+}
+
 .rc-drag {
 	display: 'flex';
 	align-items: center;
@@ -36,7 +41,7 @@
 	top: 0px;
 	width: 100px;
 	height: 100px;
-	
+	/* transition: transform 1s; */
 	background-color: #61dafb;
 	cursor: grab;
 }
