@@ -19,6 +19,7 @@ export const Area = receivedProps => {
 	// hooks
 	const selfRef = useRef(null), 
 		dragRef = useRef(null),
+		sourceRef = useRef(null),
 		targetRef = useRef(null);
 	const [captureState, setCaptureState] = useState(false);
 	const [boundaryState, setBoundaryState] = useState({minX:0, minY:0, maxX:0, maxY:0})
@@ -42,6 +43,7 @@ export const Area = receivedProps => {
 	// input from user
 	const handleDragStart = (e) => {
 		e.preventDefault();
+		sourceRef.current = e.target;
 		const	areaRect = selfRef.current.getBoundingClientRect();
 		const dragRect = e.target.getBoundingClientRect();
 		const boundary = {
@@ -56,8 +58,9 @@ export const Area = receivedProps => {
 	};
 
 	const handleDragEnd = (e) => {
-		targetRef.current = dragDrop(dragRef, targetRef);
+		targetRef.current = dragDrop(sourceRef, targetRef);
 		dragRef.current = deleteDrag(dragRef);
+		sourceRef.current = null;
 		setBoundaryState({});
 		setCaptureState(false);
 	}

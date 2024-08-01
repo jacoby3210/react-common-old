@@ -33,15 +33,13 @@
 }
 
 .rc-drag {
-	display: 'flex';
 	align-items: center;
 	justify-content: center;
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	width: 100px;
 	height: 100px;
-	/* transition: transform 1s; */
+	width: 100px;
 	background-color: #61dafb;
 	cursor: grab;
 }

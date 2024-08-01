@@ -21,20 +21,32 @@ export const Drag = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const self = useRef(null);
+	const selfRef = useRef(null);
 
 	// input from user
 	const handleDragStart = (e) => e.preventDefault();
+	const handleDropSuccess = (e) => {console.log("handleDropSuccess")}
+	const handleDropFailure = (e) => {console.log("handleDropFailure")}
+	useEffect(() => {
+		selfRef.current.addEventListener('dropSuccess', handleDropSuccess);
+		selfRef.current.addEventListener('dropFailure', handleDropFailure);
+		return () => {
+      selfRef.current.removeEventListener('dropSuccess', handleDropSuccess);
+      selfRef.current.removeEventListener('dropFailure', handleDropFailure);
+    };
+	});
 	
 	// render 
 	return (
 		<div 
 			id={id} 
-			ref={self} 
+			ref={selfRef} 
 			style={style}
 			{...attributes}
 			draggable
       onDragStart={handleDragStart}
+      // onDropSuccess={handleDropSuccess}
+      // onDropFailure={handleDropFailure}
     >
       {children}
 		</div>

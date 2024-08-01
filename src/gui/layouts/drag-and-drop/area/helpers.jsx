@@ -29,17 +29,18 @@ export const dragDrop = (dragRef, dropRef) => {
 	const props = {bubbles:true, cancelable: true, data:{dragRef, dropRef}};
 	if(dropRef.current){
 		const answer = dropRef.current.dispatchEvent(new Event("drop", props));
+		console.log(answer, dragRef.current)
 		if(answer) dragRef.current.dispatchEvent(new Event("dropSuccess", props));
 		else dragRef.current.dispatchEvent(new Event("dropFailure", props))
-		console.log(answer);
 	}
 	return null;
 }
 
-export const dropScan = (srcEvent, dragRef, targetRef, selfRef) => {
+export const dropScan = (srcEvent, dragRef, targetRef) => {
 	dragRef.current.hidden = true;
 	const target = document.elementFromPoint(srcEvent.clientX, srcEvent.clientY);
 	if(targetRef.current != target){ 
+		console.log(targetRef.current, dragRef.current)
 		if(targetRef.current != null) {
 			const mouseLeaveEvent = new MouseEvent("mouseout", {bubbles:true, cancelable: true});
 			targetRef.current.dispatchEvent(mouseLeaveEvent);
