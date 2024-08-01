@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 // ========================================================================= //
 // Constants.
 // ========================================================================= //
@@ -9,12 +8,15 @@ export const DEFAULT_CLASS = 'rc-drag';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	area: document.body,						// area of the interface in which the drag and drop takes place.
+	style: {},											// dynamic style component.
 	axis: "xy",											// axis along which the element will move.
 	mode: "self",										// determines what will be moved: the element itself or its clone.
-	src: {},												// data source associated with the interface element.
-	position:{"x": 0, "y": 0},			// initial position.
 	type: "all",										// type defining available slots.
+	value: 0,												// default value id.
+	onDropSuccess: (v) => {},				//
+	onDropFailure: (v) => {},				//
+	onDragStart: (v) => {},					//
+	onDragEnd: (v) => {},						//
 };
 
 // ========================================================================= //

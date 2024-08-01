@@ -18,7 +18,7 @@ export const Area = receivedProps => {
 	
 	// hooks
 	const selfRef = useRef(null), 
-		dragRef = useRef(null),
+		cursorRef = useRef(null),
 		sourceRef = useRef(null),
 		targetRef = useRef(null);
 	const [captureState, setCaptureState] = useState(false);
@@ -52,14 +52,14 @@ export const Area = receivedProps => {
 			maxX: areaRect.width - dragRect.width,
 			maxY: areaRect.height - dragRect.height,
 		}
-		dragRef.current = cloneDrag(e, areaRect, dragRect, selfRef);
+		cursorRef.current = cloneDrag(e, areaRect, dragRect, selfRef);
 		setBoundaryState(boundary);
 		setCaptureState(true);
 	};
 
 	const handleDragEnd = (e) => {
 		targetRef.current = dragDrop(sourceRef, targetRef);
-		dragRef.current = deleteDrag(dragRef);
+		cursorRef.current = deleteDrag(cursorRef);
 		sourceRef.current = null;
 		setBoundaryState({});
 		setCaptureState(false);
@@ -67,8 +67,8 @@ export const Area = receivedProps => {
 	
 	const handleMouseDown = (e) => {
 		if(!captureState) return;
-		dropScan(e, dragRef, targetRef, selfRef);
-		dragRef.current.style.transform = getTranslatePos(e, axis, boundaryState);
+		dropScan(e, cursorRef, targetRef, selfRef);
+		cursorRef.current.style.transform = getTranslatePos(e, axis, boundaryState);
 	};
 
 	// render 

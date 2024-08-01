@@ -68,7 +68,7 @@ const Test = receivedProps => {
 		}
 		return (
 			<Common.Area>
-				<Common.Drag src={{name:"test", id:0 }}>{"Drag me"}</Common.Drag>
+				<Common.Drag value={15}>{"Drag me"}</Common.Drag>
 				<Common.Drag {...dragProps2}>{"Drag me"}</Common.Drag>
 				<Common.Drop RenderElement={Common.Drag}/>
 				<Common.Drop RenderElement={Common.Drag} types={["special"]}/>
