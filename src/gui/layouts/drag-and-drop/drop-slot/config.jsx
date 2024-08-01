@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types';
+
 // ========================================================================= //
 // Constants.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'rc-drag';
+export const DEFAULT_CLASS = 'rc-drop-slot';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	style: {},											// dynamic style component.
-	axis: "xy",											// axis along which the element will move.
-	mode: "self",										// determines what will be moved: the element itself or its clone.
-	type: "all",										// type defining available slots.
-	value: 0,												// default value id.
-	onDropSuccess: (v) => {},				//
-	onDropFailure: (v) => {},				//
-	onDragStart: (v) => {},					//
-	onDragEnd: (v) => {},						//
+	policy: "single",						// policy for drop mode: single - only one item on slot, multiple - several items.
+	types: ["all"],							// types of things available drop into a slot.
+	onDragEnter: (e) => true, 	//
+	onDragLeave: (e) => true, 	//
+	onDragOver: (e) => true, 		//
+	onDrop:() => true, 					// is called when a dragged item is added to a slot
+	RenderElement:()=>{},				//
 };
 
 // ========================================================================= //
@@ -35,11 +34,6 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	axis:PropTypes.string,
-	mode:PropTypes.string,
-	position: PropTypes.object,
-	src: PropTypes.object,
-	type:PropTypes.string,
 };
 
 // ========================================================================= //

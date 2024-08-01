@@ -1,1 +1,0 @@
-Graphical interface layers consisting of many basic components

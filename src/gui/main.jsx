@@ -1,8 +1,10 @@
-// Router to control navigation through the application pages.
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Test from './pages/test'
+import ShowcasePage from './pages/showcase'
+// ========================================================================= //
+// Main Application Page.																										 //
+// Using router to control navigation through application pages.						 //
+// ========================================================================= //
 
 function Main() {
 
@@ -10,7 +12,7 @@ function Main() {
 		<>
 			<Router>
 				<Routes>
-					<Route element={<Test />} path="/" exact />
+					<Route element={<ShowcasePage />} path="/" exact />
 				</Routes>
 			</Router>
 		</>

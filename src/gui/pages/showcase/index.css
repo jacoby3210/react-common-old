@@ -28,6 +28,8 @@
 }
 
 .rc-area {
+	display: flex;
+	flex-direction: row;
 	position: relative;
 	overflow: hidden;
 }
@@ -42,19 +44,22 @@
 	width: 100px;
 	background-color: #61dafb;
 	cursor: grab;
+	z-index: 999;
 }
 
-.rc-drop {
+.rc-drop-space > .rc-drag {position: relative;}
+.rc-drop-slot, .rc-drop-space {
 	width: 300px;
   height: 300px;
   border: 2px solid #ccc;
   display: flex;
   align-items: center;
 	justify-content: center;
+	position: relative;
 	background-color: #fff,
 }
 
-.rc-drop-accept {
+.rc-drop-slot-accept, .rc-drop-space-accept {
 	background-color: #f0f0f0;
 	border: 2px dashed #000;
 }

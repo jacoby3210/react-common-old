@@ -1,13 +1,12 @@
 import cx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
-import { Drag } from '../drag';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
-// Component 
+// React Component that can take over dragged a few components.							 //
 // ========================================================================= //
 
-export const Drop = receivedProps => {
+export const DropSpace = receivedProps => {
 
 	// initial data
 	const {
@@ -16,24 +15,28 @@ export const Drop = receivedProps => {
 		policy,
 		types,
 		RenderElement,
+		onDrop,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const [valueState, setValueState] = useState([]);
 	const [dragOverState, setDragOverState] = useState(false);
+	const [valueState, setValueState] = useState([]);
 
 	// input from user
-	const handleMouseOver = (e) => { 
-		if(!Drag.current) return;
-		const isAccept = types.includes(Drag.current.type);
+	const handleDragOver = (e) => {
+		if(!e.detail.current) return;
+		const type =  e.detail.current.attributes["type"].value;
+		const isAccept = types.includes(type);
 		setDragOverState(isAccept); 
 	};
-  const handleMouseLeave = (e) => {setDragOverState(false);};
+  const handleDragLeave = (e) => {setDragOverState(false);};
 	const handleDrop = (e) => {
-		e.preventDefault();
-		console.log('aa')
-		return false;
+		if(!dragOverState) {e.preventDefault(); return false;}
+		setDragOverState(false); 
+		if(!onDrop(e.detail)) {e.preventDefault(); return false;}
+		const newValue = e.detail.sourceRef.current.attributes["value"].value; 
+		setValueState(prev => [...prev, newValue]);
 	}
 
 	// render 
@@ -41,8 +44,8 @@ export const Drop = receivedProps => {
     <div
 			id={id}
 			className={cx(className, {[`${DEFAULT_CLASS}-accept`]: dragOverState,})}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseLeave}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
       onDrop={handleDrop}
 			{...attributes}
     >
@@ -51,4 +54,4 @@ export const Drop = receivedProps => {
   );
 };
 
-Drop.propTypes = propTypes;
+DropSpace.propTypes = propTypes;
