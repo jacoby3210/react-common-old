@@ -48,6 +48,9 @@
 }
 
 .rc-drop-space > .rc-drag {position: relative;}
+.rc-drop-space {
+	flex-wrap: wrap;
+}
 .rc-drop-slot, .rc-drop-space {
 	width: 300px;
   height: 300px;

@@ -33,6 +33,4 @@ export default {
 	Area, Drag, DropSlot, DropSpace,
 	Accordion, Browser, Navigator, Paginator, Scrollbar,
 	// Advisor,
-	// AccordionSection, AccordionView,
-	// PageController, TabController, View
 };
