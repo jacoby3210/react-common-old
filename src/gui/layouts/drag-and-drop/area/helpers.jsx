@@ -28,6 +28,7 @@ export const deleteDrag = ref => {
 export const dragDrop = (sourceRef, dropRef) => {
 	const props = {bubbles:true, cancelable: true, detail:{sourceRef, dropRef}};
 	sourceRef.current.dispatchEvent(new CustomEvent("dragend", props));
+<<<<<<< HEAD
 	sourceRef.current.hidden = false;
 	if(!dropRef.current) return null;
 
@@ -40,6 +41,17 @@ export const dragDrop = (sourceRef, dropRef) => {
 	sourceRef.current.dispatchEvent(event);
 	if(sourceRef.current.attributes['mode'].value == "self") 
 		sourceRef.current.remove();
+=======
+	if(dropRef.current && dropRef.current.classList.contains('rc-drop')){
+		const answer = dropRef.current.dispatchEvent(new CustomEvent("drop", props));
+		const event =	new CustomEvent((answer ? "dropSuccess" : "dropFailure"), props)
+		sourceRef.current.dispatchEvent(event);
+		if(sourceRef.current.attributes['mode'].value == "self") 
+			sourceRef.current.remove();
+	} else {
+		sourceRef.current.hidden = false;
+	}
+>>>>>>> b741cac9da8758ea985aaa7ada8dd0179912bee6
 	return null;
 }
 
@@ -47,6 +59,7 @@ export const dropScan = (srcEvent, cursorRef, targetRef) => {
 	cursorRef.current.hidden = true;
 	const target = document.elementFromPoint(srcEvent.clientX, srcEvent.clientY),
 		eventProps = {bubbles:true, cancelable: true, detail: cursorRef};
+<<<<<<< HEAD
 	cursorRef.current.hidden = false;
 
 	if(targetRef.current == target){
@@ -65,4 +78,18 @@ export const dropScan = (srcEvent, cursorRef, targetRef) => {
 		const dragEnterEvent = new CustomEvent("dragenter", eventProps);
 		target.dispatchEvent(dragEnterEvent);
 	}
+=======
+	if(targetRef.current != target){ 
+		if(targetRef.current != null) {
+			const mouseLeaveEvent = new CustomEvent("dragleave", eventProps);
+			targetRef.current.dispatchEvent(mouseLeaveEvent);
+		}
+		targetRef.current = target;
+		if(target != undefined) {
+			const mouseOverEvent = new CustomEvent("dragover", eventProps);
+			target.dispatchEvent(mouseOverEvent);
+		}
+	}
+	cursorRef.current.hidden = false;
+>>>>>>> b741cac9da8758ea985aaa7ada8dd0179912bee6
 }
