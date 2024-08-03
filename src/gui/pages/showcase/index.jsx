@@ -15,8 +15,8 @@ const ShowcasePage = receivedProps => {
 	// render page
 	return (
 		<>
-			<ExamplePart1/>
-			<ExamplePart2/>
+			{/* <ExamplePart1/> */}
+			{/* <ExamplePart2/> */}
 			<ExamplePart3/>
 		</>
 	);

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Drag } from '../drag';
 // ========================================================================= //
 // Constants.
 // ========================================================================= //
@@ -8,10 +9,13 @@ export const DEFAULT_CLASS = 'rc-drop-space';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	policy: "single",						// policy for drop mode: single - only one item on slot, multiple - several items.
 	types: ["all"],							// types of things available drop into a slot.
-	RenderElement:()=>{},				//
-	onDrop:() => true, 					// is called when a dragged item is added to a slot
+	values: [],									//
+	onDragEnter: (e) => true, 	// is called when a dragged item is enter in drop.
+	onDragLeave: (e) => true, 	// is called when a dragged item is leave out drop.
+	onDragOver: (e) => true, 		// is called when a dragged item is moved on drop.
+	onDrop:() => true, 					// is called when a dragged item is added to a drop.
+	RenderElement: Drag,  			//
 };
 
 // ========================================================================= //
@@ -19,6 +23,7 @@ export const defaultProps = {
 // ========================================================================= //
 
 export const propTypes = {
+	id: PropTypes.string,
 	children: PropTypes.oneOfType([
 		PropTypes.array,
 		PropTypes.object,
@@ -29,7 +34,8 @@ export const propTypes = {
 		PropTypes.array,
 		PropTypes.object,
 	]),
-	id: PropTypes.string,
+	onDragOver: PropTypes.func,
+	onDrop: PropTypes.func,
 };
 
 // ========================================================================= //

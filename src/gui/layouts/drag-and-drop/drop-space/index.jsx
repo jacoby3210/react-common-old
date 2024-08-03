@@ -2,6 +2,7 @@ import cx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
+import {Drop} from '/src/gui/layouts/drag-and-drop/drop'
 // ========================================================================= //
 // React Component that can take over dragged a few components.							 //
 // ========================================================================= //
@@ -11,46 +12,39 @@ export const DropSpace = receivedProps => {
 	// initial data
 	const {
 		id,
-		className,
-		policy,
 		types,
-		RenderElement,
+		values,
+		onDragOver,
 		onDrop,
+		RenderElement,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const [dragOverState, setDragOverState] = useState(false);
-	const [valueState, setValueState] = useState([]);
+	const [valuesState, setValuesState] = useState([]);
+	useEffect(() => {setValuesState(values);}, [values])
 
 	// input from user
-	const handleDragOver = (e) => {
-		if(!e.detail.current) return;
-		const type =  e.detail.current.attributes["type"].value;
-		const isAccept = types.includes(type);
-		setDragOverState(isAccept); 
-	};
-  const handleDragLeave = (e) => {setDragOverState(false);};
+	const handleDragEnter = (e) => {};
+	const handleDragLeave = (e) => {};
+	const handleDragOver = (e) => {};
 	const handleDrop = (e) => {
-		if(!dragOverState) {e.preventDefault(); return false;}
-		setDragOverState(false); 
-		if(!onDrop(e.detail)) {e.preventDefault(); return false;}
 		const newValue = e.detail.sourceRef.current.attributes["value"].value; 
-		setValueState(prev => [...prev, newValue]);
+		setValuesState(prev => [...prev, newValue]);
 	}
 
 	// render 
 	return (
-    <div
+    <Drop
 			id={id}
-			className={cx(className, {[`${DEFAULT_CLASS}-accept`]: dragOverState,})}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
+      // onDragEnter={handleDragEnter}
+      // onDragLeave={handleDragLeave}
+      // onDragOver={handleDragOver}
       onDrop={handleDrop}
 			{...attributes}
     >
-			{valueState.map((item,i) => <RenderElement data={item} key={item.id|i}/>)}
-    </div>
+			{valuesState.map((item,i) => <RenderElement key={item} value={item}/>)}
+    </Drop>
   );
 };
 

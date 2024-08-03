@@ -1,6 +1,6 @@
-import cx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
+import { Drop } from '../drop';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
 // React Component that can take over dragged components within an Area.		 //
@@ -12,56 +12,32 @@ export const DropSlot = receivedProps => {
 	const {
 		id,
 		className,
-		policy,
-		types,
-		RenderElement,
-		onDragEnter,
-		onDragLeave,
-		onDragOver,
+		value,
 		onDrop,
+		RenderElement,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const [dragOverState, setDragOverState] = useState(false);
-	const [valueState, setValueState] = useState([]);
+	const [valueState, setValueState] = useState(value);
+	useEffect(() => {setValueState(value);}, [value])
 
 	// input from user
-	const handleDragEnter = (e) => {
-		if(!e.detail.current) return;
-		const type =  e.detail.current.attributes["type"].value;
-		const isAccept = types.includes(type);
-		setDragOverState(isAccept); 
-		onDragEnter(e); 
-	};
-  const handleDragLeave = (e) => {
-		onDragLeave(e); 
-		setDragOverState(false);
-	};
-  const handleDragOver = (e) => {
-		onDragOver(e)
-	};
 	const handleDrop = (e) => {
-		if(!dragOverState) {e.preventDefault(); return false;}
-		setDragOverState(false); 
-		if(!onDrop(e.detail)) {e.preventDefault(); return false;}
 		const newValue = e.detail.sourceRef.current.attributes["value"].value; 
-		setValueState([newValue]);
+		setValueState(prev => {onDrop(e); return newValue;});
 	}
 
 	// render 
 	return (
-    <div
+    <Drop
 			id={id}
-			className={cx(className, {[`${DEFAULT_CLASS}-accept`]: dragOverState,})}
-      onDragEnter={handleDragEnter}
-      onDragLeave={handleDragLeave}
-      onDragOver={handleDragOver}
+			className={className}
       onDrop={handleDrop}
 			{...attributes}
     >
-			{valueState.map((item,i) => <RenderElement data={item} key={item.id|i}/>)}
-    </div>
+			{valueState != -1 && <RenderElement value={valueState}/>}
+    </Drop>
   );
 };
 

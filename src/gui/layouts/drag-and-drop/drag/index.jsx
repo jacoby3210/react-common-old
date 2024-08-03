@@ -28,6 +28,7 @@ export const Drag = receivedProps => {
 		selfRef.current.addEventListener('dropSuccess', handleDropSuccess);
 		selfRef.current.addEventListener('dropFailure', handleDropFailure);
 		return () => {
+			if(!selfRef.current) return;
 			selfRef.current.removeEventListener('dropSuccess', handleDropSuccess);
 			selfRef.current.removeEventListener('dropFailure', handleDropFailure);
 		};

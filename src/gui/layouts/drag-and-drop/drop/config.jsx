@@ -4,15 +4,16 @@ import { Drag } from '../drag';
 // Constants.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'rc-drop-slot';
+export const DEFAULT_CLASS = 'rc-drop';
 
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	types: ["all"],							// types of drags available drop into a slot.
-	value: -1,									//
-	onDrop:() => true, 					// is called when a dragged item is added to a slot
-	RenderElement: Drag,  			//
+	types: ["all"],							// types of things available drop into a slot.
+	onDragEnter: (e) => true, 	// is called when a dragged item is enter in drop.
+	onDragLeave: (e) => true, 	// is called when a dragged item is leave out drop.
+	onDragOver: (e) => true, 		// is called when a dragged item is moved on drop.
+	onDrop:() => true, 					// is called when a dragged item is added to a drop.
 };
 
 // ========================================================================= //
@@ -24,6 +25,7 @@ export const propTypes = {
 		PropTypes.array,
 		PropTypes.object,
 		PropTypes.string,
+		PropTypes.any,
 	]),
 	className: PropTypes.oneOfType([
 		PropTypes.string,
@@ -31,8 +33,10 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	onDragEnter: PropTypes.func,
+	onDragLeave: PropTypes.func,
+	onDragOver: PropTypes.func,
 	onDrop: PropTypes.func,
-	RenderElement: PropTypes.func,
 };
 
 // ========================================================================= //

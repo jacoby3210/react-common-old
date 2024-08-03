@@ -17,6 +17,7 @@ import { Slider } from "/src/gui/components/controls/slider";						// - represen
 // drag and drop components
 import { Area } from "./src/gui/layouts/drag-and-drop/area";						// - within which you can drag and drop components.
 import { Drag } from "./src/gui/layouts/drag-and-drop/drag";						// - that can be dragged within an Area.
+import { Drop } from "./src/gui/layouts/drag-and-drop/drop";						// - that can take over dragged components within an Area.
 import { DropSlot } from "./src/gui/layouts/drag-and-drop/drop-slot";		// - that can take over dragged components within an Area.
 import { DropSpace } from "./src/gui/layouts/drag-and-drop/drop-space"; // - that can take over dragged a few components within an Area.
 
@@ -30,7 +31,7 @@ import { Scrollbar } from "./src/gui/layouts/view/scrollbar";						// - represen
 export default {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider, 
-	Area, Drag, DropSlot, DropSpace,
+	Area, Drag, Drop, DropSlot, DropSpace,
 	Accordion, Browser, Navigator, Paginator, Scrollbar,
 	// Advisor,
 };

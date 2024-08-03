@@ -30,10 +30,10 @@ export const dragDrop = (sourceRef, dropRef) => {
 	sourceRef.current.dispatchEvent(new CustomEvent("dragend", props));
 	sourceRef.current.hidden = false;
 	if(!dropRef.current) return null;
+	if(!dropRef.current.classList.contains("rc-drop")) return null;
 
-	const isDrop = dropRef.current.className.split(' ')
-		.some(function(c){ return /rc-drop-.*/.test(c)});
-	if(!isDrop) return null;
+	// const isDrop = dropRef.current.className.split(' ')
+		// .some(function(c){ return /rc-drop-.*/.test(c)});
 	
 	const answer = dropRef.current.dispatchEvent(new CustomEvent("drop", props));
 	const event =	new CustomEvent((answer ? "dropSuccess" : "dropFailure"), props)
