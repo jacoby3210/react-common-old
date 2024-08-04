@@ -13,10 +13,10 @@ export const defaultProps = {
 	mode: "self",										// determines what will be moved: the element itself or its clone.
 	type: "all",										// type defining available slots.
 	value: 0,												// default value id.
-	onDropSuccess: (v) => {},				//
-	onDropFailure: (v) => {},				//
-	onDragStart: (v) => {},					//
-	onDragEnd: (v) => {},						//
+	onDropSuccess: (v) => {},				// is called when a process of drag item has been success. 
+	onDropFailure: (v) => {},				// is called when a process of drag item has been failure.
+	onDragStart: (v) => {},					// is called when a process of drag item started. 
+	onDragEnd: (v) => {},						// is called when a process of drag item ended. 
 };
 
 // ========================================================================= //

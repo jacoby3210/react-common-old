@@ -60,10 +60,14 @@
   align-items: center;
 	justify-content: center;
 	position: relative;
-	background-color: #fff,
+	background-color: #fff;
 }
 
 .rc-drop-accept {
 	background-color: #f0f0f0;
 	border: 2px dashed #000;
+}
+	
+.rc-drop-cursor {
+	background-color: gold;
 }

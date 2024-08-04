@@ -24,7 +24,7 @@ export const DropSlot = receivedProps => {
 
 	// input from user
 	const handleDrop = (e) => {
-		const newValue = e.detail.sourceRef.current.attributes["value"].value; 
+		const newValue = e.detail.dragRef.current.attributes["value"].value; 
 		setValueState(prev => {onDrop(e); return newValue;});
 	}
 

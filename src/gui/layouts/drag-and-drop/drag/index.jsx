@@ -56,9 +56,9 @@ export const Drag = receivedProps => {
 			type={type}
 			value={value}
 			{...attributes}
-			draggable
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+			draggable
     >
       {children}
 		</div>

@@ -10,9 +10,9 @@ export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
 	types: ["all"],							// types of drags available drop into a slot.
-	value: -1,									//
+	value: -1,									// initial value.
 	onDrop:() => true, 					// is called when a dragged item is added to a slot
-	RenderElement: Drag,  			//
+	RenderElement: Drag,  			// render inline component.
 };
 
 // ========================================================================= //
