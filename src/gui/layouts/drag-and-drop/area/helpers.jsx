@@ -2,15 +2,33 @@ export const horizontalProps = {}
 export const verticalProps = {}
 export const crossProps = {}
 
-export const getTranslatePos = (e, axis, boundary) => {
-	const {minX, minY, maxX, maxY} = boundary;
-	const x = Math.min(Math.max(e.pageX - minX, 0), maxX);
-	const y = Math.min(Math.max(e.pageY - minY, 0), maxY);
+//
+export const calcBoundary = (selfRef, dragRef, e) => {
+	const	areaRect = selfRef.current.getBoundingClientRect();
+	const dragRect = dragRef.current.getBoundingClientRect();
+	console.log(dragRef.current, dragRect)
+	const boundary = {
+		x1: areaRect.x + (e.pageX - dragRect.x), 
+		y1: areaRect.y + (e.pageY - dragRect.y),
+		x2: areaRect.width - dragRect.width,
+		y2: areaRect.height - dragRect.height,
+	}
+	console.log(boundary)
+	return boundary
+}
+
+//
+export const calcPosition = (e, axis, boundary) => {
+	const {x1, y1, x2, y2} = boundary;
+	const x = Math.min(Math.max(e.pageX - x1, 0), x2);
+	const y = Math.min(Math.max(e.pageY - y1, 0), y2);
 	return `translate(${x}px, ${y}px)`;
 }
 
-// operations with clone
-export const cloneDrag = (e, areaRect, dragRect, selfRef) => {
+// operations with cursor
+export const createCursor = (selfRef, dragRef, e) => {
+	const	areaRect = selfRef.current.getBoundingClientRect();
+	const dragRect = dragRef.current.getBoundingClientRect();
 	const x = areaRect.x - dragRect.x, y = dragRect.y - areaRect.y;
 	const clone = e.target.cloneNode(true);
 	clone.style.position = 'absolute';
@@ -20,49 +38,53 @@ export const cloneDrag = (e, areaRect, dragRect, selfRef) => {
 	return clone;
 }
 
-export const deleteDrag = ref => {
+export const deleteCursor = ref => {
 	ref.current.parentNode.removeChild(ref.current);
 	return null;
-}
-
-export const dragDrop = (sourceRef, dropRef) => {
-	const props = {bubbles:true, cancelable: true, detail:{sourceRef, dropRef}};
-	sourceRef.current.dispatchEvent(new CustomEvent("dragend", props));
-	sourceRef.current.hidden = false;
+	}
+	
+//
+export const move = (dragRef, dropRef) => {
+	const props = {bubbles:true, cancelable: true, detail:{dragRef, dropRef}};
+	dragRef.current.dispatchEvent(new CustomEvent("dragend", props));
+	dragRef.current.hidden = false;
 	if(!dropRef.current) return null;
 	if(!dropRef.current.classList.contains("rc-drop")) return null;
 
-	// const isDrop = dropRef.current.className.split(' ')
-		// .some(function(c){ return /rc-drop-.*/.test(c)});
-	
 	const answer = dropRef.current.dispatchEvent(new CustomEvent("drop", props));
 	const event =	new CustomEvent((answer ? "dropSuccess" : "dropFailure"), props)
-	sourceRef.current.dispatchEvent(event);
-	if(sourceRef.current.attributes['mode'].value == "self") 
-		sourceRef.current.remove();
+	dragRef.current.dispatchEvent(event);
+	if(dragRef.current.attributes['mode'].value == "self") 
+		dragRef.current.remove();
 	return null;
 }
 
-export const dropScan = (srcEvent, cursorRef, targetRef) => {
+export const scan = (cursorRef, dropRef, srcEvent) => {
 	cursorRef.current.hidden = true;
-	const target = document.elementFromPoint(srcEvent.clientX, srcEvent.clientY),
-		eventProps = {bubbles:true, cancelable: true, detail: cursorRef};
+	const target = document.elementFromPoint(srcEvent.clientX, srcEvent.clientY);
+	const drop = target.closest(".rc-drop");
+	const props = {
+		bubbles:true, 
+		cancelable: true, 
+		detail: {cursorRef, drop, target}
+	};
 	cursorRef.current.hidden = false;
 
-	if(targetRef.current == target){
-		const dragOverEvent = new CustomEvent("dragover", eventProps);
-		targetRef.current.dispatchEvent(dragOverEvent);
+	if(dropRef.current == drop && drop){
+		const dragOverEvent = new CustomEvent("dragover", props);
+		dropRef.current.dispatchEvent(dragOverEvent);
 		return;
 	}
 
-	if(targetRef.current) {
-		const dragLeaveEvent = new CustomEvent("dragleave", eventProps);
-		targetRef.current.dispatchEvent(dragLeaveEvent);
+	if(dropRef.current) {
+		const dragLeaveEvent = new CustomEvent("dragleave", props);
+		dropRef.current.dispatchEvent(dragLeaveEvent);
 	}
-	targetRef.current = target;
-	
-	if(targetRef.current) {
-		const dragEnterEvent = new CustomEvent("dragenter", eventProps);
-		target.dispatchEvent(dragEnterEvent);
+
+	dropRef.current = drop;
+		
+	if(dropRef.current) {
+		const dragEnterEvent = new CustomEvent("dragenter", props);
+		dropRef.current.dispatchEvent(dragEnterEvent);
 	}
 }

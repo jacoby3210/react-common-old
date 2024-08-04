@@ -6,7 +6,7 @@ import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // React Component that can take over dragged components within an Area.		 //
 // ========================================================================= //
 
-export const Drop = receivedProps => {
+export const Drop = React.forwardRef((receivedProps, ref) => {
 
 	// initial data
 	const {
@@ -26,8 +26,8 @@ export const Drop = receivedProps => {
 
 	// input from user
 	const handleDragEnter = (e) => {
-		if(!(e.detail?.current.classList.contains("rc-drag"))) return;
-		const type =  e.detail.current.attributes["type"].value;
+		if(!(e.detail.cursorRef.current.classList.contains("rc-drag"))) return;
+		const type =  e.detail.cursorRef.current.attributes["type"].value;
 		const isAccept = types.includes(type);
 		setDragOverState(isAccept); 
 		onDragEnter(e); 
@@ -52,6 +52,7 @@ export const Drop = receivedProps => {
     <div
 			id={id}
 			className={cx(className, {[`${DEFAULT_CLASS}-accept`]: dragOverState,})}
+			ref={ref}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
@@ -61,6 +62,6 @@ export const Drop = receivedProps => {
 			{children}
     </div>
   );
-};
+});
 
 Drop.propTypes = propTypes;

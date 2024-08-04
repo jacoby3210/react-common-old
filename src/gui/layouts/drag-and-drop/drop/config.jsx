@@ -13,7 +13,7 @@ export const defaultProps = {
 	onDragEnter: (e) => true, 	// is called when a dragged item is enter in drop.
 	onDragLeave: (e) => true, 	// is called when a dragged item is leave out drop.
 	onDragOver: (e) => true, 		// is called when a dragged item is moved on drop.
-	onDrop:() => true, 					// is called when a dragged item is added to a drop.
+	onDrop: (e) => true,				// is called when a dragged item is added to a drop.
 };
 
 // ========================================================================= //

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
-import {cloneDrag, deleteDrag, dragDrop, dropScan, getTranslatePos} from './helpers'
+import {calcBoundary, calcPosition, createCursor, deleteCursor, move, scan} 
+from './helpers'
 // ========================================================================= //
 // React Component within which you can drag and drop components.						 //
 // ========================================================================= //
@@ -19,10 +20,10 @@ export const Area = receivedProps => {
 	// hooks
 	const selfRef = useRef(null), 
 		cursorRef = useRef(null),
-		sourceRef = useRef(null),
-		targetRef = useRef(null);
+		dragRef = useRef(null),
+		dropRef = useRef(null);
 	const [captureState, setCaptureState] = useState(false);
-	const [boundaryState, setBoundaryState] = useState({minX:0, minY:0, maxX:0, maxY:0})
+	const [boundaryState, setBoundaryState] = useState({x1:0, y1:0, x2:0, y2:0})
 
 	useEffect(() => {
 		const handleMouseUp = (e) => {
@@ -43,32 +44,24 @@ export const Area = receivedProps => {
 	// input from user
 	const handleDragStart = (e) => {
 		e.preventDefault();
-		sourceRef.current = e.target;
-		const	areaRect = selfRef.current.getBoundingClientRect();
-		const dragRect = e.target.getBoundingClientRect();
-		const boundary = {
-			minX: areaRect.x + (e.pageX - dragRect.x), 
-			minY: areaRect.y + (e.pageY - dragRect.y),
-			maxX: areaRect.width - dragRect.width,
-			maxY: areaRect.height - dragRect.height,
-		}
-		cursorRef.current = cloneDrag(e, areaRect, dragRect, selfRef);
-		setBoundaryState(boundary);
+		dragRef.current = e.target;
+		cursorRef.current = createCursor(selfRef, dragRef, e);
+		setBoundaryState(calcBoundary(selfRef, cursorRef, e));
 		setCaptureState(true);
 	};
 
 	const handleDragEnd = (e) => {
-		targetRef.current = dragDrop(sourceRef, targetRef);
-		cursorRef.current = deleteDrag(cursorRef);
-		sourceRef.current = null;
+		dropRef.current = move(dragRef, dropRef);
+		cursorRef.current = deleteCursor(cursorRef);
+		dragRef.current = null;
 		setBoundaryState({});
 		setCaptureState(false);
 	}
 	
 	const handleMouseDown = (e) => {
 		if(!captureState) return;
-		dropScan(e, cursorRef, targetRef, selfRef);
-		cursorRef.current.style.transform = getTranslatePos(e, axis, boundaryState);
+		scan(cursorRef, dropRef, e);
+		cursorRef.current.style.transform = calcPosition(e, axis, boundaryState);
 	};
 
 	// render 
