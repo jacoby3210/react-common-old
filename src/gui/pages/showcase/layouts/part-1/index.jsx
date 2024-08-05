@@ -14,7 +14,7 @@ export const ExamplePart1 = receivedProps => {
 			<Common.Popup {...defaultProps.popup}>
 				<span>{"Its Alive!"}</span>
 			</Common.Popup>
-			{/* <Common.View {...defaultProps.view}/> */}
+			<Common.View {...defaultProps.view}/>
 			
 			{/* controls */}
 			{/* <Common.Dropdown {...defaultProps.dropdown} /> */}

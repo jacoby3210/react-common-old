@@ -1,5 +1,5 @@
 // ========================================================================= //
-// Constants.
+// Constants && Default properties.
 // ========================================================================= //
 
 export const produceEntries = (count, func) => Array.from(new Array(count), func);
@@ -13,11 +13,11 @@ export const defaultProps = {
 	},
 	path: { data: "/test/3", },
 	popup: { shown: true, },
-	// view: {
-	// 	from: 0,
-	// 	length: 10,
-	// 	src: produceEntries(10, (_, i) => { return { text: `string_${i}`}}),
-	// },
+	view: {
+		from: 0,
+		length: 10,
+		src: produceEntries(10, (_, i) => { return { text: `string_${i}`}}),
+	},
 
 	// controls
 	// dropdown: {
