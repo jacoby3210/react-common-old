@@ -1,0 +1,1 @@
+Folder for placing universal interfaces for backend access (NodeJs, Sciter, etc.)

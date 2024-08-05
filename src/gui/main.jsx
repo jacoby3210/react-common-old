@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Test from './pages/test'
+import ShowcasePage from './pages/showcase'
 
 function Main() {
 
@@ -10,7 +10,7 @@ function Main() {
 		<>
 			<Router>
 				<Routes>
-					<Route element={<Test />} path="/" exact />
+					<Route element={<ShowcasePage />} path="/" exact />
 				</Routes>
 			</Router>
 		</>
