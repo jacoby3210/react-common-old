@@ -11,7 +11,9 @@ export const ExamplePart1 = receivedProps => {
 			{/* basics */}
 			<Common.Indicator {...defaultProps.indicator}/>
 			<Common.Path {...defaultProps.path}/>
-			{/* <Common.Popup {...defaultProps.popup}/> */}
+			<Common.Popup {...defaultProps.popup}>
+				<span>{"Its Alive!"}</span>
+			</Common.Popup>
 			{/* <Common.View {...defaultProps.view}/> */}
 			
 			{/* controls */}

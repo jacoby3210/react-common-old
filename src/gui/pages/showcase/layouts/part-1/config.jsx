@@ -12,7 +12,7 @@ export const defaultProps = {
 		value: 50
 	},
 	path: { data: "/test/3", },
-	// popup: { shown: true, },
+	popup: { shown: true, },
 	// view: {
 	// 	from: 0,
 	// 	length: 10,
