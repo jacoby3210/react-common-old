@@ -11,7 +11,7 @@ export const defaultProps = {
 		levels: [100, 60, 25],
 		value: 50
 	},
-	// path: { data: "/test/3", },
+	path: { data: "/test/3", },
 	// popup: { shown: true, },
 	// view: {
 	// 	from: 0,

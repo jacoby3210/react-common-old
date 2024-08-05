@@ -10,7 +10,7 @@ export const ExamplePart1 = receivedProps => {
 		<>
 			{/* basics */}
 			<Common.Indicator {...defaultProps.indicator}/>
-			{/* <Common.Path {...defaultProps.path}/> */}
+			<Common.Path {...defaultProps.path}/>
 			{/* <Common.Popup {...defaultProps.popup}/> */}
 			{/* <Common.View {...defaultProps.view}/> */}
 			

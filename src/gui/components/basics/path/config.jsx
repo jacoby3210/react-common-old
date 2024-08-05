@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 // Constants && Default properties.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'rc-indicator';
+export const DEFAULT_CLASS = 'rc-path';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	colors: [],					// available fill colors of the value indicator.
-	levels: [],					// available fill levels of the value indicator.
-	max: 100,						// display max value (min value always 0).
-	value: 100,					// current display value
+	data: "/",				// data to be displayed in the component(url as string).
+	delimiter: "/",		// symbol(or substring) for dividing data into parts.
 };
 
 // ========================================================================= //
@@ -29,10 +27,8 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	colors: PropTypes.array,
-	levels: PropTypes.array,
-	max: PropTypes.number,
-	value: PropTypes.number,
+	data: PropTypes.string,
+	delimiter: PropTypes.string,
 };
 
 // ========================================================================= //
