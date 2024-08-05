@@ -6,20 +6,12 @@ export const crossProps = {}
 export const calcBoundary = (selfRef, dragRef, e) => {
 	const	areaRect = selfRef.current.getBoundingClientRect();
 	const dragRect = dragRef.current.getBoundingClientRect();
-<<<<<<< HEAD
-=======
-	console.log(dragRef.current, dragRect)
->>>>>>> 3b586e789d37f637711e0d119aeba8c6feaf319a
 	const boundary = {
 		x1: areaRect.x + (e.pageX - dragRect.x), 
 		y1: areaRect.y + (e.pageY - dragRect.y),
 		x2: areaRect.width - dragRect.width,
 		y2: areaRect.height - dragRect.height,
 	}
-<<<<<<< HEAD
-=======
-	console.log(boundary)
->>>>>>> 3b586e789d37f637711e0d119aeba8c6feaf319a
 	return boundary
 }
 
@@ -68,10 +60,7 @@ export const move = (dragRef, dropRef) => {
 export const scan = (cursorRef, dropRef, srcEvent) => {
 	cursorRef.current.hidden = true;
 	const target = document.elementFromPoint(srcEvent.clientX, srcEvent.clientY);
-<<<<<<< HEAD
 	if(!target) {cursorRef.current.hidden = false; return null;}
-=======
->>>>>>> 3b586e789d37f637711e0d119aeba8c6feaf319a
 	const drop = target.closest(".rc-drop");
 	const props = {
 		bubbles:true, 

@@ -2,11 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {Drop} from '/src/gui/layouts/drag-and-drop/drop'
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
-<<<<<<< HEAD
 import {createCursor, valuesToComponents } from './helpers';
-=======
-import { addCursor, deleteCursor } from './helpers';
->>>>>>> 3b586e789d37f637711e0d119aeba8c6feaf319a
 // ========================================================================= //
 // React Component that can take over dragged a few components.							 //
 // ========================================================================= //
