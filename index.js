@@ -6,7 +6,11 @@ import { Path } 			from "/src/gui/components/basics/path";						// - for display
 import { Popup } 			from "/src/gui/components/basics/popup";					// - for render content on top of the main ui.
 import { View } 			from "/src/gui/components/basics/view";						// - for render multiple repetitive data.
 
+// controls (mouse interaction)
+import { Dropdown } 	from "/src/gui/components/controls/dropdown";				// - for render a drop-down layout.
+
 // external module api
 export default {
 	Indicator, Path, Popup, View,
+	Dropdown,
 };

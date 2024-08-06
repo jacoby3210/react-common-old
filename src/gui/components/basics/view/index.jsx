@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
-// View area for  render multiple repetitive data.
+// View area for render multiple repetitive data.
 // ========================================================================= //
 
 export const View = receivedProps => {

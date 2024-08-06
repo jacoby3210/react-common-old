@@ -20,10 +20,16 @@ export const defaultProps = {
 	},
 
 	// controls
-	// dropdown: {
-	// 	src: produceEntries(5, (v, i) => { return { caption: `Option #${i}`, value: i } }),
-	// 	value: 0
-	// },
+	dropdown: {
+		src: produceEntries(5, (v, i) => { 
+			return { 
+				caption: `Option #${i}`, 
+				value: i,
+				onClick: (e) => {console.log(`Option #${i}`); return false;} 
+			} 
+		}),
+		value: 0
+	},
 	// rangeHorizontal: { axis: true, min: 0, max: 10, step: 0.0001, value: 5 },
 	// rangeVertical: { min: 0, max: 50, step: 0.1, value: 5 },
 	// slider: { min: 0, max: 50, step: 0.1, value: 5 },

@@ -17,7 +17,7 @@ export const ExamplePart1 = receivedProps => {
 			<Common.View {...defaultProps.view}/>
 			
 			{/* controls */}
-			{/* <Common.Dropdown {...defaultProps.dropdown} /> */}
+			<Common.Dropdown {...defaultProps.dropdown} />
 			{/* <Common.Range {... defaultProps.rangeHorizontal} /> */}
 			{/* <Common.Range {... defaultProps.rangeVertical} /> */}
 			{/* <Common.Slider {...defaultProps.slider} /> */}
