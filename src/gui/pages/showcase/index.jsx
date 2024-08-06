@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { ExamplePart1 } from './layouts/part-1';
-// import { ExamplePart2 } from './layouts/part-2';
+import { ExamplePart2 } from './layouts/part-2';
 // import { ExamplePart3 } from './layouts/part-3';
 import "./index.css"
 // ========================================================================= //
@@ -16,7 +16,7 @@ const ShowcasePage = receivedProps => {
 	return (
 		<>
 			<ExamplePart1/>
-			{/* <ExamplePart2/> */}
+			<ExamplePart2/>
 			{/* <ExamplePart3/> */}
 		</>
 	);

@@ -1,26 +1,15 @@
 import PropTypes from 'prop-types';
 // ========================================================================= //
-// Constants && Default properties.
+// Constants && Default Properties.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'rc-dropdown';
+export const DEFAULT_CLASS = 'rc-accordion';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	caption: "dropdown",									// displayed text on the control button.
-	src: [],															// source data array provider for mapping.
-	RenderElement: (receivedProps) => {		// template for forming a gui by metadata.
-		const {meta, ...attributes} = receivedProps;
-		return (
-			<button 
-				className={`${DEFAULT_CLASS}-option`} 
-				onClick={meta?.onClick} 
-				{...attributes}
-			>
-				{meta.caption}
-			</button>
-		);
-	},
+	mode: 'single', 										// mode for toggle sections: single - only one section, multiple - several sections.
+	src: [],														// source data array provider for mapping.
+	values: [],													// array of values, includes keys of open folds.
 };
 
 // ========================================================================= //
@@ -39,9 +28,10 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	caption: PropTypes.string,
+	mode: PropTypes.string,
 	src: PropTypes.array,
-	RenderElement: PropTypes.func,
+	values: PropTypes.array,
+
 };
 
 // ========================================================================= //
