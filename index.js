@@ -7,10 +7,11 @@ import { Popup } 			from "/src/gui/components/basics/popup";					// - for render
 import { View } 			from "/src/gui/components/basics/view";						// - for render multiple repetitive data.
 
 // controls (mouse interaction)
-import { Dropdown } 	from "/src/gui/components/controls/dropdown";				// - for render a drop-down layout.
+import { Dropdown } 	from "/src/gui/components/controls/dropdown";			// - for render a drop-down layout.
+import { Range } 			from "/src/gui/components/controls/range";				// - to select a value from the suggested numeric range.
 
 // external module api
 export default {
 	Indicator, Path, Popup, View,
-	Dropdown,
+	Dropdown, Range,
 };

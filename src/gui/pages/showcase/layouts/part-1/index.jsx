@@ -18,8 +18,8 @@ export const ExamplePart1 = receivedProps => {
 			
 			{/* controls */}
 			<Common.Dropdown {...defaultProps.dropdown} />
-			{/* <Common.Range {... defaultProps.rangeHorizontal} /> */}
-			{/* <Common.Range {... defaultProps.rangeVertical} /> */}
+			<Common.Range {... defaultProps.rangeHorizontal} />
+			<Common.Range {... defaultProps.rangeVertical} />
 			{/* <Common.Slider {...defaultProps.slider} /> */}
 		</>
 	);
