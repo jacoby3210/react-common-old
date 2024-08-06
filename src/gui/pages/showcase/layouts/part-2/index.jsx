@@ -13,7 +13,8 @@ export const ExamplePart2 = receivedProps => {
 	const [currentNavigatorSlide, setCurrentNavigatorSlide] = useState(0);
 	const handleNavigatorSlide = (i) => {setCurrentNavigatorSlide(i);}
 	const [currentPageState, setCurrentPageState] = useState(0);
-
+	const handlePage = (i) => {setCurrentPageState(i * 10);}
+	
 	const areaRef = React.useRef(null)
 	const TestAreaForScroll = () =>
 		<div style={{ height: "100px", "overflowY": "scroll" }} ref={areaRef}>
@@ -31,8 +32,8 @@ export const ExamplePart2 = receivedProps => {
 			<Common.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
 			<Common.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/>
 
-			{/* <Common.Paginator {...defaultProps.paginator} onStateUpdate={ (i) => { setCurrentPageState(i * 10);}}/> */}
-			{/* <Common.View {...defaultProps.viewForPaginator} from={currentPageState}/> */}
+			<Common.Paginator {...defaultProps.paginator} onStateUpdate={handlePage}/>
+			<Common.View {...defaultProps.viewForPaginator} from={currentPageState}/>
 
 			<Common.Scrollbar target={areaRef} />
 			<TestAreaForScroll />
