@@ -11,6 +11,7 @@ export const ExamplePart2 = receivedProps => {
 	const [currentBrowseTab, setBrowseTab] = useState(0);
 	const handleBrowseTab = (tabIndex) => { setBrowseTab(tabIndex * 10) }
 	const [currentNavigatorSlide, setCurrentNavigatorSlide] = useState(0);
+	const handleNavigatorSlide = (i) => {setCurrentNavigatorSlide(i);}
 	const [currentPageState, setCurrentPageState] = useState(0);
 
 	const areaRef = React.useRef(null)
@@ -19,8 +20,7 @@ export const ExamplePart2 = receivedProps => {
 	 		<div style={{ height: "200px" }} />
 		</div>;
 
-		// render 
-
+	// render 
 	return (
 		<>
 			<Common.Accordion {...defaultProps.accordion} />
@@ -28,8 +28,8 @@ export const ExamplePart2 = receivedProps => {
 			<Common.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
 			<Common.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/>
 
-			{/* <Common.Navigator {...defaultProps.navigator} onStateUpdate={(i) => {setBrowseTab(i * 10)}}/> */}
-			{/* <Common.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/> */}
+			<Common.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
+			<Common.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/>
 
 			{/* <Common.Paginator {...defaultProps.paginator} onStateUpdate={ (i) => { setCurrentPageState(i * 10);}}/> */}
 			{/* <Common.View {...defaultProps.viewForPaginator} from={currentPageState}/> */}
