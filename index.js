@@ -9,16 +9,17 @@ import { View } 			from "/src/gui/components/basics/view";						// - for render 
 // controls (mouse interaction)
 import { Dropdown } 	from "/src/gui/components/controls/dropdown";			// - for render a drop-down layout.
 import { Range } 			from "/src/gui/components/controls/range";				// - to select a value from the suggested numeric range.
-import { Slider } from "/src/gui/components/controls/slider";						// - represents universal customizable content scroller.
+import { Slider } 		from "/src/gui/components/controls/slider";				// - represents universal customizable content scroller.
 
 // data view and special controllers for mage output data.
-import { Accordion } from "/src/gui/layouts/view/accordion";						// - used to organize content on layout.
-import { Scrollbar } from "./src/gui/layouts/view/scrollbar";						// - represents universal customizable content scrollbar.
+import { Accordion } 	from "/src/gui/layouts/view/accordion";						// - used to organize content on layout.
+import { Browser } 		from "/src/gui/layouts/view/browser";							// - switching of displayed data in the viewing area.
+import { Scrollbar } 	from "/src/gui/layouts/view/scrollbar";						// - represents universal customizable content scrollbar.
 
 // external module api
 export default {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider,
-	Accordion, Scrollbar,
+	Accordion, Browser, Scrollbar,
 };
 

@@ -9,6 +9,7 @@ export const ExamplePart2 = receivedProps => {
 
 	// hooks
 	const [currentBrowseTab, setBrowseTab] = useState(0);
+	const handleBrowseTab = (tabIndex) => { setBrowseTab(tabIndex * 10) }
 	const [currentNavigatorSlide, setCurrentNavigatorSlide] = useState(0);
 	const [currentPageState, setCurrentPageState] = useState(0);
 
@@ -18,14 +19,14 @@ export const ExamplePart2 = receivedProps => {
 	 		<div style={{ height: "200px" }} />
 		</div>;
 
-	// render 
+		// render 
 
 	return (
 		<>
 			<Common.Accordion {...defaultProps.accordion} />
 
-			{/* <Common.Browser {...defaultProps.browser} onStateUpdate={setCurrentNavigatorSlide}/> */}
-			{/* <Common.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/> */}
+			<Common.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
+			<Common.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/>
 
 			{/* <Common.Navigator {...defaultProps.navigator} onStateUpdate={(i) => {setBrowseTab(i * 10)}}/> */}
 			{/* <Common.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/> */}
