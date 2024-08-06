@@ -9,9 +9,11 @@ import { View } 			from "/src/gui/components/basics/view";						// - for render 
 // controls (mouse interaction)
 import { Dropdown } 	from "/src/gui/components/controls/dropdown";			// - for render a drop-down layout.
 import { Range } 			from "/src/gui/components/controls/range";				// - to select a value from the suggested numeric range.
+import { Slider } from "/src/gui/components/controls/slider";						// - represents universal customizable content scroller.
 
 // external module api
 export default {
 	Indicator, Path, Popup, View,
-	Dropdown, Range,
+	Dropdown, Range, Slider,
 };
+

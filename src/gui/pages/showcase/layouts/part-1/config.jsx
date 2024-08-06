@@ -32,7 +32,7 @@ export const defaultProps = {
 	},
 	rangeHorizontal: { axis: true, min: 0, max: 10, step: 0.0001, value: 5 },
 	rangeVertical: { min: 0, max: 50, step: 0.1, value: 5 },
-	// slider: { min: 0, max: 50, step: 0.1, value: 5 },
+	slider: { min: 0, max: 50, step: 0.1, value: 5 },
 };
 
 // ========================================================================= //
