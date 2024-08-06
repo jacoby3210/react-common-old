@@ -13,11 +13,12 @@ import { Slider } from "/src/gui/components/controls/slider";						// - represen
 
 // data view and special controllers for mage output data.
 import { Accordion } from "/src/gui/layouts/view/accordion";						// - used to organize content on layout.
+import { Scrollbar } from "./src/gui/layouts/view/scrollbar";						// - represents universal customizable content scrollbar.
 
 // external module api
 export default {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider,
-	Accordion, 
+	Accordion, Scrollbar,
 };
 

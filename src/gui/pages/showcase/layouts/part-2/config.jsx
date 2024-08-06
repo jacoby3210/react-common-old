@@ -32,10 +32,10 @@ export const defaultProps = {
 		// src: produceEntries(25, (v, i) => { return { caption: `Option #${i}`, id: i } }),
 		// value: 0,
 	// },
-	// viewForPaginator: {
-	// 	length: 10,
-	// 	src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
-	// }
+	viewForPaginator: {
+		length: 10,
+		src: Array.from({ length: 250 }, (_, i) => { return { text: `string_${i}` } }),
+	}
 };
 
 // ========================================================================= //
