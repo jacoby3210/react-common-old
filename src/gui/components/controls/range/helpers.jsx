@@ -41,6 +41,19 @@ export const RangeThumb = receivedProps => {
 	/>);
 }
 
+// Handle position
+export const getPosition = (
+	rect, props, clientOffset, thumbOffset
+) => {
+	const absolutePos = clientOffset - rect[props.offset] - thumbOffset;
+	const relativePos = Math.max(0, Math.min(1, absolutePos / rect[props.size]));
+	return relativePos;
+};
+
+export const positionToValue = (value, min, max, step) => {
+	return min + Math.round((value * (max - min)) / step) * step
+}
+
 // Control value.
 export const valueAnimate = (start, end, duration, handleSetValueState) => {
 	let startTime = null;
@@ -57,19 +70,6 @@ export const valueAnimate = (start, end, duration, handleSetValueState) => {
 
 	requestAnimationFrame(step);
 };
-
-export const valueFromPosition = (
-	rect, props, clientOffset, thumbOffset
-) => {
-	const relative = clientOffset - rect[props.offset] - thumbOffset;
-	const newValue = Math.max(0, Math.min(1, relative / rect[props.size]));
-	console.log(newValue, relative , clientOffset, rect[props.offset], thumbOffset, rect[props.size])
-	return newValue;
-};
-
-export const valueNormalize = (value, min, max, step) => {
-	return min + Math.round((value * (max - min)) / step) * step
-}
 
 export const valueToStyle = (axis, value, min, max) => {
 	const style = `${((value - min) / (max - min)) * 100.0}%`

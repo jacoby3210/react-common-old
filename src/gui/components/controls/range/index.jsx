@@ -4,7 +4,7 @@ import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 import {
 	horizontalProps, verticalProps, 
 	RangeTrack, RangeThumb, 
-	valueAnimate, valueFromPosition, valueNormalize, valueToStyle,
+	getPosition, positionToValue, valueAnimate, valueToStyle,
 } from './helpers';
 // ========================================================================= //
 // React Component to select a value from the suggested numeric range.
@@ -48,10 +48,9 @@ export const Range = receivedProps => {
 	const handleTrackMouseDown = (evt) => {
 		if (evt.buttons !== 1) return;
 		const rect = trackRef.current.getBoundingClientRect();
-		const newValue = valueFromPosition(rect, props, evt[props.cursor], offsetState);
-		const newValueNorm = valueNormalize(newValue, min, max, step);
-		console.log(newValue, newValueNorm)
-		valueAnimate(valueState, newValueNorm, 200, handleSetValueState);
+		const relativePos = getPosition(rect, props, evt[props.cursor], 0);
+		const newValue = positionToValue(relativePos, min, max, step);
+		valueAnimate(valueState, newValue, 200, handleSetValueState);
 	}
 
 	const handleThumbMouseDown = (evt) => {
@@ -64,10 +63,9 @@ export const Range = receivedProps => {
 
 	const handleMouseMove = (evt) => {
 		const rect = trackRef.current.getBoundingClientRect();
-		const newValue = valueFromPosition(rect, props, evt[props.cursor], offsetState);
-		const newValueNorm = valueNormalize(newValue, min, max, step)
-		handleSetValueState(newValueNorm);
-		console.log(newValue, newValueNorm,9)
+		const relativePos = getPosition(rect, props, evt[props.cursor], offsetState);
+		const newValue = positionToValue(relativePos, min, max, step)
+		handleSetValueState(newValue);
 		evt.preventDefault();
 	};
 
