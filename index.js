@@ -18,10 +18,15 @@ import { Navigator } 	from "./src/gui/layouts/view/navigator";					// - switchin
 import { Paginator } 	from "./src/gui/layouts/view/paginator";					// - switching of displayed page in the viewing area.
 import { Scrollbar } 	from "/src/gui/layouts/view/scrollbar";						// - represents universal customizable content scrollbar.
 
+// drag and drop components
+import { Area } 			from "./src/gui/layouts/dnd/area";								// - within which you can drag and drop components.
+import { Drag } 			from "./src/gui/layouts/dnd/drag";								// - that can be dragged within an Area.
+
 // external module api
 export default {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider,
+	Area, Drag, // Drop, DropSlot, DropStore,
 	Accordion, Browser, Navigator, Paginator, Scrollbar,
 };
 
