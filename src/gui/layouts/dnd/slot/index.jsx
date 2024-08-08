@@ -1,35 +1,44 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
+import { Drop } from '../drop';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
-// React Component  
+// React Component drop which accepts only one drag element.								 //
 // ========================================================================= //
 
-export const Example = receivedProps => {
+export const Slot = receivedProps => {
 
 	// initial data
 	const {
 		id,
-		children,
+		value,
+		onDrop,
+		RenderElement,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const self = useRef();
-	const [valueState, setValueState] = useState(false);
-	useEffect(() => {}, []);
+	const [valueState, setValueState] = useState(value);
+	useEffect(() => {setValueState(value);}, [value])
 
 	// input from user
-	const handleClick = () => {setValueState(0);}
+	const handleDrop = (e) => {
+		const newValue = e.detail.dragRef.current.attributes["value"].value; 
+		setValueState(prev => {onDrop(e); return newValue;});
+	}
 
 	// render 
 	return (
-		<div id={id} ref={self} {...attributes}>
-			{children}
-		</div>
-	);
+    <Drop
+			id={id}
+      onDrop={handleDrop}
+			{...attributes}
+    >
+			{valueState != -1 && <RenderElement value={valueState}/>}
+    </Drop>
+  );
 };
 
-Example.propTypes = propTypes;
+Slot.propTypes = propTypes;
 
 // ========================================================================= //

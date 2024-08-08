@@ -1,3 +1,4 @@
+import cx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
@@ -5,7 +6,7 @@ import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // React Component that can take over dragged components within an Area.		 //
 // ========================================================================= //
 
-export const Drop = receivedProps => {
+export const Drop = React.forwardRef((receivedProps, ref) => {
 
 	// initial data
 	const {
@@ -61,8 +62,8 @@ export const Drop = receivedProps => {
 			{children}
     </div>
   );
-};
+});
 
-Drop.propTypes = propTypes;
+// Drop.propTypes = propTypes;
 
 // ========================================================================= //

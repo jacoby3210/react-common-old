@@ -1,12 +1,17 @@
 import PropTypes from 'prop-types';
+import { Drag } from '../drag';
 // ========================================================================= //
 // Constants && Default Properties.
 // ========================================================================= //
 
-export const DEFAULT_CLASS = 'common-ui-overlay';
+export const DEFAULT_CLASS = 'rc-slot';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
+	types: ["all"],							// types of drags available drop into a slot.
+	value: -1,									// initial value.
+	onDrop:() => true, 					// is called when a dragged item is added to a slot
+	RenderElement: Drag,  			// render inline component.
 };
 
 // ========================================================================= //
@@ -25,6 +30,8 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	onDrop: PropTypes.func,
+	RenderElement: PropTypes.func,
 };
 
 // ========================================================================= //

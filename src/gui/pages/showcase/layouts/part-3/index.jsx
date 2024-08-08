@@ -20,8 +20,8 @@ export const ExamplePart3 = receivedProps => {
 			<Common.Drag value={13}>{"Drag me"}</Common.Drag>
 			<Common.Drag value={12}>{"Drag me"}</Common.Drag>
 			<Common.Drag {...dragProps2}>{"Drag me"}</Common.Drag>
-			{/* <Common.DropSlot/> */}
-			{/* <Common.DropSlot types={["special"]}/> */}
+			<Common.Slot/>
+			{/* <Common.Slot types={["special"]}/> */}
 			{/* <Common.DropStore /> */}
 		</Common.Area>
 	);
