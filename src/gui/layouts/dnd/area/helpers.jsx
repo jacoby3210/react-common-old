@@ -7,12 +7,12 @@ export const calcBoundary = (selfRef, dragRef, e) => {
 	const	areaRect = selfRef.current.getBoundingClientRect();
 	const dragRect = dragRef.current.getBoundingClientRect();
 	const boundary = {
-		x1: areaRect.x + (e.pageX - dragRect.x), 
-		y1: areaRect.y + (e.pageY - dragRect.y),
+		x1: areaRect.x + (e.pageX - Math.abs(dragRect.x)), 
+		y1: areaRect.y + (e.pageY - Math.abs(dragRect.y)),
 		x2: areaRect.width - dragRect.width,
 		y2: areaRect.height - dragRect.height,
 	}
-	return boundary
+	return boundary;
 }
 
 // calculate the current position for moving an drag element
