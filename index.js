@@ -21,12 +21,13 @@ import { Scrollbar } 	from "/src/gui/layouts/view/scrollbar";						// - represen
 // drag and drop components
 import { Area } 			from "./src/gui/layouts/dnd/area";								// - within which you can drag and drop components.
 import { Drag } 			from "./src/gui/layouts/dnd/drag";								// - that can be dragged within an Area.
+import { Drop } 			from "./src/gui/layouts/dnd/drop";								// - that can take over dragged components within an Area.
 
 // external module api
 export default {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider,
-	Area, Drag, // Drop, DropSlot, DropStore,
+	Area, Drag, Drop, // DropSlot, DropStore,
 	Accordion, Browser, Navigator, Paginator, Scrollbar,
 };
 
