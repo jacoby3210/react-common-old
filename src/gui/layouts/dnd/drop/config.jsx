@@ -23,6 +23,7 @@ export const propTypes = {
 		PropTypes.array,
 		PropTypes.object,
 		PropTypes.string,
+		PropTypes.any,
 	]),
 	className: PropTypes.oneOfType([
 		PropTypes.string,

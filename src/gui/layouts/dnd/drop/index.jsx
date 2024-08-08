@@ -64,6 +64,6 @@ export const Drop = React.forwardRef((receivedProps, ref) => {
   );
 });
 
-// Drop.propTypes = propTypes;
+Drop.propTypes = propTypes;
 
 // ========================================================================= //
