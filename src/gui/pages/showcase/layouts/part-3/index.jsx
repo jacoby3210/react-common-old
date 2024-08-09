@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Common from "/index.js"
-// import {defaultProps } from "./config"
+import {DnD} from "/index.js"
 // ========================================================================= //
 // React Component  
 // ========================================================================= //
@@ -14,15 +13,15 @@ export const ExamplePart3 = receivedProps => {
 	}
 
 	return (
-		<Common.Area>
-			<Common.Drag value={15}>{"Drag me"}</Common.Drag>
-			<Common.Drag value={1}>{"Drag me"}</Common.Drag>
-			<Common.Drag value={13}>{"Drag me"}</Common.Drag>
-			<Common.Drag value={12}>{"Drag me"}</Common.Drag>
-			<Common.Drag {...dragProps2}>{"Drag me"}</Common.Drag>
-			<Common.Slot/>
-			<Common.Slot types={["special"]}/>
-			<Common.Store />
-		</Common.Area>
+		<DnD.Area>
+			<DnD.Drag value={15}>{"Drag me"}</DnD.Drag>
+			<DnD.Drag value={1}>{"Drag me"}</DnD.Drag>
+			<DnD.Drag value={13}>{"Drag me"}</DnD.Drag>
+			<DnD.Drag value={12}>{"Drag me"}</DnD.Drag>
+			<DnD.Drag {...dragProps2}>{"Drag me"}</DnD.Drag>
+			<DnD.Slot/>
+			<DnD.Slot types={["special"]}/>
+			<DnD.Store />
+		</DnD.Area>
 	);
 };

@@ -1,4 +1,4 @@
-import Common from "/index.js"
+import {Components} from "/index.js"
 import { defaultProps } from "./config";
 // ========================================================================= //
 // React Component  
@@ -9,18 +9,18 @@ export const ExamplePart1 = receivedProps => {
 	return (
 		<>
 			{/* basics */}
-			<Common.Indicator {...defaultProps.indicator}/>
-			<Common.Path {...defaultProps.path}/>
-			<Common.Popup {...defaultProps.popup}>
+			<Components.Indicator {...defaultProps.indicator}/>
+			<Components.Path {...defaultProps.path}/>
+			<Components.Popup {...defaultProps.popup}>
 				<span>{"Its Alive!"}</span>
-			</Common.Popup>
-			<Common.View {...defaultProps.view}/>
+			</Components.Popup>
+			<Components.View {...defaultProps.view}/>
 			
 			{/* controls */}
-			<Common.Dropdown {...defaultProps.dropdown} />
-			<Common.Range {... defaultProps.rangeHorizontal} />
-			<Common.Range {... defaultProps.rangeVertical} />
-			<Common.Slider {...defaultProps.slider} />
+			<Components.Dropdown {...defaultProps.dropdown} />
+			<Components.Range {... defaultProps.rangeHorizontal} />
+			<Components.Range {... defaultProps.rangeVertical} />
+			<Components.Slider {...defaultProps.slider} />
 		</>
 	);
 };

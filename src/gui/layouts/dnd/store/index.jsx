@@ -36,9 +36,11 @@ export const Store = receivedProps => {
 		setValuesState(values);
 		setChildComponentsState(valuesToComponents(values, RenderElement));
 	}
+	
 	const handleDragEnter = (e) => {
     setChildComponentsState([...childComponentsState, cursor]);
 	}
+	
 	const handleDragLeave = (e) => {
 		setChildComponentsState(valuesToComponents(valuesState, RenderElement));
 	}

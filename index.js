@@ -11,7 +11,7 @@ import { Dropdown } 	from "/src/gui/components/controls/dropdown";			// - for re
 import { Range } 			from "/src/gui/components/controls/range";				// - to select a value from the suggested numeric range.
 import { Slider } 		from "/src/gui/components/controls/slider";				// - represents universal customizable content scroller.
 
-// special controllers for output data in view.
+// control data in output view.
 import { Accordion } 	from "/src/gui/layouts/view/accordion";						// - used to organize content on layout.
 import { Browser } 		from "/src/gui/layouts/view/browser";							// - switching of displayed data in the viewing area.
 import { Navigator } 	from "./src/gui/layouts/view/navigator";					// - switching of displayed slide in the viewing area by linear order.
@@ -26,10 +26,11 @@ import { Slot } 			from "./src/gui/layouts/dnd/slot";								// - drop which acc
 import { Store } 			from "./src/gui/layouts/dnd/store";								// - drop which accepts more than one drag element.
 
 // external module api
-export default {
+export const Components = {
 	Indicator, Path, Popup, View,
 	Dropdown, Range, Slider,
-	Area, Drag, Drop, Slot, Store,
-	Accordion, Browser, Navigator, Paginator, Scrollbar,
 };
+
+export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar,}
+export const DnD = 	{Area, Drag, Drop, Slot, Store,}
 

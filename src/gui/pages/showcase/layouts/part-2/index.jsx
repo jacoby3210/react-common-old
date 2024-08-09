@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Common from "/index.js"
+import {Components, View} from "/index.js"
 import { defaultProps } from "./config"
 // ========================================================================= //
 // React Component  
@@ -24,18 +24,18 @@ export const ExamplePart2 = receivedProps => {
 	// render 
 	return (
 		<>
-			<Common.Accordion {...defaultProps.accordion} />
+			<View.Accordion {...defaultProps.accordion} />
 
-			<Common.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
-			<Common.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/>
+			<View.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
+			<Components.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/>
 
-			<Common.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
-			<Common.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/>
+			<View.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
+			<Components.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/>
 
-			<Common.Paginator {...defaultProps.paginator} onStateUpdate={handlePage}/>
-			<Common.View {...defaultProps.viewForPaginator} from={currentPageState}/>
+			<View.Paginator {...defaultProps.paginator} onStateUpdate={handlePage}/>
+			<Components.View {...defaultProps.viewForPaginator} from={currentPageState}/>
 
-			<Common.Scrollbar target={areaRef} />
+			<View.Scrollbar target={areaRef} />
 			<TestAreaForScroll />
 		</>
 	);
