@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {Components, View} from "/index.js"
+import {Components, Data} from "/index.js"
 import { defaultProps } from "./config"
 // ========================================================================= //
 // React Component  
@@ -24,18 +24,18 @@ export const ExamplePart2 = receivedProps => {
 	// render 
 	return (
 		<>
-			<View.Accordion {...defaultProps.accordion} />
+			<Data.Accordion {...defaultProps.accordion} />
 
-			<View.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
+			<Data.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
 			<Components.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/>
 
-			<View.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
+			<Data.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
 			<Components.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/>
 
-			<View.Paginator {...defaultProps.paginator} onStateUpdate={handlePage}/>
+			<Data.Paginator {...defaultProps.paginator} onStateUpdate={handlePage}/>
 			<Components.View {...defaultProps.viewForPaginator} from={currentPageState}/>
 
-			<View.Scrollbar target={areaRef} />
+			<Data.Scrollbar target={areaRef} />
 			<TestAreaForScroll />
 		</>
 	);

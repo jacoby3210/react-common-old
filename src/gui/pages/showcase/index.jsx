@@ -15,13 +15,13 @@ const ShowcasePage = receivedProps => {
 	// render
 	return (
 		<>
-			<ExamplePart1/>
-			<ExamplePart2/>
+			{/* <ExamplePart1/> */}
+			{/* <ExamplePart2/> */}
 			<ExamplePart3/>
 		</>
 	);
 }
 
-export default React.memo(ShowcasePage);
+export default ShowcasePage;
 
 // ========================================================================= //
