@@ -12,11 +12,11 @@ import { Range } 			from "/src/gui/components/controls/range";				// - to select
 import { Slider } 		from "/src/gui/components/controls/slider";				// - represents universal customizable content scroller.
 
 // control data in output view.
-import { Accordion } 	from "/src/gui/layouts/view/accordion";						// - used to organize content on layout.
-import { Browser } 		from "/src/gui/layouts/view/browser";							// - switching of displayed data in the viewing area.
-import { Navigator } 	from "./src/gui/layouts/view/navigator";					// - switching of displayed slide in the viewing area by linear order.
-import { Paginator } 	from "./src/gui/layouts/view/paginator";					// - switching of displayed page in the viewing area.
-import { Scrollbar } 	from "/src/gui/layouts/view/scrollbar";						// - represents universal customizable content scrollbar.
+import { Accordion } 	from "/src/gui/layouts/data/accordion";						// - used to organize content on layout.
+import { Browser } 		from "/src/gui/layouts/data/browser";							// - switching of displayed data in the viewing area.
+import { Navigator } 	from "./src/gui/layouts/data/navigator";					// - switching of displayed slide in the viewing area by linear order.
+import { Paginator } 	from "./src/gui/layouts/data/paginator";					// - switching of displayed page in the viewing area.
+import { Scrollbar } 	from "/src/gui/layouts/data/scrollbar";						// - represents universal customizable content scrollbar.
 
 // drag and drop components
 import { Area } 			from "./src/gui/layouts/dnd/area";								// - within which you can drag and drop components.

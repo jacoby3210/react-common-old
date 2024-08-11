@@ -36,7 +36,7 @@ export const Area = receivedProps => {
 			document.addEventListener('mouseup', handleMouseUp);
 		}
 		return () => {
-      selfRef.current.removeEventListener('mousemove', handleMouseDown);
+      document.removeEventListener('mousemove', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
     };
 	}, [captureState]);
