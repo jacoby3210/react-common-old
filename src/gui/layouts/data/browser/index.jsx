@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {View} from "../../../components/basics/view";
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config";
@@ -20,15 +20,15 @@ export const Browser = receivedProps => {
 	
 	// hooks
 	const [valueState, setValueState] = useState(value); // id of current tab
-	const handleValueChanged = (evt) => {
-		const {id:newValue} = evt.currentTarget
+	const handleValueChanged = useCallback(e => {
+		const {id:newValue} = e.currentTarget
 		setValueState(
 			prevValue => {
 				onStateUpdate(Number(newValue), prevValue); 
 				return newValue;
 			}
 		);
-	}
+	}, []);
 	useEffect(() => {setValueState(value);}, [value]);
 
 	// render 
@@ -38,16 +38,21 @@ export const Browser = receivedProps => {
 			src.length - length
 	), 0);
 
-	const RenderElement = ({meta, index})=>{
-		return (<button 
-				className= {`rc-browse-button`}
-				onClick= {handleValueChanged}
-				{...meta}
-			>
+	const TemplateViewItem = ({meta, index}) =>
+		<button 
+			className= {`rc-browser-button`}
+			onClick= {handleValueChanged}
+			{...meta}
+		>
 			{meta?.caption || trueIndex}
-		</button>);
+		</button>;
+
+	const viewProps = {
+		from: firstDisplayButton, 
+		length, 
+		src, 
+		TemplateViewItem,
 	}
-	const viewProps = {from:firstDisplayButton, length, src, RenderElement}
 	return <View id={id} {...attributes}  {...viewProps}/>;
 };
 

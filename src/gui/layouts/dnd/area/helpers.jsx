@@ -44,12 +44,13 @@ export const deleteCursor = ref => {
 	
 // move an drag item to a drop slot
 export const move = (dragRef, dropRef) => {
+	
 	const props = {bubbles:true, cancelable: true, detail: {dragRef, dropRef}};
 	dragRef.current.dispatchEvent(new CustomEvent("dragend", props));
 	dragRef.current.hidden = false;
 	if(!dropRef.current) return null;
 	if(!dropRef.current.classList.contains("rc-drop")) return null;
-
+	
 	const answer = dropRef.current.dispatchEvent(new CustomEvent("drop", props));
 	const event =	new CustomEvent((answer ? "dropSuccess" : "dropFailure"), props)
 	dragRef.current.dispatchEvent(event);
@@ -70,7 +71,6 @@ export const scan = (cursorRef, dropRef, srcEvent) => {
 		detail: {cursorRef, drop, target}
 	};
 	cursorRef.current.hidden = false;
-
 	if(dropRef.current == drop && drop){
 		const dragOverEvent = new CustomEvent("dragover", props);
 		dropRef.current.dispatchEvent(dragOverEvent);

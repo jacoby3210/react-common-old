@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
@@ -25,27 +25,28 @@ export const Drop = React.forwardRef((receivedProps, ref) => {
 	const [dragOverState, setDragOverState] = useState(false);
 
 	// input from user
-	const handleDragEnter = (e) => {
+	const handleDragEnter = useCallback(e => {
 		if(!(e.detail.cursorRef.current.classList.contains("rc-drag"))) return;
 		const type =  e.detail.cursorRef.current.attributes["type"].value;
 		const isAccept = types.includes(type);
 		setDragOverState(isAccept); 
 		onDragEnter(e); 
-	};
+	}, []);
 
-  const handleDragLeave = (e) => {
+  const handleDragLeave = useCallback(e => {
 		onDragLeave(e); 
 		setDragOverState(false);
-	};
-  const handleDragOver = (e) => {
-		onDragOver(e)
-	};
+	}, []);
 
-	const handleDrop = (e) => {
+  const handleDragOver = useCallback(e => {
+		onDragOver(e)
+	}, []);
+
+	const handleDrop = useCallback(e => {
 		if(!dragOverState) {e.preventDefault(); return false;}
 		setDragOverState(false); 
 		if(!onDrop(e)) {e.preventDefault(); return false;}
-	}
+	}, [dragOverState]);
 
 	// render 
 	return (

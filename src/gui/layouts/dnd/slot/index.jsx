@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { Drop } from '../drop';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
@@ -13,7 +13,7 @@ export const Slot = receivedProps => {
 		id,
 		value,
 		onDrop,
-		RenderElement,
+		TemplateDragComponent,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -22,10 +22,10 @@ export const Slot = receivedProps => {
 	useEffect(() => {setValueState(value);}, [value])
 
 	// input from user
-	const handleDrop = (e) => {
+	const handleDrop = useCallback(e => {
 		const newValue = e.detail.dragRef.current.attributes["value"].value; 
 		setValueState(prev => {onDrop(e); return newValue;});
-	}
+	}, [])
 
 	// render 
 	return (
@@ -34,7 +34,7 @@ export const Slot = receivedProps => {
       onDrop={handleDrop}
 			{...attributes}
     >
-			{valueState != -1 && <RenderElement value={valueState}/>}
+			{valueState != -1 && <TemplateDragComponent value={valueState}/>}
     </Drop>
   );
 };

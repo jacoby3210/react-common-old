@@ -18,26 +18,28 @@ export const Store = receivedProps => {
 		onDragLeave,
 		onDragOver,
 		onDrop,
-		RenderElement,
+		TemplateDragComponent,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 	
 	// hooks
-	const selfRef = useRef(null), cursorRef = useRef(null); 
+	const selfRef = useRef(null); 
 	const [cursorState, setCursorState] = useState(false);
 	const [cursorOrderState, setCursorOrderState] = useState(-1);
 	const [valuesState, setValuesState] = useState(values);
 
 	const childComponentsState = useMemo(
-		() => valuesToComponents(valuesState, RenderElement), 
-		[valuesState, RenderElement]
+		() => valuesToComponents(valuesState, TemplateDragComponent), 
+		[valuesState, TemplateDragComponent]
 	);
-	useEffect(() => {setValuesState(values);}, [values, RenderElement]);
+	useEffect(() => {setValuesState(values);}, [values, TemplateDragComponent]);
 
 	// input from user
   const handleDragEnter = useCallback(() => {setCursorState(true);}, []);
+
   const handleDragLeave = useCallback(() => {setCursorState(false);}, []);
-  const handleDragOver = useCallback(e => {
+  
+	const handleDragOver = useCallback(e => {
 		const slot = e.detail.target.closest(`.${DEFAULT_CLASS}-slot`);
 		if(!slot || slot.classList.contains(`${DEFAULT_CLASS}-cursor`)) return;
 		const slotOrder = Number(slot.attributes['order'].value)
@@ -47,6 +49,7 @@ export const Store = receivedProps => {
   }, []);
 	
   const handleDrop = useCallback(e => {
+		console.log(9)
     const targetKey = e.detail.dragRef.current.attributes['value']?.value;
     if (targetKey) setValuesState(prevValues => [...prevValues, targetKey]);
 		setCursorState(false);
@@ -64,7 +67,13 @@ export const Store = receivedProps => {
 			{...attributes}
     >
 			{childComponentsState}
-			{cursorState && <StoreCursor order={cursorOrderState} RenderElement={RenderElement} />}
+			{
+				cursorState && 
+				<StoreCursor 
+					order={cursorOrderState} 
+					TemplateDragComponent={TemplateDragComponent} 
+				/>
+			}
     </Drop>
   );
 };

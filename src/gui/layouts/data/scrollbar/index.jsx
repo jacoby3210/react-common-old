@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {Slider} from '../../../components/controls/slider';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
@@ -29,12 +29,12 @@ export const Scrollbar = receivedProps => {
 	}, []);
 
 	// inputs
-	const onChange = (value) => {
+	const onChange = useCallback(value => {
 		const area = target.current, 
 			scrollParams = {top: area.scrollTop, left: area.scrollLeft, mode};
 		scrollParams[props.scrollDirect] = valueToPosition(area, props, value);
 		area.scrollTo(scrollParams);
-	}
+	}, []);
 
 	// render
 	const sliderProps = {axis, min: 0.0, max: 1.0, value:valueState, onChange,}

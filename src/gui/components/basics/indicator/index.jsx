@@ -23,7 +23,7 @@ export const Indicator = receivedProps => {
 	useEffect(() => {setValueState(value)}, [value]);
 
 	// render 
-	const {style, displayValue} = calcStyle(colors, levels, max, valueState)
+	const {style, displayValue} = calcStyle(colors, levels, max, valueState);
 	return (
 		<div id={id} {...attributes}>
 			<div style={style}>

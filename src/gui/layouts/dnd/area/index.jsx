@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 import {calcBoundary, calcPosition, createCursor, deleteCursor, move, scan} 
@@ -42,27 +42,27 @@ export const Area = receivedProps => {
 	}, [captureState]);
 
 	// input from user
-	const handleDragStart = (e) => {
+	const handleDragStart = useCallback(e => {
 		e.preventDefault();
 		dragRef.current = e.target;
 		cursorRef.current = createCursor(selfRef, dragRef, e);
 		setBoundaryState(calcBoundary(selfRef, cursorRef, e));
 		setCaptureState(true);
-	};
+	}, [captureState]);
 
-	const handleDragEnd = (e) => {
+	const handleDragEnd = useCallback(e => {
 		dropRef.current = move(dragRef, dropRef);
 		cursorRef.current = deleteCursor(cursorRef);
 		dragRef.current = null;
 		setBoundaryState({});
 		setCaptureState(false);
-	}
+	}, [captureState]);
 	
-	const handleMouseDown = (e) => {
+	const handleMouseDown = e => {
 		if(!captureState) return;
 		scan(cursorRef, dropRef, e);
 		cursorRef.current.style.transform = calcPosition(e, axis, boundaryState);
-	};
+	}//, [captureState, cursorRef, dropRef]);
 
 	// render 
 	return (

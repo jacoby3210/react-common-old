@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
@@ -9,28 +9,28 @@ export const View = receivedProps => {
 
 	// initial data
 	const {
-		children,
 		id,
 		data,
 		from,
 		length,
 		src,
-		RenderElement,
+		TemplateViewItem,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
-	// render 
-	const renderViewPart = (item, i) => 
-		<RenderElement 
-			key={item.id || i}
-			className={`${DEFAULT_CLASS}-item`} 
-			index={i}
-			meta={item} 
-		/>;
-
+	// render
+	const children = src.slice(from, from + length).map(
+		(item, i) => 
+			<TemplateViewItem 
+				key={item.id || i}
+				className={`${DEFAULT_CLASS}-item`} 
+				index={i}
+				meta={item} 
+		/>);
+	
 	return (
 		<div id={id} {...attributes} from={from} length={length} >
-			{src.slice(from, from + length).map(renderViewPart)}
+			{children}
 		</div>
 	);
 };

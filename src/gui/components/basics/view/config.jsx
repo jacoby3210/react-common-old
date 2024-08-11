@@ -7,13 +7,13 @@ export const DEFAULT_CLASS = 'rc-view';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	from: 0,												// start index to display elements.
-	length: 0,											// length of items to display (count).
-	src: [],												// source data array provider for mapping.
-	RenderElement: receivedProps => // template for forming a gui by metadata.
+	from: 0,															// start index to display elements.
+	length: 0,														// length of items to display (count).
+	src: [],															// source data array provider for mapping.
+	TemplateViewItem: receivedProps => 		// template for forming a gui by metadata.
 	{
 		const {meta, ...attributes} = receivedProps;
-		return (<li {...attributes}>{meta.text}</li>);
+		return (<li {...attributes}>{meta?.text}</li>);
 	}, 
 };
 
@@ -36,7 +36,7 @@ export const propTypes = {
 	from: PropTypes.number,
 	length: PropTypes.number,
 	src: PropTypes.array,
-	RenderComponent: PropTypes.func,
+	TemplateViewItem: PropTypes.func,
 };
 
 // ========================================================================= //

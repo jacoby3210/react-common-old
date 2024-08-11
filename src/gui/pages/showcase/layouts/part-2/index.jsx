@@ -29,14 +29,14 @@ export const ExamplePart2 = receivedProps => {
 			<Data.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
 			<Components.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/>
 
-			<Data.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
+			{/*<Data.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
 			<Components.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/>
 
 			<Data.Paginator {...defaultProps.paginator} onStateUpdate={handlePage}/>
 			<Components.View {...defaultProps.viewForPaginator} from={currentPageState}/>
 
 			<Data.Scrollbar target={areaRef} />
-			<TestAreaForScroll />
+			<TestAreaForScroll /> */}
 		</>
 	);
 };

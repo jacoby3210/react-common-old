@@ -11,7 +11,7 @@ export const defaultProps = {
 	types: ["all"],							// types of drags available drop into a slot.
 	value: -1,									// initial value.
 	onDrop:() => true, 					// is called when a dragged item is added to a slot
-	RenderElement: Drag,  			// render inline component.
+	TemplateDragComponent: Drag,// template for render drag component.
 };
 
 // ========================================================================= //
@@ -31,7 +31,7 @@ export const propTypes = {
 	]),
 	id: PropTypes.string,
 	onDrop: PropTypes.func,
-	RenderElement: PropTypes.func,
+	TemplateDragComponent: PropTypes.func,
 };
 
 // ========================================================================= //

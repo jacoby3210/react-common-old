@@ -14,7 +14,7 @@ export const defaultProps = {
 	onDragLeave: (e) => true,						 	// is called when a dragged item is leave out drop.
 	onDragOver: (e) => true,					 		// is called when a dragged item is moved on drop.
 	onDrop:() => true, 										// is called when a dragged item is added to a drop.
-	RenderElement: Drag,  								// render inline component.
+	TemplateDragComponent: Drag,  				// template for render drag component.
 };
 
 // ========================================================================= //
@@ -39,6 +39,7 @@ export const propTypes = {
 	onDragLeave: PropTypes.func,
 	onDragOver: PropTypes.func,
 	onDrop: PropTypes.func,
+	TemplateDragComponent: PropTypes.func,
 };
 
 // ========================================================================= //

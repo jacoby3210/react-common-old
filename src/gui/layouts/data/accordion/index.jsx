@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {View} from "../../../components/basics/view"
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
@@ -23,7 +23,7 @@ export const Accordion = receivedProps => {
 	useEffect(() => {setValuesState(values)}, [values])
 
 	// input from user
-	const handleToggle = (evt, index) => {
+	const handleToggle = useCallback((evt, index) => {
 		const isShown = valuesState.includes(index);
 		if (isShown) {
 			setValuesState(valuesState.filter(idx => idx !== index));
@@ -32,10 +32,10 @@ export const Accordion = receivedProps => {
 			else setValuesState([...valuesState, index]);
 		}
 		evt.stopPropagation();
-	};
+	}, []);
 
 	// render 
-	const RenderElement = ({index, meta}) => 
+	const TemplateViewItem = ({index, meta}) => 
 		<details open={valuesState.includes(index)}>
 			<summary onClick={(evt) => handleToggle(evt, index)} >
 				{meta.caption}
@@ -43,7 +43,7 @@ export const Accordion = receivedProps => {
 			<p>{meta.content}</p>
 		</details>;
 
-	const viewProps ={from:0, length: src.length, src, RenderElement}
+	const viewProps ={from:0, length: src.length, src, TemplateViewItem}
 	return (<View id={id} {...attributes} {...viewProps}/>);
 };
 

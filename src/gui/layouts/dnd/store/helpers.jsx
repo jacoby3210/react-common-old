@@ -23,11 +23,11 @@ export const StoreCursor = receivedProps => {
 	const {
 		order,
 		value,
-		RenderElement,
+		TemplateDragComponent,
 	} = receivedProps;
 
 	const [cursorOrderState, setCursorOrderState] = useState(order);
-	useEffect(() => {console.log(order); setCursorOrderState(order)}, [order])
+	useEffect(() => {setCursorOrderState(order)}, [order])
 	
 	return (
 		<StoreCell 
@@ -36,7 +36,7 @@ export const StoreCursor = receivedProps => {
 			order={cursorOrderState}
 			style={{order:`${cursorOrderState}`}}
 		>
-			<RenderElement value={value}/>	
+			<TemplateDragComponent value={value}/>	
 		</StoreCell>
 	);
 }

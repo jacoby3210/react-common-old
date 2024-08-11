@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import { Browser } from '../browser';
 import { Navigator } from '../navigator';
@@ -22,14 +22,14 @@ export const Paginator = receivedProps => {
 
 	// hooks
 	const [valueState, setValueState] = useState(value);
-	const handleValueChanged = (newValue) => {
+	const handleValueChanged = useCallback(newValue => {
 		setValueState(
 			prevValue => {
 				onStateUpdate(newValue, prevValue); 
 				return newValue;
 			}
 		);
-	}
+	}, []);
 
 	// render 
 	const browserControllerProps = {
@@ -38,6 +38,7 @@ export const Paginator = receivedProps => {
 		value: valueState,
 		onStateUpdate:handleValueChanged,
 	}
+
 	const navigatorControllerProps = {
 		length:lengthNavigator, 
 		value: valueState ,

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
@@ -16,16 +16,17 @@ export const Path = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// render 
-	const renderPathPart = (item, index) => <label key={index}>
-		<span className='rc-path-element'>{item}</span>
-		<span className='rc-path-delimiter'>{delimiter}</span>
-	</label>;
+	const children = useMemo(
+		() => data.split(delimiter).map(
+			(item, index) => 
+				<label key={index}>
+					<span className='rc-path-element'>{item}</span>
+					<span className='rc-path-delimiter'>{delimiter}</span>
+				</label>, 
+			), []
+		);
 
-	return (
-		<div id={id} {...attributes}>
-			{data.split(delimiter).map(renderPathPart)}
-		</div>
-	);
+	return (<div id={id} {...attributes}>{children}</div>);
 };
 
 Path.propTypes = propTypes;
