@@ -4,6 +4,7 @@
 import { Indicator } 	from "/src/gui/components/basics/indicator";			// - for output of values in the range from 0 to 100 % 
 import { Path } 			from "/src/gui/components/basics/path";						// - for displaying a path in a tree data structure
 import { Popup } 			from "/src/gui/components/basics/popup";					// - for render content on top of the main ui.
+import { Timer } 			from "/src/gui/components/basics/timer";					// - to show the timer operation.
 import { View } 			from "/src/gui/components/basics/view";						// - for render multiple repetitive data.
 
 // controls (mouse interaction)
@@ -27,7 +28,7 @@ import { Store } 			from "./src/gui/layouts/dnd/store";								// - drop which a
 
 // external module api
 export const Components = {
-	Indicator, Path, Popup, View,
+	Indicator, Path, Popup, Timer, View,
 	Dropdown, Range, Slider,
 };
 

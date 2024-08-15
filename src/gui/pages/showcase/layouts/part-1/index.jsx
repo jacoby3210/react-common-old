@@ -14,6 +14,7 @@ export const ExamplePart1 = receivedProps => {
 			<Components.Popup {...defaultProps.popup}>
 				<span>{"Its Alive!"}</span>
 			</Components.Popup>
+			<Components.Timer {...defaultProps.timer}/>
 			<Components.View {...defaultProps.view}/>
 			
 			{/* controls */}

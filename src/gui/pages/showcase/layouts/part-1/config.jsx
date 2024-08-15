@@ -18,6 +18,7 @@ export const defaultProps = {
 		length: 10,
 		src: produceEntries(10, (_, i) => { return { text: `string_${i}`}}),
 	},
+	timer: {},
 
 	// controls
 	dropdown: {
