@@ -8,13 +8,13 @@ export const DEFAULT_CLASS = 'rc-store';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	types: ["all"],												// types of things available drop into a slot.
-	values: [],														//
-	onDragEnter: (e) => true, 						// is called when a dragged item is enter in drop.
-	onDragLeave: (e) => true,						 	// is called when a dragged item is leave out drop.
-	onDragOver: (e) => true,					 		// is called when a dragged item is moved on drop.
-	onDrop:() => true, 										// is called when a dragged item is added to a drop.
-	TemplateDragComponent: Drag,  				// template for render drag component.
+	types: ["all"],																	// types of things available drop into a slot.
+	values: [],																			//
+	onDragEnter: (e) => true, 											// is called when a dragged item is enter in drop.
+	onDragLeave: (e) => true,											 	// is called when a dragged item is leave out drop.
+	onDragOver: (e) => true,										 		// is called when a dragged item is moved on drop.
+	onDrop:() => true, 															// is called when a dragged item is added to a drop.
+	TemplateDragComponent: Drag,					  				// template for render drag component.
 };
 
 // ========================================================================= //

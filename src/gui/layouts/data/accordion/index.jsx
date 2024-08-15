@@ -3,8 +3,7 @@ import { mergeProps } from 'react-aria';
 import {View} from "../../../components/basics/view"
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
-// Accordion is a UI compоnent that is used to organize content on layout.
-// It consists of a list of headers and their associated content.
+// Accordion consists of a list of headers and their associated content.
 // ========================================================================= //
 
 export const Accordion = receivedProps => {

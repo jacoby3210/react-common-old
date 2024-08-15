@@ -12,7 +12,7 @@ export const Slider = receivedProps => {
 	const {
 		id,
 		axis, max, min, step, value,
-		onChange,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -22,7 +22,7 @@ export const Slider = receivedProps => {
 
 	// inputs
 	const handleChange = (newValue) => {
-		setValueState(prev => {onChange(newValue); return newValue;})
+		setValueState(prev => {whenUpdateValueState(newValue); return newValue;})
 	}
 
 	const handleMouseDown = ( moveStep, e) => {
@@ -35,7 +35,7 @@ export const Slider = receivedProps => {
 	const handleMouseDownSlice = (offset) => {
 		setValueState(prev => {
 			const newValue = Math.max(Math.min(max, prev + offset), min)
-			onChange(newValue); 
+			whenUpdateValueState(newValue); 
 			return newValue;
 		})
 	}
@@ -59,7 +59,7 @@ export const Slider = receivedProps => {
 	const inputRangeProps = {
 		...receivedProps,
 		value: valueState,
-		onChange: handleChange,
+		whenUpdateValueState: handleChange,
 	}
 
 	return (

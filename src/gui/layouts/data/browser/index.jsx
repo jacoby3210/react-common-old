@@ -14,7 +14,7 @@ export const Browser = receivedProps => {
 		length,
 		src,
 		value,
-		onStateUpdate,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 	
@@ -24,7 +24,7 @@ export const Browser = receivedProps => {
 		const {id:newValue} = e.currentTarget
 		setValueState(
 			prevValue => {
-				onStateUpdate(Number(newValue), prevValue); 
+				whenUpdateValueState(Number(newValue), prevValue); 
 				return newValue;
 			}
 		);

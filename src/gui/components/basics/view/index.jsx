@@ -10,7 +10,6 @@ export const View = receivedProps => {
 	// initial data
 	const {
 		id,
-		data,
 		from,
 		length,
 		src,

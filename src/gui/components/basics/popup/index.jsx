@@ -12,7 +12,7 @@ export const Popup = receivedProps => {
 		id,
 		children,
 		shown,
-		updateShownState,
+		whenUpdateShownState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -31,7 +31,7 @@ export const Popup = receivedProps => {
 	const handleClickOutside = useCallback(e => {
 		if (self.current && !self.current.contains(e.target)) {
 			setShownState(false);
-			updateShownState(false)
+			whenUpdateShownState(false)
 		}
 	}, []);
 

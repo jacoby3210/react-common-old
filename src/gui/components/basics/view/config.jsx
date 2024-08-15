@@ -7,10 +7,10 @@ export const DEFAULT_CLASS = 'rc-view';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	from: 0,															// start index to display elements.
-	length: 0,														// length of items to display (count).
-	src: [],															// source data array provider for mapping.
-	TemplateViewItem: receivedProps => 		// template for forming a gui by metadata.
+	from: 0,																				// start index to display elements.
+	length: 0,																			// length of items to display (count).
+	src: [],																				// source data array provider for mapping.
+	TemplateViewItem: receivedProps => 							// template to generate a gui for an individual item in an array.
 	{
 		const {meta, ...attributes} = receivedProps;
 		return (<li {...attributes}>{meta?.text}</li>);

@@ -26,17 +26,17 @@ export const ExamplePart2 = receivedProps => {
 		<>
 			<Data.Accordion {...defaultProps.accordion} />
 
-			<Data.Browser {...defaultProps.browser} onStateUpdate={handleBrowseTab}/>
+			<Data.Browser {...defaultProps.browser} whenUpdateValueState={handleBrowseTab}/>
 			<Components.View  {...defaultProps.viewForBrowser} from={currentBrowseTab}/>
 
-			{/*<Data.Navigator {...defaultProps.navigator} onStateUpdate={handleNavigatorSlide}/>
+			<Data.Navigator {...defaultProps.navigator} whenUpdateValueState={handleNavigatorSlide}/>
 			<Components.View  {...defaultProps.viewForNavigator} from={currentNavigatorSlide}/>
 
-			<Data.Paginator {...defaultProps.paginator} onStateUpdate={handlePage}/>
+			<Data.Paginator {...defaultProps.paginator} whenUpdateValueState={handlePage}/>
 			<Components.View {...defaultProps.viewForPaginator} from={currentPageState}/>
 
 			<Data.Scrollbar target={areaRef} />
-			<TestAreaForScroll /> */}
+			<TestAreaForScroll />
 		</>
 	);
 };

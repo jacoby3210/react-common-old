@@ -16,7 +16,7 @@ export const Range = receivedProps => {
 	const {
 		id, className,
 		axis, max, min, step, value,
-		onChange,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 	const props = axis ? horizontalProps : verticalProps;
@@ -42,7 +42,7 @@ export const Range = receivedProps => {
 	// input from user
 	const handleSetValueState = (newValue) => {
 		setValueState(newValue);
-		if (onChange) onChange(newValue);
+		if (whenUpdateValueState) whenUpdateValueState(newValue);
 	}
 
 	const handleTrackMouseDown = (evt) => {

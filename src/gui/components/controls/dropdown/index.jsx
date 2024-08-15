@@ -5,7 +5,7 @@ import { View } from '../../basics/view';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 import { DropdownButton } from './helpers';
 // ========================================================================= //
-// React Component for rendering a drop-down layout.
+// React Component for rendering a drop-down option.
 // ========================================================================= //
 
 export const Dropdown = receivedProps => {
@@ -16,7 +16,7 @@ export const Dropdown = receivedProps => {
 		caption,
 		src,
 		value,
-		RenderElement,
+		TemplateDropdownOption,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -32,13 +32,13 @@ export const Dropdown = receivedProps => {
 	}
 
 	// render 
-	const popupProps = {shown: true, updateShownState: setShownState,};
+	const popupProps = {shown: true, whenUpdateShownState: setShownState,};
 	const viewProps = {
-		className:'rc-dropdown-options', 
+		className:`${DEFAULT_CLASS}-list-options`, 
 		from: 0, 
 		length: src.length, 
 		src: src,
-		RenderElement,
+		TemplateViewItem: TemplateDropdownOption,
 	}
 
 	return (

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 import {calcBoundary, calcPosition, createCursor, deleteCursor, move, scan} 
@@ -36,33 +36,33 @@ export const Area = receivedProps => {
 			document.addEventListener('mouseup', handleMouseUp);
 		}
 		return () => {
-      document.removeEventListener('mousemove', handleMouseDown);
+      selfRef.current.removeEventListener('mousemove', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
     };
 	}, [captureState]);
 
 	// input from user
-	const handleDragStart = useCallback(e => {
+	const handleDragStart = (e) => {
 		e.preventDefault();
 		dragRef.current = e.target;
 		cursorRef.current = createCursor(selfRef, dragRef, e);
 		setBoundaryState(calcBoundary(selfRef, cursorRef, e));
 		setCaptureState(true);
-	}, [captureState]);
+	};
 
-	const handleDragEnd = useCallback(e => {
+	const handleDragEnd = (e) => {
 		dropRef.current = move(dragRef, dropRef);
 		cursorRef.current = deleteCursor(cursorRef);
 		dragRef.current = null;
 		setBoundaryState({});
 		setCaptureState(false);
-	}, [captureState]);
+	}
 	
-	const handleMouseDown = e => {
+	const handleMouseDown = (e) => {
 		if(!captureState) return;
 		scan(cursorRef, dropRef, e);
 		cursorRef.current.style.transform = calcPosition(e, axis, boundaryState);
-	}//, [captureState, cursorRef, dropRef]);
+	};
 
 	// render 
 	return (

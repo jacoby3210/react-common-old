@@ -14,7 +14,7 @@ export const Navigator = receivedProps => {
 		length,
 		infinity,
 		value,
-		onStateUpdate,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -22,7 +22,7 @@ export const Navigator = receivedProps => {
 	const [valueState, setValueState] = useState(value);
 
 	// input from user
-	const handleState = (v) => {setValueState(v); onStateUpdate(v);}
+	const handleState = (v) => {setValueState(v); whenUpdateValueState(v);}
 	const normalizeValue = (value) => 
 		infinity 
 		? (value + length) % (length) 

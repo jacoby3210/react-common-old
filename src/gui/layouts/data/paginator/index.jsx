@@ -16,7 +16,7 @@ export const Paginator = receivedProps => {
 		lengthNavigator,
 		src,
 		value,
-		onStateUpdate,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -25,7 +25,7 @@ export const Paginator = receivedProps => {
 	const handleValueChanged = useCallback(newValue => {
 		setValueState(
 			prevValue => {
-				onStateUpdate(newValue, prevValue); 
+				whenUpdateValueState(newValue, prevValue); 
 				return newValue;
 			}
 		);
@@ -36,21 +36,17 @@ export const Paginator = receivedProps => {
 		length:lengthBrowser, 
 		src,
 		value: valueState,
-		onStateUpdate:handleValueChanged,
+		whenUpdateValueState:handleValueChanged,
 	}
 
 	const navigatorControllerProps = {
 		length:lengthNavigator, 
 		value: valueState ,
-		onStateUpdate:handleValueChanged,
+		whenUpdateValueState:handleValueChanged,
 	}
 
 	return (
-		<div 
-		id={id}
-		{...attributes}
-		value={valueState}
-		>
+		<div id={id} {...attributes} value={valueState}>
 			<Navigator {...navigatorControllerProps}/>
 			<Browser {...browserControllerProps}/>
 		</div>

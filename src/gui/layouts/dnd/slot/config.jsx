@@ -8,10 +8,10 @@ export const DEFAULT_CLASS = 'rc-slot';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	types: ["all"],							// types of drags available drop into a slot.
-	value: -1,									// initial value.
-	onDrop:() => true, 					// is called when a dragged item is added to a slot
-	TemplateDragComponent: Drag,// template for render drag component.
+	types: ["all"],																	// types of drags available drop into a slot.
+	value: -1,																			// initial value.
+	onDrop:(e) => true, 														// is called when a dragged item is added to a slot
+	TemplateDragComponent: Drag,										// template for render drag component.
 };
 
 // ========================================================================= //
@@ -30,6 +30,8 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	types: PropTypes.array,
+	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	onDrop: PropTypes.func,
 	TemplateDragComponent: PropTypes.func,
 };

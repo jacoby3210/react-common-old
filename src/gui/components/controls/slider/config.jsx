@@ -13,7 +13,7 @@ export const defaultProps = {
 	speed: 0.01, 													// speed of slider movement on the track.
 	step: 0.01,														// minimum step to change the value.
 	value: 0,															// current setup value.
-	onChange: (value) => {}								// value change handler
+	whenUpdateValueState: (value) => {}		// value change handler
 };
 
 // ========================================================================= //
@@ -38,7 +38,7 @@ export const propTypes = {
 	speed: PropTypes.number,
 	step: PropTypes.number,
 	value: PropTypes.number,
-	onChange: PropTypes.func,
+	whenUpdateValueState: PropTypes.func,
 };
 
 // ========================================================================= //

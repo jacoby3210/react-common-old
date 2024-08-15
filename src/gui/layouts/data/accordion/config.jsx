@@ -31,7 +31,6 @@ export const propTypes = {
 	mode: PropTypes.string,
 	src: PropTypes.array,
 	values: PropTypes.array,
-
 };
 
 // ========================================================================= //

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
@@ -21,13 +21,12 @@ export const Drag = receivedProps => {
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
+
 	// hooks
 	const selfRef = useRef(null);
 	useEffect(() => {
-
 		selfRef.current.addEventListener('dropSuccess', handleDropSuccess);
 		selfRef.current.addEventListener('dropFailure', handleDropFailure);
-		
 		return () => {
 			if(!selfRef.current) return;
 			selfRef.current.removeEventListener('dropSuccess', handleDropSuccess);
@@ -36,20 +35,17 @@ export const Drag = receivedProps => {
 	});
 
 	// input from user
-	const handleDragStart = useCallback(e => {
+	const handleDragStart = (e) => {
 		e.preventDefault();
 		onDragStart(e);
-	}, []);
-
-	const handleDragEnd = useCallback(e => {
+	}
+	const handleDragEnd = (e) => {
 		e.preventDefault();
 		onDragEnd(e);
 		if(mode == "self") selfRef.current.hidden = false;
-	}, []);
-
-	const handleDropSuccess = useCallback(e => {onDropSuccess(e);}, []);
-
-	const handleDropFailure = useCallback(e => {onDropFailure(e);}, []);
+	}
+	const handleDropSuccess = (e) => {onDropSuccess(e);}
+	const handleDropFailure = (e) => {onDropFailure(e);}
 
 	// render 
 	return (

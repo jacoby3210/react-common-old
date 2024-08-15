@@ -7,11 +7,11 @@ export const DEFAULT_CLASS = 'rc-drop';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	types: ["all"],												// types of things available drop into a slot.
-	onDragEnter: (e) => true, 						// is called when a dragged item is enter in drop.
-	onDragLeave: (e) => true, 						// is called when a dragged item is leave out drop.
-	onDragOver: (e) => true, 							// is called when a dragged item is moved on drop.
-	onDrop: (e) => true,									// is called when a dragged item is added to a drop.
+	types: ["all"],																	// types of things available drop into a slot.
+	onDragEnter: (e) => true, 											// is called when a dragged item is enter in drop.
+	onDragLeave: (e) => true, 											// is called when a dragged item is leave out drop.
+	onDragOver: (e) => true, 												// is called when a dragged item is moved on drop.
+	onDrop: (e) => true,														// is called when a dragged item is added to a drop.
 };
 
 // ========================================================================= //

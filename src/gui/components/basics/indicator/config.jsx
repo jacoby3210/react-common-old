@@ -7,10 +7,10 @@ export const DEFAULT_CLASS = 'rc-indicator';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	colors: [],					// available fill colors of the value indicator.
-	levels: [],					// available fill levels of the value indicator.
-	max: 100,						// display max value (min value always 0).
-	value: 100,					// current display value
+	colors: [],																			// available fill colors of the value indicator.
+	levels: [],																			// available fill levels of the value indicator.
+	max: 100,																				// display max value (min value always 0).
+	value: 100,																			// current display value.
 };
 
 // ========================================================================= //

@@ -7,13 +7,13 @@ export const DEFAULT_CLASS = 'rc-drag';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	mode: "self",										// determines what will be moved: the element itself or its clone.
-	type: "all",										// type defining available slots.
-	value: 0,												// default value id.
-	onDropSuccess: (v) => {},				// is called when a process of drag item has been success. 
-	onDropFailure: (v) => {},				// is called when a process of drag item has been failure.
-	onDragStart: (v) => {},					// is called when a process of drag item started. 
-	onDragEnd: (v) => {},						// is called when a process of drag item ended. 
+	mode: "self",																		// determines what will be moved: the element itself or its clone.
+	type: "all",																		// type defining available slots.
+	value: 0,																				// default value id.
+	onDropSuccess: (v) => {},												// is called when a process of drag item has been success. 
+	onDropFailure: (v) => {},												// is called when a process of drag item has been failure.
+	onDragStart: (v) => {},													// is called when a process of drag item started. 
+	onDragEnd: (v) => {},														// is called when a process of drag item ended. 
 };
 
 // ========================================================================= //
