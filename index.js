@@ -10,9 +10,15 @@ import { View } 			from "/src/gui/components/basics/view";						// - for render 
 // controls (mouse interaction)
 import { Clicker } 		from "./src/gui/components/controls/clicker";			// - to track the user's clicks and display the total score.
 import { Dropdown } 	from "/src/gui/components/controls/dropdown";			// - for render a drop-down layout.
-import {DropdownSelect} from '/src/gui/components/controls/dropdown-select'
 import { Range } 			from "/src/gui/components/controls/range";				// - to select a value from the suggested numeric range.
 import { Slider } 		from "/src/gui/components/controls/slider";				// - represents universal customizable content scroller.
+// Switch - output a few radio button as group. 
+
+// controls (mouse + keyboard interaction).
+// Advisor
+// Cloud
+import {DropdownSelect} from '/src/gui/components/controls/dropdown-select'// change to select
+
 
 // control data in output view.
 import { Accordion } 	from "/src/gui/layouts/data/accordion";						// - consists of a list of headers and their associated content.
@@ -27,6 +33,13 @@ import { Drag } 			from "./src/gui/layouts/dnd/drag";								// - that can be dr
 import { Drop } 			from "./src/gui/layouts/dnd/drop";								// - that can take over dragged components within an Area.
 import { Slot } 			from "./src/gui/layouts/dnd/slot";								// - drop which accepts only one drag element.
 import { Store } 			from "./src/gui/layouts/dnd/store";								// - drop which accepts more than one drag element.
+
+// Form Factory
+// NumberBox only numbers input(may be disabled keyboard input).
+// ResourceBox
+// StringBox standard text input field, offering available options.
+// TextBox standard text area field.
+// UrlBox  field for input universal location resource.
 
 // external module api
 export const Components = {
