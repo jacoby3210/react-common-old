@@ -10,6 +10,7 @@ import { View } 			from "/src/gui/components/basics/view";						// - for render 
 // controls (mouse interaction)
 import { Clicker } 		from "./src/gui/components/controls/clicker";			// - to track the user's clicks and display the total score.
 import { Dropdown } 	from "/src/gui/components/controls/dropdown";			// - for render a drop-down layout.
+import {DropdownSelect} from '/src/gui/components/controls/dropdown-select'
 import { Range } 			from "/src/gui/components/controls/range";				// - to select a value from the suggested numeric range.
 import { Slider } 		from "/src/gui/components/controls/slider";				// - represents universal customizable content scroller.
 
@@ -30,7 +31,7 @@ import { Store } 			from "./src/gui/layouts/dnd/store";								// - drop which a
 // external module api
 export const Components = {
 	Indicator, Path, Popup, Timer, View,
-	Clicker, Dropdown, Range, Slider,
+	Clicker, Dropdown, DropdownSelect, Range, Slider,
 };
 
 export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar,}

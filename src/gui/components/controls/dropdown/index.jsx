@@ -36,10 +36,10 @@ export const Dropdown = receivedProps => {
 			{
 				shownState 
 					? <Popup {...popupProps}>
-							<DropdownButton onClick={handleButtonClick} />
+							<DropdownButton caption={caption} onClick={handleButtonClick} />
 							{children}
 						</Popup> 
-					: <DropdownButton onClick={handleButtonClick} />
+					: <DropdownButton caption={caption} onClick={handleButtonClick} />
 			}
 		</div>
 	);
