@@ -22,6 +22,7 @@ export const defaultProps = {
 
 	// controls
 	dropdown: {
+		length: 5,
 		src: produceEntries(5, (v, i) => { 
 			return { 
 				caption: `Option #${i}`, 
@@ -29,7 +30,19 @@ export const defaultProps = {
 				onClick: (e) => {console.log(`Option #${i}`); return false;} 
 			} 
 		}),
-		value: 0
+		TemplateViewItem: receivedProps => 				
+		{
+			const {meta, ...attributes} = receivedProps;
+			return (
+				<button 
+					className={`test-option`} 
+					onClick={meta?.onClick} 
+					{...attributes}
+				>
+					{meta.caption}
+				</button>
+			);
+		},
 	},
 	rangeHorizontal: { axis: true, min: 0, max: 10, step: 0.0001, value: 5 },
 	rangeVertical: { min: 0, max: 50, step: 0.1, value: 5 },

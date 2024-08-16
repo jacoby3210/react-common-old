@@ -19,7 +19,9 @@ export const ExamplePart1 = receivedProps => {
 			
 			{/* controls */}
 			<Components.Clicker />
-			<Components.Dropdown {...defaultProps.dropdown} />
+			<Components.Dropdown>
+				<Components.View {...defaultProps.dropdown}/>
+			</Components.Dropdown>
 			<Components.Range {... defaultProps.rangeHorizontal} />
 			<Components.Range {... defaultProps.rangeVertical} />
 			<Components.Slider {...defaultProps.slider} />

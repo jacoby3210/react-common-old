@@ -13,10 +13,8 @@ export const Dropdown = receivedProps => {
 	// initial data
 	const {
 		id,
+		children,
 		caption,
-		src,
-		value,
-		TemplateDropdownOption,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -33,23 +31,15 @@ export const Dropdown = receivedProps => {
 
 	// render 
 	const popupProps = {shown: true, whenUpdateShownState: setShownState,};
-	const viewProps = {
-		className:`${DEFAULT_CLASS}-list-options`, 
-		from: 0, 
-		length: src.length, 
-		src: src,
-		TemplateViewItem: TemplateDropdownOption,
-	}
-
 	return (
 		<div id={id} ref={self} {...attributes} onClick={handleClick}>
 			{
-				shownState ?
-					<Popup {...popupProps}>
-						<DropdownButton onClick={handleButtonClick} />
-						<View {...viewProps} />
-					</Popup> :
-					<DropdownButton onClick={handleButtonClick} />
+				shownState 
+					? <Popup {...popupProps}>
+							<DropdownButton onClick={handleButtonClick} />
+							{children}
+						</Popup> 
+					: <DropdownButton onClick={handleButtonClick} />
 			}
 		</div>
 	);

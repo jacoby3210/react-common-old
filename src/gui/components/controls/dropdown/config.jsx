@@ -8,20 +8,6 @@ export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
 	caption: "dropdown",														// displayed text on the control button.
-	src: [],																				// source data array provider for mapping.
-	TemplateDropdownOption: receivedProps => 				// template to generate a gui for an individual option in an list.
-	{
-		const {meta, ...attributes} = receivedProps;
-		return (
-			<button 
-				className={`${DEFAULT_CLASS}-option`} 
-				onClick={meta?.onClick} 
-				{...attributes}
-			>
-				{meta.caption}
-			</button>
-		);
-	},
 };
 
 // ========================================================================= //
@@ -41,8 +27,6 @@ export const propTypes = {
 	]),
 	id: PropTypes.string,
 	caption: PropTypes.string,
-	src: PropTypes.array,
-	TemplateDropdownOption: PropTypes.func,
 };
 
 // ========================================================================= //
