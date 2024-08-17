@@ -49,6 +49,11 @@ export const defaultProps = {
 	slider: { min: 0, max: 50, step: 0.1, value: 5 },
 
 	// fields
+	advisor: {
+		data: produceEntries(5, (v, i) => {
+			return {caption: `Option #${i}`, value: i}
+		}),
+	},
 	select: {
 		length: 5,
 		src: produceEntries(5, (v, i) => { 

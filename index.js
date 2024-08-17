@@ -15,7 +15,7 @@ import { Slider } 		from "/src/gui/components/controls/slider";				// - represen
 // Switch - output a few radio button as group. 
 
 // controls (mouse + keyboard interaction).
-// Advisor
+import {Advisor} from '/src/gui/components/fields/advisor'							// - to show basic text field with autocomplete suggestions.
 // Cloud
 import {Select} from '/src/gui/components/fields/select'								// - for selection one option from the source list.
 
@@ -39,15 +39,15 @@ import { Store } 			from "./src/gui/layouts/dnd/store";								// - drop which a
 // ResourceBox
 // StringBox standard text input field, offering available options.
 // TextBox standard text area field.
-// UrlBox  field for input universal location resource.
+// UrlBox field for input universal location resource.
 
 // external module api
 export const Components = {
 	Indicator, Path, Popup, Timer, View,
 	Clicker, Dropdown, Range, Slider,
-	Select,
+	Advisor, Select,
 };
 
-export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar,}
-export const DnD = 	{Area, Drag, Drop, Slot, Store,}
+export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar}
+export const DnD = 	{Area, Drag, Drop, Slot, Store}
 

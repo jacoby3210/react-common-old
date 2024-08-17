@@ -27,6 +27,7 @@ export const ExamplePart1 = receivedProps => {
 			<Components.Slider {...defaultProps.slider} />
 
 			{/* fields */}
+			<Components.Advisor {...defaultProps.advisor}/>
 			<Components.Select {...defaultProps.select}/>
 		</>
 	);
