@@ -11,7 +11,7 @@ export const defaultProps = {
 	value: 0,
 	TemplateOption: receivedProps => {
 		const {meta, ...attributes} = receivedProps;
-		console.log(meta)
+		// console.log(meta)
 		return <option 
 			className={`${DEFAULT_CLASS}-list-option`} 
 			value={meta.value}
@@ -40,7 +40,7 @@ export const propTypes = {
 	]),
 	id: PropTypes.string,
 	data: PropTypes.array,
-	// value: PropTypes.oneOfType(PropTypes.string, PropTypes.number),
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	TemplateOption: PropTypes.func,
 };
 

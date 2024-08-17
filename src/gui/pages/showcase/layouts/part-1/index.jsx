@@ -9,26 +9,26 @@ export const ExamplePart1 = receivedProps => {
 	return (
 		<>
 			{/* basics */}
-			<Components.Indicator {...defaultProps.indicator}/>
+			{/* <Components.Indicator {...defaultProps.indicator}/>
 			<Components.Path {...defaultProps.path}/>
 			<Components.Popup {...defaultProps.popup}>
 				<span>{"Its Alive!"}</span>
 			</Components.Popup>
 			<Components.Timer {...defaultProps.timer}/>
-			<Components.View {...defaultProps.view}/>
+			<Components.View {...defaultProps.view}/> */}
 			
 			{/* controls */}
-			<Components.Clicker />
+			{/* <Components.Clicker />
 			<Components.Dropdown>
 				<Components.View {...defaultProps.dropdown}/>
 			</Components.Dropdown>
 			<Components.Range {... defaultProps.rangeHorizontal} />
 			<Components.Range {... defaultProps.rangeVertical} />
-			<Components.Slider {...defaultProps.slider} />
+			<Components.Slider {...defaultProps.slider} /> */}
 
 			{/* fields */}
 			<Components.Advisor {...defaultProps.advisor}/>
-			<Components.Select {...defaultProps.select}/>
+			{/* <Components.Select {...defaultProps.select}/> */}
 		</>
 	);
 };

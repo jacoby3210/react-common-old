@@ -17,7 +17,7 @@ export const Popup = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const selfRef = useRef();
+	const selfRef = useRef(null);
 	const [shownState, setShownState] = useState(shown);
 	useEffect(() => {
 		setShownState(shown);
@@ -28,11 +28,14 @@ export const Popup = receivedProps => {
 	}, [shown]);
 
 	// input from user
-	const handleClickOutside = useCallback(e => {
-		if (self.current && !self.current.contains(e.target)) {
-			setShownState(false);
-			whenUpdateShownState(false)
-		}
+	const handleClickOutside = useCallback(evt => {
+		setShownState(
+			prev => {
+				const next = selfRef.current && selfRef.current.contains(evt.target);
+				whenUpdateShownState(next)
+				return next;
+			}
+		);
 	}, []);
 
 	// render 

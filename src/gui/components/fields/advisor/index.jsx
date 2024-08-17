@@ -23,11 +23,10 @@ export const Advisor = receivedProps => {
 	const [valueState, setValueState] = useState(value);
 	useEffect(() => { setValueState(value); }, [data, value]);
 
-	const handleChange = (evt) => { setValueState(evt.target.value); }
-	const handleFocus = (evt) => { setShownState(true); }
-
 	// input from user
+	const handleChange = (evt) => { setValueState(evt.target.value); }
 	const handleClick = () => {setValueState(0);}
+	const handleFocus = (evt) => {setShownState(true);}
 
 	// render 
 	const inputOptions = {
