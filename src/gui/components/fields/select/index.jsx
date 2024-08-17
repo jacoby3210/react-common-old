@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
-import { Dropdown } from '../dropdown';
+import { Dropdown } from '../../controls/dropdown';
 import { View } from '../../basics/view';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
-// React Component  
+// React Component for selection one option from the source list.
 // ========================================================================= //
 
-export const DropdownSelect = receivedProps => {
+export const Select = receivedProps => {
 
 	// initial data
 	const {
@@ -15,7 +15,7 @@ export const DropdownSelect = receivedProps => {
 		caption,
 		src,
 		value,
-		TemplateDropdownSelectOption,
+		TemplateSelectOption,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -37,7 +37,7 @@ export const DropdownSelect = receivedProps => {
 		from: 0, 
 		length: src.length, 
 		src: src,
-		TemplateViewItem: TemplateDropdownSelectOption,
+		TemplateViewItem: TemplateSelectOption,
 	}
 	return (
 		<Dropdown 
@@ -51,6 +51,6 @@ export const DropdownSelect = receivedProps => {
 	);
 };
 
-DropdownSelect.propTypes = propTypes;
+Select.propTypes = propTypes;
 
 // ========================================================================= //

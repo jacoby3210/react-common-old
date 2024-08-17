@@ -44,7 +44,12 @@ export const defaultProps = {
 			);
 		},
 	},
-	dropdownSelect: {
+	rangeHorizontal: { axis: true, min: 0, max: 10, step: 0.0001, value: 5 },
+	rangeVertical: { min: 0, max: 50, step: 0.1, value: 5 },
+	slider: { min: 0, max: 50, step: 0.1, value: 5 },
+
+	// fields
+	select: {
 		length: 5,
 		src: produceEntries(5, (v, i) => { 
 			return { 
@@ -55,9 +60,6 @@ export const defaultProps = {
 		}),
 		value: 0,
 	},
-	rangeHorizontal: { axis: true, min: 0, max: 10, step: 0.0001, value: 5 },
-	rangeVertical: { min: 0, max: 50, step: 0.1, value: 5 },
-	slider: { min: 0, max: 50, step: 0.1, value: 5 },
 };
 
 // ========================================================================= //

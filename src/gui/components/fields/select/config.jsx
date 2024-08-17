@@ -7,9 +7,9 @@ export const DEFAULT_CLASS = 'rc-dropdown-select';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	caption: "dropdown select",											// displayed text on the control button.
+	caption: "select",															// displayed text on the control button.
 	src: [],																				// source data array provider for mapping.
-	TemplateDropdownSelectOption:receivedProps => {	// template for forming a gui by metadata.
+	TemplateSelectOption:receivedProps => {					// template for forming a gui by metadata.
 		const {meta, ...attributes} = receivedProps;
 		return (
 			<option 
@@ -42,7 +42,7 @@ export const propTypes = {
 	id: PropTypes.string,
 	caption: PropTypes.string,
 	src: PropTypes.array,
-	RenderElement: PropTypes.func,
+	TemplateSelectOption: PropTypes.func,
 };
 
 // ========================================================================= //

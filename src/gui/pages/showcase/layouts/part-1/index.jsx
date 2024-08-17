@@ -22,10 +22,12 @@ export const ExamplePart1 = receivedProps => {
 			<Components.Dropdown>
 				<Components.View {...defaultProps.dropdown}/>
 			</Components.Dropdown>
-			<Components.DropdownSelect {...defaultProps.dropdownSelect}/>
 			<Components.Range {... defaultProps.rangeHorizontal} />
 			<Components.Range {... defaultProps.rangeVertical} />
 			<Components.Slider {...defaultProps.slider} />
+
+			{/* fields */}
+			<Components.Select {...defaultProps.select}/>
 		</>
 	);
 };
