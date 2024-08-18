@@ -74,7 +74,7 @@
 }
 .rc-store-cursor > * {visibility: hidden;}
 
-.rc-advisor-list-option-cursor {
+.rc-advisor-list-cursor {
 	background-color: blue;
 	color: white;
 }

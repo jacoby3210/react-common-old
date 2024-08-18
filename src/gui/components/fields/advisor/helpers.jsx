@@ -1,16 +1,24 @@
+import cx from 'clsx';
 import {View} from '../../basics/view'
 // ========================================================================= //
 // Helper functions.																												 //
 // ========================================================================= //
 
 // default template to generate a gui for an individual suggestion.
-export const 	TemplateAdvisorOptionDefault = receivedProps => {
-	const {className, meta, props, ...attributes} = receivedProps;
+export const TemplateAdvisorOptionDefault = receivedProps => {
+	const {className: classNameBase, meta, props:propsAll, ...attributes} = receivedProps;
+	const {cursorIndexState, ...props} = propsAll;
+	const className = cx(
+		classNameBase, 
+		'rc-advisor-list-option',
+		{[`rc-advisor-list-cursor`]: cursorIndexState == meta.value}
+	)
+
 	return (
 		<option 
 			{...attributes}
 			{...props}
-			className={`${className} rc-advisor-list-option`} 
+			className={className} 
 			value={meta.caption}
 		>
 			{meta.caption}
@@ -18,7 +26,7 @@ export const 	TemplateAdvisorOptionDefault = receivedProps => {
 	)
 };
 
-//
+// customised View component for displaying the list of suggestions.
 export const AdvisorList = receivedProps => {
 
 	// initial data

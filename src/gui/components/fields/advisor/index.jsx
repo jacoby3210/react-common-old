@@ -19,7 +19,7 @@ export const Advisor = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const inputRef = useRef(null);
+	const [cursorIndexState, setCursorIndexState] = useState(0);
 	const [shownState, setShownState] = useState(false);
 	const [valueState, setValueState] = useState(value);
 	useEffect(() => {setValueState(value);}, [value]);
@@ -30,12 +30,26 @@ export const Advisor = receivedProps => {
 		setValueState(prev => evt.currentTarget.value);
 		setShownState(false);
 	}
-	const handleFocus = (evt) => {setShownState(true);}
+	const handleFocus = (evt) => {
+		setCursorIndexState(0); 
+		setShownState(true);
+	}
+	const handleKeyDown = (evt) => {
+		if (evt.key === 'ArrowDown') {
+			setCursorIndexState(prev => prev < src.length - 1 ? prev + 1 : prev);
+		} else if (evt.key === 'ArrowUp') {
+			setCursorIndexState(prev => prev > 0 ? prevIndex - 1 : prev);
+		} else if (evt.key === 'Enter' && cursorIndexState >= 0) {
+			setValueState(src[cursorIndexState].caption);
+			setShownState(false);
+		}
+	};
 
 	// render 
 	const inputProps = {
 		className: `${DEFAULT_CLASS}-input`,
 		onChange: handleChange,
+		onKeyDown: handleKeyDown,
 		value: valueState
 	};
 	const popupProps = {
@@ -48,7 +62,8 @@ export const Advisor = receivedProps => {
 		TemplateAdvisorOption, 
 		templateAdvisorOptionProps: {
 			className: `${DEFAULT_CLASS}-list-option`,
-			onClick: handleClick
+			onClick: handleClick,
+			cursorIndexState,
 		}, 
 		valueState
 	} 
