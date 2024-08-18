@@ -26,7 +26,7 @@ export const TemplateAdvisorOptionDefault = receivedProps => {
 	)
 };
 
-// customised View component for displaying the list of suggestions.
+// customized View component for displaying the list of suggestions.
 export const AdvisorList = receivedProps => {
 
 	// initial data

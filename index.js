@@ -15,24 +15,23 @@ import { Slider } 		from "./src/gui/components/controls/slider";						// - repre
 import { Switch } 		from "./src/gui/components/controls/switch";						// - to output multiple radio buttons as a single component.
 
 // controls (mouse + keyboard interaction).
-import {Advisor} from '/src/gui/components/fields/advisor'							// - to show basic text field with autocomplete suggestions.
-// Cloud
-import {Select} from '/src/gui/components/fields/select'								// - for selection one option from the source list.
-
+import {Advisor} from '/src/gui/components/fields/advisor'										// - to show basic text field with autocomplete suggestions.
+import { Cloud } from "./src/gui/components/fields/cloud";										// - for displaying the add/remove tags interface.
+import {Select} from '/src/gui/components/fields/select'											// - for selection one option from the source list.
 
 // control data in output view.
-import { Accordion } 	from "/src/gui/layouts/data/accordion";						// - consists of a list of headers and their associated content.
-import { Browser } 		from "/src/gui/layouts/data/browser";							// - switching of displayed data in the viewing area.
-import { Navigator } 	from "./src/gui/layouts/data/navigator";					// - switching of displayed slide in the viewing area by linear order.
-import { Paginator } 	from "./src/gui/layouts/data/paginator";					// - switching of displayed page in the viewing area.
-import { Scrollbar } 	from "/src/gui/layouts/data/scrollbar";						// - represents universal customizable content scrollbar.
+import { Accordion } 	from "/src/gui/layouts/data/accordion";									// - consists of a list of headers and their associated content.
+import { Browser } 		from "/src/gui/layouts/data/browser";										// - switching of displayed data in the viewing area.
+import { Navigator } 	from "./src/gui/layouts/data/navigator";								// - switching of displayed slide in the viewing area by linear order.
+import { Paginator } 	from "./src/gui/layouts/data/paginator";								// - switching of displayed page in the viewing area.
+import { Scrollbar } 	from "/src/gui/layouts/data/scrollbar";									// - represents universal customizable content scrollbar.
 
 // drag and drop components
-import { Area } 			from "./src/gui/layouts/dnd/area";								// - within which you can drag and drop components.
-import { Drag } 			from "./src/gui/layouts/dnd/drag";								// - that can be dragged within an Area.
-import { Drop } 			from "./src/gui/layouts/dnd/drop";								// - that can take over dragged components within an Area.
-import { Slot } 			from "./src/gui/layouts/dnd/slot";								// - drop which accepts only one drag element.
-import { Store } 			from "./src/gui/layouts/dnd/store";								// - drop which accepts more than one drag element.
+import { Area } 			from "./src/gui/layouts/dnd/area";											// - within which you can drag and drop components.
+import { Drag } 			from "./src/gui/layouts/dnd/drag";											// - that can be dragged within an Area.
+import { Drop } 			from "./src/gui/layouts/dnd/drop";											// - that can take over dragged components within an Area.
+import { Slot } 			from "./src/gui/layouts/dnd/slot";											// - drop which accepts only one drag element.
+import { Store } 			from "./src/gui/layouts/dnd/store";											// - drop which accepts more than one drag element.
 
 // Form Factory
 // NumberBox only numbers input(may be disabled keyboard input).
@@ -45,9 +44,10 @@ import { Store } 			from "./src/gui/layouts/dnd/store";								// - drop which a
 export const Components = {
 	Indicator, Path, Popup, Timer, View,
 	Clicker, Dropdown, Range, Slider, Switch,
-	Advisor, Select,
+	Advisor, Cloud, Select,
 };
 
 export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar}
 export const DnD = 	{Area, Drag, Drop, Slot, Store}
 
+// ========================================================================= //
