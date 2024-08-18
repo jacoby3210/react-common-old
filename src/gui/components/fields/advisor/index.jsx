@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {Popup} from '../../basics/popup'
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
-import { AdvisorList } from './helpers';
+import { AdvisorList, TemplateAdvisorOptionDefault } from './helpers';
 // ========================================================================= //
 // React component rendering  basic text filed with input suggestions.
 // ========================================================================= //
@@ -12,43 +12,56 @@ export const Advisor = receivedProps => {
 	// initial data
 	const {
 		id,
-		data,
+		src,
 		value,
-		TemplateOption,
+		TemplateAdvisorOption,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
+	const inputRef = useRef(null);
 	const [shownState, setShownState] = useState(false);
 	const [valueState, setValueState] = useState(value);
-	useEffect(() => { setValueState(value); }, [data, value]);
+	useEffect(() => {setValueState(value);}, [value]);
 
 	// input from user
 	const handleChange = (evt) => { setValueState(evt.target.value); }
-	const handleClick = () => {setValueState(0);}
+	const handleClick = (evt) => {
+		setValueState(prev => evt.currentTarget.value);
+		setShownState(false);
+	}
 	const handleFocus = (evt) => {setShownState(true);}
 
 	// render 
-	const inputOptions = {
+	const inputProps = {
 		className: `${DEFAULT_CLASS}-input`,
 		onChange: handleChange,
 		value: valueState
 	};
-	const popupOptions = {
+	const popupProps = {
 		shown: shownState,
 		whenUpdateShownState: setShownState,
 	};
 
-	const advisorListProps = {data, TemplateOption, valueState} 
+	const advisorListProps = {
+		src, 
+		TemplateAdvisorOption, 
+		templateAdvisorOptionProps: {
+			className: `${DEFAULT_CLASS}-list-option`,
+			onClick: handleClick
+		}, 
+		valueState
+	} 
+
 	return (
 		<div id={id} {...attributes}>
 			{
 				shownState ?
-					<Popup {...popupOptions}>
-						<input {...inputOptions} />
+					<Popup {...popupProps}>
+						<input autoFocus {...inputProps} />
 						<AdvisorList {...advisorListProps} />
 					</Popup> :
-					<input onFocus={handleFocus} {...inputOptions} />
+					<input onFocus={handleFocus} {...inputProps} />
 			}
 		</div >
 	);

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { TemplateAdvisorOptionDefault } from './helpers';
 // ========================================================================= //
 // Constants && Default Properties.
 // ========================================================================= //
@@ -7,18 +8,9 @@ export const DEFAULT_CLASS = 'rc-advisor';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	data: [],
-	value: 0,
-	TemplateOption: receivedProps => {
-		const {meta, ...attributes} = receivedProps;
-		return <option 
-			className={`${DEFAULT_CLASS}-list-option`} 
-			value={meta.value}
-			{...attributes}
-		>
-			{meta.caption}
-		</option>
-	},
+	src: [],																									// source data array available suggesions.
+	value: 0,																									// current display text.
+	TemplateAdvisorOption: TemplateAdvisorOptionDefault,			// template to generate a gui for an individual suggestion.
 };
 
 // ========================================================================= //
@@ -38,9 +30,9 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
-	data: PropTypes.array,
+	src: PropTypes.array,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	TemplateOption: PropTypes.func,
+	TemplateAdvisorOption: PropTypes.func,
 };
 
 // ========================================================================= //

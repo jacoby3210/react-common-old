@@ -50,7 +50,7 @@ export const defaultProps = {
 
 	// fields
 	advisor: {
-		data: produceEntries(5, (v, i) => {
+		src: produceEntries(5, (v, i) => {
 			return {caption: `Option #${i}`, value: i}
 		}),
 	},

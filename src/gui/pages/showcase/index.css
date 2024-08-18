@@ -73,3 +73,8 @@
 	background-color: gold;
 }
 .rc-store-cursor > * {visibility: hidden;}
+
+.rc-advisor-list-option-cursor {
+	background-color: blue;
+	color: white;
+}

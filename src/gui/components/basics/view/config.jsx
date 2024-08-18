@@ -12,7 +12,7 @@ export const defaultProps = {
 	length: 0,																			// length of items to display (count).
 	src: [],																				// source data array provider for mapping.
 	TemplateViewItem: TemplateViewItemDefault, 			// template to generate a gui for an individual item in an array.
-	templateViewItemProps: {},													// additional properties common to all child elements.
+	templateViewItemProps: {},											// additional properties common to all child elements.
 };
 
 // ========================================================================= //
@@ -35,7 +35,7 @@ export const propTypes = {
 	length: PropTypes.number,
 	src: PropTypes.array,
 	TemplateViewItem: PropTypes.func,
-	templateViewItemProps: PropTypes.func,
+	templateViewItemProps: PropTypes.object,
 };
 
 // ========================================================================= //
