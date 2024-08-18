@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import {TemplateViewItemDefault} from "./helpers"
 // ========================================================================= //
 // Constants && Default properties.
 // ========================================================================= //
@@ -10,11 +11,8 @@ export const defaultProps = {
 	from: 0,																				// start index to display elements.
 	length: 0,																			// length of items to display (count).
 	src: [],																				// source data array provider for mapping.
-	TemplateViewItem: receivedProps => 							// template to generate a gui for an individual item in an array.
-	{
-		const {meta, ...attributes} = receivedProps;
-		return (<li {...attributes}>{meta?.text}</li>);
-	}, 
+	TemplateViewItem: TemplateViewItemDefault, 			// template to generate a gui for an individual item in an array.
+	templateViewProps: {},													// additional properties common to all child elements.
 };
 
 // ========================================================================= //
@@ -37,6 +35,7 @@ export const propTypes = {
 	length: PropTypes.number,
 	src: PropTypes.array,
 	TemplateViewItem: PropTypes.func,
+	templateViewProps: PropTypes.func,
 };
 
 // ========================================================================= //
