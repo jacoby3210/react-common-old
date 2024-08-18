@@ -25,7 +25,7 @@ export const ExamplePart1 = receivedProps => {
 			<Components.Range {... defaultProps.rangeHorizontal} />
 			<Components.Range {... defaultProps.rangeVertical} />
 			<Components.Slider {...defaultProps.slider} /> */}
-
+			<Components.Switch {...defaultProps.switch}/>
 			{/* fields */}
 			<Components.Advisor {...defaultProps.advisor}/>
 			{/* <Components.Select {...defaultProps.select}/> */}
