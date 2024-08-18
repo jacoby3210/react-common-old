@@ -8,8 +8,9 @@ export const DEFAULT_CLASS = 'rc-advisor';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	src: [],																									// source data array available suggesions.
+	src: [],																									// source data array available suggestions.
 	value: 0,																									// current display text.
+	whenInputSubmit: (next, prev) => { },											// to handle submit of user input.
 	TemplateAdvisorOption: TemplateAdvisorOptionDefault,			// template to generate a gui for an individual suggestion.
 };
 
@@ -32,6 +33,7 @@ export const propTypes = {
 	id: PropTypes.string,
 	src: PropTypes.array,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	whenInputSubmit: PropTypes.func,
 	TemplateAdvisorOption: PropTypes.func,
 };
 

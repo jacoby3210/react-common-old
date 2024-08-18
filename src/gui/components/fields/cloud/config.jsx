@@ -7,8 +7,8 @@ export const DEFAULT_CLASS = 'rc-cloud';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	src: [],																				//
-	values: [],																			//
+	src: [],																				// source data array available tags.
+	values: [],																			// selected tags from source data array.
 };
 
 // ========================================================================= //
