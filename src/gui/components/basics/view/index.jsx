@@ -14,6 +14,7 @@ export const View = receivedProps => {
 		length,
 		src,
 		TemplateViewItem,
+		templateViewItemProps,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -24,6 +25,7 @@ export const View = receivedProps => {
 				key={item.id || i}
 				className={`${DEFAULT_CLASS}-item`} 
 				meta={item} 
+				props={templateViewItemProps}
 		/>);
 	
 	return (

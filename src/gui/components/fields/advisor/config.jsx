@@ -11,7 +11,6 @@ export const defaultProps = {
 	value: 0,
 	TemplateOption: receivedProps => {
 		const {meta, ...attributes} = receivedProps;
-		// console.log(meta)
 		return <option 
 			className={`${DEFAULT_CLASS}-list-option`} 
 			value={meta.value}
