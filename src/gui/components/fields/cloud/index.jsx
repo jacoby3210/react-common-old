@@ -42,7 +42,6 @@ export const Cloud = receivedProps => {
 	// render 
 	const whenInputSubmit = (next, prev) => {
 		const i = src.findIndex(item => item.caption == next);
-<<<<<<< HEAD
 		if(i != -1) setValuesState([...valuesState, src[i]]);
 		return '';
 	};
@@ -55,18 +54,6 @@ export const Cloud = receivedProps => {
 		whenInputSubmit
 	};
 	
-=======
-		setValuesState([...valuesState, src[i]]);
-		return '';
-	};
-	const advisorProps = {
-		src: mode == "all" 
-			? src 
-			: src.filter(item => !valuesState.some(toRemove => toRemove.id === item.id)),
-		value: '', 
-		whenInputSubmit
-	};
->>>>>>> 3582d49b6a55157bf17b53338a384a0affee7822
 	const viewProps = {
 		length: valuesState.length, 
 		src:valuesState,
