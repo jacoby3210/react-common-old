@@ -14,6 +14,7 @@ export const Cloud = receivedProps => {
 	// initial data
 	const {
 		id,
+		mode,
 		src,
 		values,
 		...attributes
@@ -27,19 +28,32 @@ export const Cloud = receivedProps => {
 	// input from user
 	const handleTagButtonClick = (evt) => {
 		if(evt.target.tagName != "BUTTON") return;
-		const i = values.findIndex(
+		const i = valuesState.findIndex(
 			item => item.text === evt.currentTarget.children[0].innerText
 		);
-		// console.log("click", i, values, evt.currentTarget.children[0].innerText)
-		setValuesState(prev => [...valuesState, src[i]]);
+		setValuesState(
+			prev => [
+				...prev.slice(0, i),
+				...prev.slice(i + 1),
+			]
+		);
 	}
 
 	// render 
 	const whenInputSubmit = (next, prev) => {
 		const i = src.findIndex(item => item.caption == next);
-		setValuesState([...valuesState, src[i]]);
+		if(i != -1) setValuesState([...valuesState, src[i]]);
+		return '';
 	};
-	const advisorProps = {src: src, whenInputSubmit};
+
+	const advisorProps = {
+		src: mode == "all" 
+			? src 
+			: src.filter(item => !valuesState.some(toRemove => toRemove.id === item.id)),
+		value: '', 
+		whenInputSubmit
+	};
+	
 	const viewProps = {
 		length: valuesState.length, 
 		src:valuesState,

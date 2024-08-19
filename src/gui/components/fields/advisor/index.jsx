@@ -20,7 +20,7 @@ export const Advisor = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const selfRef = useRef(null);
+	const inputRef = useRef(null);
 	const [cursorIndexState, setCursorIndexState] = useState(0);
 	const [shownState, setShownState] = useState(false);
 	const [valueState, setValueState] = useState(value);
@@ -28,9 +28,9 @@ export const Advisor = receivedProps => {
 
 	// input from user
 	const handleInputSubmit = (next, prev = value) => {
-		setShownState (
+		setValueState (
 			prev => {
-				whenInputSubmit(next, prev);
+				next = whenInputSubmit(next, prev);
 				return next;
 			}
 		);
@@ -52,7 +52,7 @@ export const Advisor = receivedProps => {
 		} else if (evt.key === 'ArrowUp') {
 			setCursorIndexState(prev => prev > 0 ? prevIndex - 1 : prev);
 		} else if (evt.key === 'Enter' && cursorIndexState >= 0) {
-			handleInputSubmit(src[cursorIndexState].caption);
+			handleInputSubmit(inputRef.current?.value);
 		}
 	};
 
@@ -85,11 +85,11 @@ export const Advisor = receivedProps => {
 	} 
 
 	return (
-		<div id={id} ref={selfRef} {...attributes}>
+		<div id={id}  {...attributes}>
 			{
 				shownState ?
 					<Popup {...popupProps}>
-						<input autoFocus {...inputProps} />
+						<input autoFocus ref={inputRef} {...inputProps} />
 						<AdvisorList {...advisorListProps} />
 					</Popup> :
 					<input onFocus={handleFocus} {...inputProps} />
