@@ -28,9 +28,9 @@ export const Advisor = receivedProps => {
 
 	// input from user
 	const handleInputSubmit = (next, prev = value) => {
-		setShownState (
+		setValueState (
 			prev => {
-				whenInputSubmit(next, prev);
+				next = whenInputSubmit(next, prev);
 				return next;
 			}
 		);

@@ -61,10 +61,10 @@ export const defaultProps = {
 	},
 	cloud: {
 		src: produceEntries(5, (v, i) => {
-			return {caption: `Option #${i}`, text: `Option #${i}`, value: i}
+			return {caption: `Option #${i}`, text: `Option #${i}`, id: i}
 		}),
 		values: produceEntries(2, (v, i) => {
-			return {caption: `Option #${i}`, text: `Option #${i}`, value: i}
+			return {caption: `Option #${i}`, text: `Option #${i}`, id: i}
 		}),
 	},
 	select: {
