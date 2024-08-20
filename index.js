@@ -15,16 +15,18 @@ import { Slider } 		from "./src/gui/components/controls/slider";						// - repre
 import { Switch } 		from "./src/gui/components/controls/switch";						// - to output multiple radio buttons as a single component.
 
 // controls (mouse + keyboard interaction).
-import {Advisor} from '/src/gui/components/fields/advisor'										// - to show basic text field with autocomplete suggestions.
-import { Cloud } from "./src/gui/components/fields/cloud";										// - for displaying the add/remove tags interface.
-import {Select} from '/src/gui/components/fields/select'											// - for selection one option from the source list.
+import {Advisor} 			from './src/gui/components/fields/advisor'							// - to show basic text field with autocomplete suggestions.
+import {Cloud} 				from "./src/gui/components/fields/cloud";								// - for displaying the add/remove tags interface.
+// NumberBox only numbers input(may be disabled keyboard input).
+// ResourceBox / UrlBox field for input universal location resource.
+import {Select} 			from './src/gui/components/fields/select'								// - for selection one option from the source list.
 
 // control data in output view.
-import { Accordion } 	from "/src/gui/layouts/data/accordion";									// - consists of a list of headers and their associated content.
-import { Browser } 		from "/src/gui/layouts/data/browser";										// - switching of displayed data in the viewing area.
+import { Accordion } 	from "./src/gui/layouts/data/accordion";								// - consists of a list of headers and their associated content.
+import { Browser } 		from "./src/gui/layouts/data/browser";									// - switching of displayed data in the viewing area.
 import { Navigator } 	from "./src/gui/layouts/data/navigator";								// - switching of displayed slide in the viewing area by linear order.
 import { Paginator } 	from "./src/gui/layouts/data/paginator";								// - switching of displayed page in the viewing area.
-import { Scrollbar } 	from "/src/gui/layouts/data/scrollbar";									// - represents universal customizable content scrollbar.
+import { Scrollbar } 	from "./src/gui/layouts/data/scrollbar";								// - represents universal customizable content scrollbar.
 
 // drag and drop components
 import { Area } 			from "./src/gui/layouts/dnd/area";											// - within which you can drag and drop components.
@@ -33,13 +35,6 @@ import { Drop } 			from "./src/gui/layouts/dnd/drop";											// - that can ta
 import { Slot } 			from "./src/gui/layouts/dnd/slot";											// - drop which accepts only one drag element.
 import { Store } 			from "./src/gui/layouts/dnd/store";											// - drop which accepts more than one drag element.
 
-// Form Factory
-// NumberBox only numbers input(may be disabled keyboard input).
-// ResourceBox
-// StringBox standard text input field, offering available options.
-// TextBox standard text area field.
-// UrlBox field for input universal location resource.
-
 // external module api
 export const Components = {
 	Indicator, Path, Popup, Timer, View,
@@ -47,7 +42,7 @@ export const Components = {
 	Advisor, Cloud, Select,
 };
 
-export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar}
-export const DnD = 	{Area, Drag, Drop, Slot, Store}
+export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar,}
+export const DnD = 	{Area, Drag, Drop, Slot, Store,}
 
 // ========================================================================= //
