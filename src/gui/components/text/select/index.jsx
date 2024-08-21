@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
-import { Dropdown } from '../../controls/dropdown';
+import { Dropdown } from '../../composition/dropdown';
 import { View } from '../../basics/view';
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //

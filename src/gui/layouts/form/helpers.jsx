@@ -1,6 +1,6 @@
-import { CheckBox } from '../../components/controls/checkbox';
-import { Range } from '../../components/controls/range';
-import { Slider } from '../../components/controls/slider';
+import { CheckBox } from '../../components/mouse/checkbox';
+import { Range } from '../../components/mouse/range';
+import { Slider } from '../../components/mouse/slider';
 // ========================================================================= //
 // Helper functions.																												 //
 // ========================================================================= //

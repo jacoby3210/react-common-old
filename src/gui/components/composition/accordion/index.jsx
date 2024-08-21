@@ -3,7 +3,7 @@ import { mergeProps } from 'react-aria';
 import {View} from "../../../components/basics/view"
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // ========================================================================= //
-// Accordion consists of a list of headers and their associated content.
+// Composition represents list of headers and their associated ui blocks.
 // ========================================================================= //
 
 export const Accordion = receivedProps => {
