@@ -25,7 +25,7 @@ export const Range = receivedProps => {
 	const trackRef = useRef(null), thumbRef = useRef(null);
 	const [captureState, setCaptureState] = useState(false);
 	const [offsetState, setOffsetState] = useState(0);
-	const [valueState, setValueState] = useState(value || min);
+	const [valueState, setValueState] = useState(Math.max(Math.min(value, max), min));
 	useEffect(() => {
 		const handleMouseUp = () => {
 			document.removeEventListener('mousemove', handleMouseMove);
@@ -37,12 +37,11 @@ export const Range = receivedProps => {
 			document.addEventListener('mouseup', handleMouseUp);
 		}
 	}, [captureState]);
-	useEffect(() => { setValueState(value) }, [value]);
 	
 	// input from user
-	const handleSetValueState = (newValue) => {
-		setValueState(newValue);
-		if (whenUpdateValueState) whenUpdateValueState(newValue);
+	const handleUpdateValueState = (nextPotential) => {
+		const next = Math.max(Math.min(nextPotential, max), min);
+		setValueState(prev => whenUpdateValueState(next, prev));
 	}
 
 	const handleTrackMouseDown = (evt) => {
@@ -50,7 +49,7 @@ export const Range = receivedProps => {
 		const rect = trackRef.current.getBoundingClientRect();
 		const relativePos = getPosition(rect, props, evt[props.cursor], 0);
 		const newValue = positionToValue(relativePos, min, max, step);
-		valueAnimate(valueState, newValue, 200, handleSetValueState);
+		valueAnimate(valueState, newValue, 200, handleUpdateValueState);
 	}
 
 	const handleThumbMouseDown = (evt) => {
@@ -65,7 +64,7 @@ export const Range = receivedProps => {
 		const rect = trackRef.current.getBoundingClientRect();
 		const relativePos = getPosition(rect, props, evt[props.cursor], offsetState);
 		const newValue = positionToValue(relativePos, min, max, step)
-		handleSetValueState(newValue);
+		handleUpdateValueState(newValue);
 		evt.preventDefault();
 	};
 

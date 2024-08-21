@@ -55,17 +55,17 @@ export const positionToValue = (value, min, max, step) => {
 }
 
 // Control value.
-export const valueAnimate = (start, end, duration, handleSetValueState) => {
+export const valueAnimate = (start, end, duration, handleUpdateValueState) => {
 	let startTime = null;
 
 	const step = timestamp => {
 		if (!startTime) startTime = timestamp;
 		const progress = (timestamp - startTime) / duration;
 		const newValue = start + (end - start) * progress;
-		handleSetValueState(newValue);
+		handleUpdateValueState(newValue);
 
 		if (progress < 1) requestAnimationFrame(step);
-		else handleSetValueState(end);
+		else handleUpdateValueState(end);
 	};
 
 	requestAnimationFrame(step);

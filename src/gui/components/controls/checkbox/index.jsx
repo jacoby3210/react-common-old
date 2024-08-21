@@ -5,26 +5,31 @@ import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 // React Component wrapping around the classic checkbox for simplicity.
 // ========================================================================= //
 
-export const Checkbox = receivedProps => {
+export const CheckBox = receivedProps => {
 
 	// initial data
 	const {
 		id,
-		onChange,
 		value,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
 	const [valueState, setValueState] = useState(value);
-	useEffect(() => {setValueState(value);}, [value]);
+	useEffect(() => {
+		if(value != valueState) {
+			// handleUpdateValueState(value);
+			console.log(receivedProps, value, valueState, attributes)
+		}
+	}, [value]);
 
 	// input from user
-  const handleCheckboxChange = () => {
+  const handleUpdateValueState = (next) => {
     setValueState(
 			prev => {
-				onChange(!prev, prev);
-				return !prev
+				whenUpdateValueState(next, prev);
+				return next;
 			}
 		);
   };
@@ -35,12 +40,12 @@ export const Checkbox = receivedProps => {
         type="checkbox" 
         checked={valueState} 
 				value={valueState}
-        onChange={handleCheckboxChange} 
+        onChange={handleUpdateValueState.bind(null, !valueState)} 
 				{...attributes}
       />
 	);
 };
 
-Checkbox.propTypes = propTypes;
+CheckBox.propTypes = propTypes;
 
 // ========================================================================= //

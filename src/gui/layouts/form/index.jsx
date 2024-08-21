@@ -22,20 +22,11 @@ export const Form = receivedProps => {
   const self = useRef();
   const [formData, setFormData] = useState(value);
   useEffect(() => {
-    if (schema) {
-      const initialData = schema.reduce((acc, field) => {
-        acc[field.label] = field.defaultValue || "";
-        return acc;
-      }, {});
-      setFormData(initialData);
-    }
   }, [schema]);
 
 	// input from user
   const handleChange = (label, value) => {
-		console.log(value)
 		setFormData( (prevData) => {
-			// console.log(prevData, { ...prevData, [label]: value })
 			return { ...prevData, [label]: value };
 		});
   };
@@ -46,10 +37,10 @@ export const Form = receivedProps => {
 
 		const fieldProps = {
 			value: formData[label],
-			onChange: (e) => handleChange(label, e.target.value),
+			whenUpdateValueState: (next, prev) => {handleChange(label, next); return next;},
+			onChange: (evt) => {handleChange(label, evt.target.value)},
 			disabled: !isEditable,
 		}
-		
     return <Field key={name} {...field}>
 	    {relations[type](fieldProps)}
 		</Field>;

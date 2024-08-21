@@ -8,7 +8,7 @@ import { Timer } 			from "./src/gui/components/basics/timer";								// - to sho
 import { View } 			from "./src/gui/components/basics/view";								// - for render multiple repetitive data.
 
 // controls (mouse interaction)
-import { Checkbox } 	from "./src/gui/components/controls/checkbox";					// - wrapping around the classic checkbox for simplicity.
+import { CheckBox } 	from "./src/gui/components/controls/checkbox";					// - wrapping around the classic checkbox for simplicity.
 import { Clicker } 		from "./src/gui/components/controls/clicker";						// - to track the user's clicks and display the total score.
 import { Dropdown } 	from "./src/gui/components/controls/dropdown";					// - for render a drop-down layout.
 import { RadioBar } 	from "./src/gui/components/controls/radiobar";					// - to output multiple radio buttons as a single component.
@@ -39,8 +39,9 @@ import { Store } 			from "./src/gui/layouts/dnd/store";											// - drop whic
 // external module api
 export const Components = {
 	Indicator, Path, Popup, Timer, View,
-	Checkbox, Clicker, Dropdown, RadioBar, Range, Slider,
+	CheckBox, Clicker, RadioBar, Range, Slider,
 	Advisor, Cloud, Select,
+	Dropdown, 
 };
 
 export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar,}

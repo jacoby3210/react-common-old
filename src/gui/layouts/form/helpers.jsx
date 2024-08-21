@@ -1,4 +1,9 @@
-// formFields.js
+import { CheckBox } from '../../components/controls/checkbox';
+import { Range } from '../../components/controls/range';
+import { Slider } from '../../components/controls/slider';
+// ========================================================================= //
+// Helper functions.																												 //
+// ========================================================================= //
 
 export const Field = receivedProps => {
 	const { children, label} = receivedProps;
@@ -10,20 +15,28 @@ export const Field = receivedProps => {
 	);
 }
 
-export const checkbox = ({key, value, ...props}) => (
-	<input name={key} type="checkbox" defaultChecked={value} value={value} {...props}/>
+export const checkbox = ({key, value, onChange, ...props}) => (
+	<CheckBox name={key} value={value} {...props}/>
 );
 
-export const number = ({key, value, ...props}) => (
+export const number = ({key, value, whenUpdateValueState, ...props}) => (
 	<input name={key} type="number" value={value} {...props}/>
+);
+
+export const range = ({key, value, onChange, ...props}) => (
+	<Range name={key} value={value} {...props}/>
+);
+
+export const slider = ({key, value, onChange, ...props}) => (
+	<CheckBox name={key} value={value} {...props}/>
 );
 
 // export api
 export const relations = {
   /* mouse fields */
 	checkbox,
-	// range, 
-	// slider,
+	range, 
+	slider,
 	// switcher,
 
 	// kb fields
@@ -32,3 +45,5 @@ export const relations = {
   // array: arrayField,
   // object: objectField,
 };
+
+// ========================================================================= //

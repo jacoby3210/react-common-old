@@ -27,6 +27,8 @@ export const propTypes = {
 		PropTypes.object,
 	]),
 	id: PropTypes.string,
+	value: PropTypes.bool,
+	whenUpdateValueState: PropTypes.func,
 };
 
 // ========================================================================= //

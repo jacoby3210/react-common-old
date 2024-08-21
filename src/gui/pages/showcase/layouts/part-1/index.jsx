@@ -1,5 +1,5 @@
 import {Components} from "/index.js"
-import { defaultProps } from "./config";
+import {defaultProps} from "./config";
 // ========================================================================= //
 // React Component  
 // ========================================================================= //
@@ -18,7 +18,7 @@ export const ExamplePart1 = receivedProps => {
 			<Components.View {...defaultProps.view}/>
 			
 			{/* controls */}
-			<Components.Checkbox/>
+			<Components.CheckBox/>
 			<Components.Clicker />
 			<Components.Dropdown>
 				<Components.View {...defaultProps.dropdown}/>
