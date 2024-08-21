@@ -5,7 +5,7 @@ import { DEFAULT_CLASS, defaultProps, propTypes } from "./config";
 // React Component to output multiple radio buttons as a single component.  
 // ========================================================================= //
 
-export const Switch = receivedProps => {
+export const RadioBar = receivedProps => {
 
 	// initial data
 	const {
@@ -53,6 +53,6 @@ export const Switch = receivedProps => {
 	);
 };
 
-Switch.propTypes = propTypes;
+RadioBar.propTypes = propTypes;
 
 // ========================================================================= //

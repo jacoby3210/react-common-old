@@ -8,11 +8,12 @@ import { Timer } 			from "./src/gui/components/basics/timer";								// - to sho
 import { View } 			from "./src/gui/components/basics/view";								// - for render multiple repetitive data.
 
 // controls (mouse interaction)
+import { Checkbox } 	from "./src/gui/components/controls/checkbox";					// - wrapping around the classic checkbox for simplicity.
 import { Clicker } 		from "./src/gui/components/controls/clicker";						// - to track the user's clicks and display the total score.
 import { Dropdown } 	from "./src/gui/components/controls/dropdown";					// - for render a drop-down layout.
+import { RadioBar } 	from "./src/gui/components/controls/radiobar";					// - to output multiple radio buttons as a single component.
 import { Range } 			from "./src/gui/components/controls/range";							// - to select a value from the suggested numeric range.
 import { Slider } 		from "./src/gui/components/controls/slider";						// - represents universal customizable content scroller.
-import { Switch } 		from "./src/gui/components/controls/switch";						// - to output multiple radio buttons as a single component.
 
 // controls (mouse + keyboard interaction).
 import {Advisor} 			from './src/gui/components/fields/advisor'							// - to show basic text field with autocomplete suggestions.
@@ -38,11 +39,12 @@ import { Store } 			from "./src/gui/layouts/dnd/store";											// - drop whic
 // external module api
 export const Components = {
 	Indicator, Path, Popup, Timer, View,
-	Clicker, Dropdown, Range, Slider, Switch,
+	Checkbox, Clicker, Dropdown, RadioBar, Range, Slider,
 	Advisor, Cloud, Select,
 };
 
 export const Data = {Accordion, Browser, Navigator, Paginator, Scrollbar,}
 export const DnD = 	{Area, Drag, Drop, Slot, Store,}
+export {Form} from "./src/gui/layouts/form";
 
 // ========================================================================= //
