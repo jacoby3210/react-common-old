@@ -28,7 +28,7 @@ export const range = ({key, value, onChange, ...props}) => (
 );
 
 export const slider = ({key, value, onChange, ...props}) => (
-	<CheckBox name={key} value={value} {...props}/>
+	<Slider name={key} value={value} {...props}/>
 );
 
 // export api

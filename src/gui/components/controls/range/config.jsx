@@ -13,7 +13,7 @@ export const defaultProps = {
 	speed: 0.01, 																		// speed of slider movement on the track.
 	step: 0.01,																			// minimum step to change the value.
 	value: 0,																				// current value.
-	whenUpdateValueState: (value) => {}							// callback to handle the shown state update.
+	whenUpdateValueState: (next, prev) => next			// callback to handle the shown state update.
 };
 
 // ========================================================================= //

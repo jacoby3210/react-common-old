@@ -19,16 +19,15 @@ export const Form = receivedProps => {
   } = mergeProps(defaultProps, receivedProps);
 
   // hooks
-  const self = useRef();
-  const [formData, setFormData] = useState(value);
+  const self = useRef(), valueRef = useRef(value);
   useEffect(() => {
   }, [schema]);
-
+	const [, forceUpdate] = React.useReducer(x => x + 1, 0);
 	// input from user
   const handleChange = (label, value) => {
-		setFormData( (prevData) => {
-			return { ...prevData, [label]: value };
-		});
+		valueRef.current[label] = value;
+		console.log(valueRef.current[label])
+		forceUpdate()
   };
 
   // render
@@ -36,7 +35,7 @@ export const Form = receivedProps => {
     const {label, name, type} = field;
 
 		const fieldProps = {
-			value: formData[label],
+			value: valueRef.current[label],
 			whenUpdateValueState: (next, prev) => {handleChange(label, next); return next;},
 			onChange: (evt) => {handleChange(label, evt.target.value)},
 			disabled: !isEditable,

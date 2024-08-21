@@ -18,6 +18,7 @@ export const ExamplePart4 = receivedProps => {
 		schemaEntry("checkboxField", "1", "checkbox"),
 		schemaEntry("numberField", "2", "number"),
 		schemaEntry("rangeField", "3", "range"),
+		schemaEntry("sliderField", "4", "slider"),
 	]
 
 	const value = {

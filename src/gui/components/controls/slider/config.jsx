@@ -7,13 +7,13 @@ export const DEFAULT_CLASS = 'rc-slider';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	axis: false,													// axis in the depth of which the GUI component is located.
-	min: 0.0,															// minimum value available for choice.
-	max: 1.0,															// maximum value available for choice.
-	speed: 0.01, 													// speed of slider movement on the track.
-	step: 0.01,														// minimum step to change the value.
-	value: 0,															// current setup value.
-	whenUpdateValueState: (value) => {}		// value change handler
+	axis: false,																		// axis in the depth of which the GUI component is located.
+	min: 0.0,																				// minimum value available for choice.
+	max: 1.0,																				// maximum value available for choice.
+	speed: 0.01, 																		// speed of slider movement on the track.
+	step: 0.01,																			// minimum step to change the value.
+	value: 0,																				// current setup value.
+	whenUpdateValueState: (next, prev) => next			// value change handler
 };
 
 // ========================================================================= //

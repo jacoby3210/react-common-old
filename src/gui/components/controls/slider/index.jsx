@@ -16,15 +16,15 @@ export const Slider = receivedProps => {
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
-	const timeoutRef = useRef(null);
-	const [valueState, setValueState] = useState(value);
-	useEffect(() => {setValueState(value);},[value])
+	const timeoutRef = useRef(null), valueRef = useRef(value);
+	const [valueState, setValueState] = useState(Math.max(Math.min(value, max), min));
 
 	// inputs
-	const handleChange = (newValue) => {
-		setValueState(prev => {whenUpdateValueState(newValue); return newValue;})
+	const handleUpdateValueState = (next, prev) => {
+		valueRef.current = whenUpdateValueState(next, prev); 
+		return valueRef.current;
 	}
-
+	
 	const handleMouseDown = ( moveStep, e) => {
 		if(e.detail != 1) return;
 		const fn = () => handleMouseDownSlice(moveStep);
@@ -40,7 +40,7 @@ export const Slider = receivedProps => {
 		})
 	}
 
-	const handleMouseDoubleClick = (newValue) => handleChange(newValue);
+	const handleMouseDoubleClick = (newValue) => handleUpdateValueState(newValue);
 
 	// render 
 	const SliderButton = ({btnPostFix, btnAbsValue, btnStep})=>{
@@ -59,11 +59,11 @@ export const Slider = receivedProps => {
 	const inputRangeProps = {
 		...receivedProps,
 		value: valueState,
-		whenUpdateValueState: handleChange,
+		whenUpdateValueState: handleUpdateValueState,
 	}
 
 	return (
-		<div id={id} {...attributes} value={valueState}>
+		<div id={id} {...attributes} value={valueRef.current}>
 			<SliderButton {...toStartProps}></SliderButton>
 			<Range {...inputRangeProps} />
 			<SliderButton {...toEndProps}></SliderButton>
