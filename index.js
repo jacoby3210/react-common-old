@@ -8,22 +8,21 @@ import { Timer } 			from "./src/gui/components/basics/timer";								// - to sho
 import { View } 			from "./src/gui/components/basics/view";								// - for render multiple repetitive data.
 
 //
-import { Accordion } 	from "./src/gui/components/composition/accordion";			// - sections consists of a list of headers and their associated ui blocks.
+import { Accordion } 	from "./src/gui/components/composition/accordion";			// - represents list of headers and their associated ui blocks.
 import { Dropdown } 	from "./src/gui/components/composition/dropdown";				// - for render a drop-down layout.
 
-// controls (mouse interaction)
+// mouse
 import { CheckBox } 	from "./src/gui/components/mouse/checkbox";							// - wrapping around the classic checkbox for simplicity.
 import { Clicker } 		from "./src/gui/components/mouse/clicker";							// - to track the user's clicks and display the total score.
 import { RadioBar } 	from "./src/gui/components/mouse/radiobar";							// - to output multiple radio buttons as a single component.
 import { Range } 			from "./src/gui/components/mouse/range";								// - to select a value from the suggested numeric range.
 import { Slider } 		from "./src/gui/components/mouse/slider";								// - represents universal customizable content scroller.
 
-// controls (mouse + keyboard interaction).
+// text
 import {Advisor} 			from './src/gui/components/text/advisor'								// - to show basic text field with autocomplete suggestions.
 import {Cloud} 				from "./src/gui/components/text/cloud";									// - for displaying the add/remove tags interface.
-// NumberBox only numbers input(may be disabled keyboard input).
-// ResourceBox / UrlBox field for input universal location resource.
 import {Select} 			from './src/gui/components/text/select'									// - for selection one option from the source list.
+import {Switcher} 		from "./src/gui/components/text/switcher";							// - for selection one option from the source list (alt mode).
 
 // control data in output view.
 import { Browser } 		from "./src/gui/layouts/data/browser";									// - switching of displayed data in the viewing area.
@@ -43,7 +42,7 @@ export const Components = {
 	Indicator, Path, Popup, Timer, View,
 	Accordion, Dropdown, 
 	CheckBox, Clicker, RadioBar, Range, Slider,
-	Advisor, Cloud, Select,
+	Advisor, Cloud, Select, Switcher
 };
 
 export const Data = {Browser, Navigator, Paginator, Scrollbar,}

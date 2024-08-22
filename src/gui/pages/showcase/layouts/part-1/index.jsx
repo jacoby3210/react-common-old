@@ -17,12 +17,14 @@ export const ExamplePart1 = receivedProps => {
 			<Components.Timer {...defaultProps.timer}/>
 			<Components.View {...defaultProps.view}/>
 			
-			{/* controls */}
-			<Components.CheckBox/>
-			<Components.Clicker />
+			{/* composition */}
 			<Components.Dropdown>
 				<Components.View {...defaultProps.dropdown}/>
 			</Components.Dropdown>
+
+			{/* controls */}
+			<Components.CheckBox/>
+			<Components.Clicker />
 			<Components.RadioBar {...defaultProps.radioBar}/>
 			<Components.Range {... defaultProps.rangeHorizontal} />
 			<Components.Range {... defaultProps.rangeVertical} />
@@ -32,6 +34,7 @@ export const ExamplePart1 = receivedProps => {
 			<Components.Advisor {...defaultProps.advisor}/>
 			<Components.Cloud {...defaultProps.cloud}/>
 			<Components.Select {...defaultProps.select}/>
+			<Components.Switcher {...defaultProps.select}/>
 		</>
 	);
 };
