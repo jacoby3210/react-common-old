@@ -17,31 +17,31 @@ export const Switcher = receivedProps => {
 		} = mergeProps(defaultProps, receivedProps);
 
 		// hooks
-		const self = useRef(null);
+		const self = useRef(null), srcRef = useRef(src);
 		const [valueState, setValueState] = useState(value);
 
-		useEffect(() => {
-			if (onChange) onChange(src[valueState]);
-		}, [src, valueState, onChange]);
+		// useEffect(() => {
+		// 	if (onChange) onChange(srcRef.current[valueState]);
+		// }, [src, valueState, onChange]);
 
 		// input from user
 		const handlePrevClick = () => {
 			setValueState(prevIndex => 
-				prevIndex === 0 ? src.length - 1 : prevIndex - 1
+				prevIndex === 0 ? srcRef.current.length - 1 : prevIndex - 1
 			);
 		};
 
 		const handleNextClick = () => {
 			setValueState(prevIndex => 
-				prevIndex === src.length - 1 ? 0 : prevIndex + 1
+				prevIndex === srcRef.current.length - 1 ? 0 : prevIndex + 1
 			);
 		};
-
-		// render
+		console.log(srcRef)
+		
 		return (
 			<div id={id} ref={self} {...attributes} className={DEFAULT_CLASS}>
 				<button onClick={handlePrevClick}>←</button>
-				<span>{src[valueState].caption}</span>
+				<span>{srcRef.current[valueState].caption}</span>
 				<button onClick={handleNextClick}>→</button>
 			</div>
 		);

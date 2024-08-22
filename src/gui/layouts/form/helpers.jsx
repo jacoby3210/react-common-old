@@ -1,6 +1,9 @@
-import { CheckBox } from '../../components/mouse/checkbox';
-import { Range } from '../../components/mouse/range';
-import { Slider } from '../../components/mouse/slider';
+import {CheckBox} from '../../components/mouse/checkbox';
+import {Range} from '../../components/mouse/range';
+import {Slider} from '../../components/mouse/slider';
+import {Advisor} from '../../components/text/advisor'
+import {Select} from '../../components/text/select'
+import {Switcher} from '../../components/text/switcher'
 // ========================================================================= //
 // Helper functions.																												 //
 // ========================================================================= //
@@ -8,7 +11,7 @@ import { Slider } from '../../components/mouse/slider';
 export const Field = receivedProps => {
 	const { children, label} = receivedProps;
 	return (
-		<div  className="rc-form-field">
+		<div className="rc-form-field">
     	<label>{label}</label>
 			{children}
 		</div>
@@ -31,16 +34,32 @@ export const slider = ({key, value, onChange, ...props}) => (
 	<Slider name={key} value={value} {...props}/>
 );
 
+export const select = ({key, value, onChange, ...props}) => (
+	<Slider name={key} value={value} {...props}/>
+);
+
+export const switcher = ({key, value, onChange, ...props}) => (
+	<Switcher name={key} value={value} {...props}/>
+);
+
+export const text = ({key, value, onChange, ...props}) => (
+	<Advisor name={key} value={value} {...props}/>
+);
+
+
 // export api
 export const relations = {
-  /* mouse fields */
+  /* bool & numbers fields */
 	checkbox,
+	number,
 	range, 
 	slider,
-	// switcher,
+	
+	// enums & text
+	select,
+	switcher,
+	text,
 
-	// kb fields
-	number,
   /* complex data*/
   // array: arrayField,
   // object: objectField,

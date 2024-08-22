@@ -32,13 +32,14 @@ export const Form = receivedProps => {
 
   // render
   const renderField = (field) => {
-    const {label, name, type} = field;
-
+    const {label, name, type, props} = field;
+		console.log(props)
 		const fieldProps = {
 			value: valueRef.current[label],
 			whenUpdateValueState: (next, prev) => {handleChange(label, next); return next;},
 			onChange: (evt) => {handleChange(label, evt.target.value)},
 			disabled: !isEditable,
+			...props,
 		}
     return <Field key={name} {...field}>
 	    {relations[type](fieldProps)}
