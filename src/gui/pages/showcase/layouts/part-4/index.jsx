@@ -15,10 +15,10 @@ export const ExamplePart4 = receivedProps => {
 		({label, name, type, props});
 	
 	const src = [
-				{caption: "Test 0", value: 0}, 
-				{caption: "Test 1", value: 1}, 
-				{caption: "Test 2", value: 2},
-			]
+		{caption: "Test 0", value: 0}, 
+		{caption: "Test 1", value: 1}, 
+		{caption: "Test 2", value: 2},
+	]
 
 	const schema = [
 		schemaEntry("checkboxField", "1", "checkbox"),

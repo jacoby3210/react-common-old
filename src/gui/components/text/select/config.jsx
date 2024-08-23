@@ -7,7 +7,6 @@ export const DEFAULT_CLASS = 'rc-dropdown-select';
 export const defaultProps = {
 	id: null,
 	className: DEFAULT_CLASS,
-	caption: "select",															// displayed text on the control button.
 	src: [],																				// source data array provider for mapping.
 	TemplateSelectOption:receivedProps => {					// template for forming a gui by metadata.
 		const {meta, ...attributes} = receivedProps;

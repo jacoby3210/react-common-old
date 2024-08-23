@@ -12,7 +12,6 @@ export const Select = receivedProps => {
 	// initial data
 	const {
 		id,
-		caption,
 		src,
 		value,
 		TemplateSelectOption,
@@ -20,15 +19,19 @@ export const Select = receivedProps => {
 	} = mergeProps(defaultProps, receivedProps);
 
 	// hooks
-	const [captionState, setCaptionState] = useState(caption);
 	const [valueState, setValueState] = useState(value);
 	useEffect(() => {setValueState(value);}, [value]);
 
 	// input from user
+	const handleUpdateValueState = (next, prev)=>{
+		setValueState(prev => {
+			return next;
+		})
+
+	}
 	const handleClick = (e) => {
 		const el = e.target.closest("option");
-		setCaptionState(el.innerText);
-		setValueState(el.value);
+		handleUpdateValueState(el.value);
 	}
 
 	// render 
@@ -42,7 +45,7 @@ export const Select = receivedProps => {
 	return (
 		<Dropdown 
 			id={id} 
-			caption={captionState} 
+			caption={src.find(item => item.value == valueState).caption} 
 			value={valueState} 
 			{...attributes} 
 		>
