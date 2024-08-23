@@ -18,10 +18,6 @@ export const Field = receivedProps => {
 	);
 }
 
-export const groupField = ({key, value, onChange, ...props}) => (
-	<CheckBox name={key} value={value} {...props}/>
-);
-
 export const checkbox = ({key, value, onChange, ...props}) => (
 	<CheckBox name={key} value={value} {...props}/>
 );
@@ -38,6 +34,14 @@ export const slider = ({key, value, onChange, ...props}) => (
 	<Slider name={key} value={value} {...props}/>
 );
 
+export const line = ({key, value, onChange, ...props}) => (
+	<Advisor name={key} value={value} {...props}/>
+);
+
+export const paragraph = ({key, value, onChange, ...props}) => (
+	<Advisor name={key} value={value} {...props}/>
+);
+
 export const select = ({key, value, onChange, ...props}) => (
 	<Select name={key} value={value} {...props}/>
 );
@@ -46,13 +50,9 @@ export const switcher = ({key, value, onChange, ...props}) => (
 	<Switcher name={key} value={value} {...props}/>
 );
 
-export const text = ({key, value, onChange, ...props}) => (
-	<Advisor name={key} value={value} {...props}/>
-);
-
-
 // export api
 export const relations = {
+	
   /* bool & numbers fields */
 	checkbox,
 	number,
@@ -60,13 +60,13 @@ export const relations = {
 	slider,
 	
 	// enums & text
+	line,
+	paragraph,
 	select,
 	switcher,
-	text,
 
   /* complex data*/
   // array: arrayField,
-  group: groupField,
 };
 
 // ========================================================================= //

@@ -10,9 +10,8 @@ export const defaultProps = {
 	className: DEFAULT_CLASS,
 	src: [],																									// source data array available suggestions.
 	value: 0,																									// current display text.
-	// whenInputSubmit: (next, prev) => next,										// to handle submit of user input.
 	TemplateAdvisorOption: TemplateAdvisorOptionDefault,			// template to generate a gui for an individual suggestion.
-	whenUpdateValueState: (next, prev) => next			// value change handler.
+	whenUpdateValueState: (next, prev) => next								// value change handler.
 };
 
 // ========================================================================= //

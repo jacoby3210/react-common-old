@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { mergeProps } from 'react-aria';
 import {Popup} from '../../basics/popup'
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
-import { AdvisorList, TemplateAdvisorOptionDefault } from './helpers';
+import { AdvisorList} from './helpers';
 // ========================================================================= //
 // React component rendering  basic text filed with input suggestions.
 // ========================================================================= //
@@ -27,9 +27,8 @@ export const Advisor = receivedProps => {
 	useEffect(() => {setValueState(value);}, [value]);
 
 	// input from user
-	const handleInputSubmit = (next, prev = value) => {
+	const handleInputSubmit = (next) => {
 		setValueState (prev => whenUpdateValueState(next, prev));
-		setShownState(false);
 	}
 
 	const handleChange = (evt) => {
@@ -47,12 +46,14 @@ export const Advisor = receivedProps => {
 		} else if (evt.key === 'ArrowUp') {
 			setCursorIndexState(prev => prev > 0 ? prevIndex - 1 : prev);
 		} else if (evt.key === 'Enter' && cursorIndexState >= 0) {
-			handleInputSubmit(inputRef.current?.value);
+			handleInputSubmit(src[cursorIndexState]?.caption);
+			setShownState(false);
 		}
 	};
 
 	const handleAdvisorOptionClick = (evt) => {
 		handleInputSubmit(evt.currentTarget.value);
+		setShownState(false);
 	}
 
 	// render 
