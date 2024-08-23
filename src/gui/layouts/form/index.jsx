@@ -23,6 +23,7 @@ export const Form = receivedProps => {
   useEffect(() => {
   }, [schema]);
 	const [, forceUpdate] = React.useReducer(x => x + 1, 0);
+	
 	// input from user
   const handleChange = (label, value) => {
 		valueRef.current[label] = value;

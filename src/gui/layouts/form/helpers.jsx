@@ -35,7 +35,7 @@ export const slider = ({key, value, onChange, ...props}) => (
 );
 
 export const select = ({key, value, onChange, ...props}) => (
-	<Slider name={key} value={value} {...props}/>
+	<Select name={key} value={value} {...props}/>
 );
 
 export const switcher = ({key, value, onChange, ...props}) => (

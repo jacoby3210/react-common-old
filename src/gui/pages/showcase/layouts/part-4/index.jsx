@@ -26,7 +26,7 @@ export const ExamplePart4 = receivedProps => {
 		schemaEntry("rangeField", "3", "range"),
 		schemaEntry("sliderField", "4", "slider"),
 		
-		// schemaEntry("selectField", "5", "select", src),
+		schemaEntry("selectField", "5", "select", {src}),
 		schemaEntry("switcherField", "6", "switcher", {src}),
 	]
 	const value = {
