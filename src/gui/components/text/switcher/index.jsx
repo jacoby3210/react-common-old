@@ -10,7 +10,7 @@ export const Switcher = receivedProps => {
 		// initial data
 		const {
 			id,
-			onChange,
+			whenUpdateValueState,
 			src,
 			value,
 			...attributes
@@ -20,23 +20,20 @@ export const Switcher = receivedProps => {
 		const self = useRef(null), srcRef = useRef(src);
 		const [valueState, setValueState] = useState(value);
 
-		// useEffect(() => {
-		// 	if (onChange) onChange(srcRef.current[valueState]);
-		// }, [src, valueState, onChange]);
-
 		// input from user
 		const handlePrevClick = () => {
-			setValueState(prevIndex => 
-				prevIndex === 0 ? srcRef.current.length - 1 : prevIndex - 1
-			);
+			setValueState(prev => {
+				const next = prev === 0 ? srcRef.current.length - 1 : prev - 1;
+				return whenUpdateValueState(next, prev);
+			});
 		};
 
 		const handleNextClick = () => {
-			setValueState(prevIndex => 
-				prevIndex === srcRef.current.length - 1 ? 0 : prevIndex + 1
-			);
+			setValueState(prev => {
+				const next = prev === srcRef.current.length - 1 ? 0 : prev + 1;
+				return whenUpdateValueState(next, prev);
+			});
 		};
-		console.log(srcRef)
 		
 		return (
 			<div id={id} ref={self} {...attributes} className={DEFAULT_CLASS}>

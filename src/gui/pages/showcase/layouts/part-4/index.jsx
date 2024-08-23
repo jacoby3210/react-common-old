@@ -28,8 +28,20 @@ export const ExamplePart4 = receivedProps => {
 		
 		schemaEntry("selectField", "5", "select", {src}),
 		schemaEntry("switcherField", "6", "switcher", {src}),
+		schemaEntry("textField", "7", "text"),
+		// schemaEntry("groupField", "9", "group", [
+		// 	schemaEntry("checkboxField", "1", "checkbox"),
+		// 	schemaEntry("numberField", "2", "number"),
+		// 	schemaEntry("rangeField", "3", "range"),
+		// 	schemaEntry("sliderField", "4", "slider"),
+			
+		// 	schemaEntry("selectField", "5", "select", {src}),
+		// 	schemaEntry("switcherField", "6", "switcher", {src}),
+		// 	schemaEntry("textField", "7", "text"),
+		// ]),
 	]
-	const value = {
+	
+	const valueBase = {
 		checkboxField: true,
 		numberField: 15,
 		rangeField: 15,
@@ -37,9 +49,12 @@ export const ExamplePart4 = receivedProps => {
 
 		selectField: 1,
 		switcherField: 1,
+		textField: "test at one",
+
 	}
-	const props = {schema, value}
-	return (
-		<Form {...props}/>
-	);
+	const value = {...valueBase, groupField: valueBase,};
+	
+	const formProps = {schema, value}
+	
+	return (<Form {...formProps}/>);
 };

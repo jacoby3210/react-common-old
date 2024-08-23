@@ -9,7 +9,7 @@ export const defaultProps = {
 	className: DEFAULT_CLASS,
 	options: [],    																// source data array provider for mapping.
 	value: 0,   																		// 
-	onChange: () => {},														  // 
+	whenUpdateValueState: (next, prev) => next			// value change handler.
 };
 
 // ========================================================================= //
@@ -30,7 +30,7 @@ export const propTypes = {
 	id: PropTypes.string,
 	options: PropTypes.array,
 	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	onChange: PropTypes.func,
+	whenUpdateValueState: PropTypes.func,
 };
 
 // ========================================================================= //

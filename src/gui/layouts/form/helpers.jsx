@@ -18,6 +18,10 @@ export const Field = receivedProps => {
 	);
 }
 
+export const groupField = ({key, value, onChange, ...props}) => (
+	<CheckBox name={key} value={value} {...props}/>
+);
+
 export const checkbox = ({key, value, onChange, ...props}) => (
 	<CheckBox name={key} value={value} {...props}/>
 );
@@ -62,7 +66,7 @@ export const relations = {
 
   /* complex data*/
   // array: arrayField,
-  // object: objectField,
+  group: groupField,
 };
 
 // ========================================================================= //

@@ -28,7 +28,7 @@ export const Dropdown = receivedProps => {
 		evt.stopPropagation();
 		setShownState((prev) => !prev);
 	}
-console.log(caption)
+
 	// render 
 	const popupProps = {shown: true, whenUpdateShownState: setShownState,};
 	return (

@@ -32,19 +32,25 @@ export const Form = receivedProps => {
   };
 
   // render
-  const renderField = (field) => {
-    const {label, name, type, props} = field;
-		console.log(props)
+	const getFieldUI = (obj, property) => {
+    const {label, name, type, props} = property;
 		const fieldProps = {
-			value: valueRef.current[label],
+			value: obj[label],
 			whenUpdateValueState: (next, prev) => {handleChange(label, next); return next;},
 			onChange: (evt) => {handleChange(label, evt.target.value)},
 			disabled: !isEditable,
 			...props,
 		}
-    return <Field key={name} {...field}>
+		return <Field key={name}>
 	    {relations[type](fieldProps)}
 		</Field>;
+	}
+	const f = (field, obj) => {
+
+	}
+  const renderField = (field) => {
+		// if(field.type == )
+		return getFieldUI(valueRef.current, field)
   };
 
   return (
