@@ -10,8 +10,9 @@ export const defaultProps = {
 	className: DEFAULT_CLASS,
 	src: [],																									// source data array available suggestions.
 	value: 0,																									// current display text.
-	whenInputSubmit: (next, prev) => next,										// to handle submit of user input.
+	// whenInputSubmit: (next, prev) => next,										// to handle submit of user input.
 	TemplateAdvisorOption: TemplateAdvisorOptionDefault,			// template to generate a gui for an individual suggestion.
+	whenUpdateValueState: (next, prev) => next			// value change handler.
 };
 
 // ========================================================================= //
@@ -33,8 +34,8 @@ export const propTypes = {
 	id: PropTypes.string,
 	src: PropTypes.array,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	whenInputSubmit: PropTypes.func,
 	TemplateAdvisorOption: PropTypes.func,
+	whenUpdateValueState: PropTypes.func,
 };
 
 // ========================================================================= //

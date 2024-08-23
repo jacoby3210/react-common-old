@@ -40,7 +40,7 @@ export const Cloud = receivedProps => {
 	}
 
 	// render 
-	const whenInputSubmit = (next, prev) => {
+	const whenUpdateValueState = (next, prev) => {
 		const i = src.findIndex(item => item.caption == next);
 		if(i != -1) setValuesState([...valuesState, src[i]]);
 		return '';
@@ -51,7 +51,7 @@ export const Cloud = receivedProps => {
 			? src 
 			: src.filter(item => !valuesState.some(toRemove => toRemove.id === item.id)),
 		value: '', 
-		whenInputSubmit
+		whenUpdateValueState
 	};
 	
 	const viewProps = {

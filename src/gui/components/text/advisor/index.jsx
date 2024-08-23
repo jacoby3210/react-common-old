@@ -14,7 +14,7 @@ export const Advisor = receivedProps => {
 		id,
 		src,
 		value,
-		whenInputSubmit,
+		whenUpdateValueState,
 		TemplateAdvisorOption,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
@@ -28,17 +28,12 @@ export const Advisor = receivedProps => {
 
 	// input from user
 	const handleInputSubmit = (next, prev = value) => {
-		setValueState (
-			prev => {
-				next = whenInputSubmit(next, prev);
-				return next;
-			}
-		);
+		setValueState (prev => whenUpdateValueState(next, prev));
 		setShownState(false);
 	}
 
 	const handleChange = (evt) => {
-		setValueState(evt.target.value);
+		handleInputSubmit(evt.target.value);
 	}
 	
 	const handleFocus = (evt) => {
