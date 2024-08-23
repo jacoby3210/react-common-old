@@ -21,6 +21,7 @@ export const defaultProps = {
 			</option>
 		);
 	},
+	whenUpdateValueState: (next, prev) => next			// value change handler.
 };
 
 // ========================================================================= //
@@ -42,6 +43,7 @@ export const propTypes = {
 	caption: PropTypes.string,
 	src: PropTypes.array,
 	TemplateSelectOption: PropTypes.func,
+	whenUpdateValueState: PropTypes.func
 };
 
 // ========================================================================= //

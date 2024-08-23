@@ -15,6 +15,7 @@ export const Select = receivedProps => {
 		src,
 		value,
 		TemplateSelectOption,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 
@@ -24,11 +25,9 @@ export const Select = receivedProps => {
 
 	// input from user
 	const handleUpdateValueState = (next, prev)=>{
-		setValueState(prev => {
-			return next;
-		})
-
+		setValueState(prev => whenUpdateValueState(next,prev))
 	}
+	
 	const handleClick = (e) => {
 		const el = e.target.closest("option");
 		handleUpdateValueState(el.value);
