@@ -24,7 +24,7 @@ export const checkbox = ({key, value, onChange, ...props}) => (
 );
 
 export const number = ({key, value, whenUpdateValueState, ...props}) => (
-	<input name={key} type="number" value={value} {...props}/>
+	<input autoFocus name={key} type="number" value={value} {...props}/>
 );
 
 export const range = ({key, value, onChange, ...props}) => (

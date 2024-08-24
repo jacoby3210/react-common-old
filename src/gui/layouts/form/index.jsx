@@ -20,20 +20,26 @@ export const Form = receivedProps => {
 
   // hooks
   const self = useRef(), valueRef = useRef(value);
-  useEffect(() => {
-  }, [schema]);
+  useEffect(() => { }, [schema]);
 	const [, forceUpdate] = React.useReducer(x => x + 1, 0);
 	
 	// input from user
   const handleChange = (label, value) => {
 		valueRef.current[label] = value;
-		console.log(valueRef.current[label])
-		forceUpdate()
+		forceUpdate() // need for property with number type.
   };
 
   // render
-	const getFieldUI = (obj, property) => {
+	const renderField = (obj, property) => {
     const {label, name, type, props} = property;
+
+		if(type == 'object') {
+			return <fieldset>
+				<legend>{label}</legend>
+				{props.schema.map((property) => renderField(obj[label], property))}
+			</fieldset>
+		}
+
 		const fieldProps = {
 			value: obj[label],
 			whenUpdateValueState: (next, prev) => {handleChange(label, next); return next;},
@@ -41,21 +47,13 @@ export const Form = receivedProps => {
 			disabled: !isEditable,
 			...props,
 		}
-		return <Field key={name}>
-	    {relations[type](fieldProps)}
-		</Field>;
-	}
-	const f = (field, obj) => {
 
+		return <Field key={name}> {relations[type](fieldProps)} </Field>;
 	}
-  const renderField = (field) => {
-		// if(field.type == )
-		return getFieldUI(valueRef.current, field)
-  };
 
   return (
     <div id={id} ref={self} {...attributes}>
-      {schema && schema.map((field) => renderField(field))}
+      {schema && schema.map((field) => renderField(valueRef.current, field))}
     </div>
   );
 };

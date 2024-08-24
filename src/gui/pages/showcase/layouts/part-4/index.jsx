@@ -30,16 +30,19 @@ export const ExamplePart4 = receivedProps => {
 		schemaEntry("switcherField", "6", "switcher", {src}),
 		schemaEntry("lineField", "7", "line"),
 		schemaEntry("paragraphField", "8", "paragraph"),
-		// schemaEntry("groupField", "9", "group", [
-		// 	schemaEntry("checkboxField", "1", "checkbox"),
-		// 	schemaEntry("numberField", "2", "number"),
-		// 	schemaEntry("rangeField", "3", "range"),
-		// 	schemaEntry("sliderField", "4", "slider"),
-			
-		// 	schemaEntry("selectField", "5", "select", {src}),
-		// 	schemaEntry("switcherField", "6", "switcher", {src}),
-		// 	schemaEntry("textField", "7", "text"),
-		// ]),
+		schemaEntry("objectField", "9", "object", {
+			schema: [
+				schemaEntry("checkboxField", "01", "checkbox"),
+				schemaEntry("numberField", "02", "number"),
+				schemaEntry("rangeField", "03", "range"),
+				schemaEntry("sliderField", "04", "slider"),
+				
+				schemaEntry("selectField", "05", "select", {src}),
+				schemaEntry("switcherField", "06", "switcher", {src}),
+				schemaEntry("lineField", "7", "line"),
+				schemaEntry("paragraphField", "8", "paragraph"),
+			]
+		}),
 	]
 	
 	const valueBase = {
@@ -53,7 +56,7 @@ export const ExamplePart4 = receivedProps => {
 		lineField: "test at one",
 		paragraphField: "test at one zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
 	}
-	const value = {...valueBase, groupField: valueBase,};
+	const value = {...valueBase, objectField: valueBase,};
 	const formProps = {schema, value}
 	
 	return (<Form {...formProps}/>);
