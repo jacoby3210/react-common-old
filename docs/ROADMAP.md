@@ -1,3 +1,7 @@
 - layouts\data\scrollbar - set scroll thumb size dynamically.
 - layouts\dnd - add mode for drag&drop by one axis only. 
 - components\fields\advisor - callback for search in src and access to text value in object array.
+- layouts\form - support group field.
+- layouts\form - support array field.
+- components\fields\paragraph - disable resize.
+- 

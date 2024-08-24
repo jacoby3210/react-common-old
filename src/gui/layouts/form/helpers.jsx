@@ -1,9 +1,10 @@
-import {CheckBox} from '../../components/mouse/checkbox';
-import {Range} from '../../components/mouse/range';
-import {Slider} from '../../components/mouse/slider';
-import {Advisor} from '../../components/text/advisor'
-import {Select} from '../../components/text/select'
-import {Switcher} from '../../components/text/switcher'
+import {CheckBox} 		from '../../components/mouse/checkbox';
+import {Range} 				from '../../components/mouse/range';
+import {Slider} 			from '../../components/mouse/slider';
+import {Advisor} 			from '../../components/text/advisor'
+import {Paragraph}	 	from '../../components/text/paragraph';
+import {Select} 			from '../../components/text/select'
+import {Switcher} 		from '../../components/text/switcher'
 // ========================================================================= //
 // Helper functions.																												 //
 // ========================================================================= //
@@ -39,7 +40,7 @@ export const line = ({key, value, onChange, ...props}) => (
 );
 
 export const paragraph = ({key, value, onChange, ...props}) => (
-	<Advisor name={key} value={value} {...props}/>
+	<Paragraph name={key} value={value} {...props}/>
 );
 
 export const select = ({key, value, onChange, ...props}) => (
@@ -65,8 +66,8 @@ export const relations = {
 	select,
 	switcher,
 
-  /* complex data*/
   // array: arrayField,
+  // cloud: cloudField,
 };
 
 // ========================================================================= //

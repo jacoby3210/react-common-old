@@ -19,8 +19,9 @@ import { Range } 			from "./src/gui/components/mouse/range";								// - to sele
 import { Slider } 		from "./src/gui/components/mouse/slider";								// - represents universal customizable content scroller.
 
 // text
-import {Advisor} 			from './src/gui/components/text/advisor'								// - to show basic text field with autocomplete suggestions.
+import {Advisor} 			from './src/gui/components/text/advisor'								// - to show text line field with autocomplete suggestions.
 import {Cloud} 				from "./src/gui/components/text/cloud";									// - for displaying the add/remove tags interface.
+import {Paragraph} 		from "/src/gui/components/text/paragraph";							// - to display text as a separate paragraph.
 import {Select} 			from './src/gui/components/text/select'									// - for selection one option from the source list.
 import {Switcher} 		from "./src/gui/components/text/switcher";							// - for selection one option from the source list (alt mode).
 
@@ -42,7 +43,7 @@ export const Components = {
 	Indicator, Path, Popup, Timer, View,
 	Accordion, Dropdown, 
 	CheckBox, Clicker, RadioBar, Range, Slider,
-	Advisor, Cloud, Select, Switcher
+	Advisor, Cloud, Paragraph, Select, Switcher
 };
 
 export const Data = {Browser, Navigator, Paginator, Scrollbar,}

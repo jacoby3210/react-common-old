@@ -4,7 +4,7 @@ import {Popup} from '../../basics/popup'
 import {DEFAULT_CLASS, defaultProps, propTypes } from "./config"
 import { AdvisorList} from './helpers';
 // ========================================================================= //
-// React component rendering  basic text filed with input suggestions.
+// React component to show text line field with autocomplete suggestions.
 // ========================================================================= //
 
 export const Advisor = receivedProps => {
@@ -14,8 +14,8 @@ export const Advisor = receivedProps => {
 		id,
 		src,
 		value,
-		whenUpdateValueState,
 		TemplateAdvisorOption,
+		whenUpdateValueState,
 		...attributes
 	} = mergeProps(defaultProps, receivedProps);
 

@@ -29,7 +29,7 @@ export const ExamplePart4 = receivedProps => {
 		schemaEntry("selectField", "5", "select", {src}),
 		schemaEntry("switcherField", "6", "switcher", {src}),
 		schemaEntry("lineField", "7", "line"),
-		// schemaEntry("paragraphField", "8", "paragraph"),
+		schemaEntry("paragraphField", "8", "paragraph"),
 		// schemaEntry("groupField", "9", "group", [
 		// 	schemaEntry("checkboxField", "1", "checkbox"),
 		// 	schemaEntry("numberField", "2", "number"),
